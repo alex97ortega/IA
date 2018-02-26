@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreateGame : MonoBehaviour {
 
@@ -9,12 +10,13 @@ public class CreateGame : MonoBehaviour {
     public GameObject texto;
     public GameObject fichaP; // prefab de la ficha
 
-    List<Vector2> posicionesCorrectas = new List<Vector2>(); //para comparar con las posiciones actuales
+    GameObject[] fichas;
+
+    Vector3[] posicionesCorrectas = new Vector3[9]; //para comparar con las posiciones actuales
     const int tam = 3; // tamaño del cuadrado
     GameObject hueco;
     GameObject conjuntoFichas; // almacena todas las fichas
-    GameObject[] fichas;
-
+    
 
     private void Awake() {
         conjuntoFichas = GameObject.Find("Fichas");
@@ -69,8 +71,8 @@ public class CreateGame : MonoBehaviour {
 
         hueco.gameObject.SetActive(false); //ficha escondida o hueco
         fichas = GameObject.FindGameObjectsWithTag("Ficha"); // hay que usar el tag ficha
-        for (int x = 0; x < fichas.Length; x++)
-            posicionesCorrectas.Add(fichas[x].transform.position); //asignar posiciones
+        for (int x = 0; x < posicionesCorrectas.Length; x++)
+            posicionesCorrectas[x] = (fichas[x].transform.position); //asignar posiciones
 
 
         // ahora ponemos posiciones aleatorias
@@ -86,7 +88,17 @@ public class CreateGame : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-		
-	}
+    public void Victoria () {
+        //comprobar si se ha ganado
+        for (int i = 0; i < posicionesCorrectas.Length; i++)
+        {
+            if (posicionesCorrectas[i] != fichas[i].transform.position)
+            {
+                return;
+            }
+        }
+
+        hueco.gameObject.SetActive(true); //ficha escondida o hueco
+        texto.gameObject.SetActive(true); //ficha escondida o hueco
+    }
 }
