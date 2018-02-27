@@ -6,11 +6,13 @@ public class GameManger : MonoBehaviour {
 
     Vector3[] positions = new Vector3[9];
     public GameObject fichaP; // prefab de la ficha
+    public GameObject bordeP; // prefab de bordes
     public GameObject[] fichas = new GameObject[9];
+    public GameObject[] bordes = new GameObject[12];
     public Vector2[] state = new Vector2[9];
     public List<Sprite> fichasImg = new List<Sprite>(); // lista de las fichas del tablero
     GameObject conjuntoFichas; // almacena todas las fichas
-
+    GameObject conjuntoBordes; // almacena los bordes
     GameObject hueco;
 
     public GameObject texto;
@@ -23,6 +25,7 @@ public class GameManger : MonoBehaviour {
     private void Awake()
     {
         conjuntoFichas = GameObject.Find("Fichas");
+        conjuntoBordes = GameObject.Find("Bordes");
     }
     private void Start()
     {
@@ -45,37 +48,41 @@ public class GameManger : MonoBehaviour {
             }
         }
         /////////////////
+        Vector2 pos;
         for (float i = 0; i < 6; i++)
         {
             if (i < 3)
             {
-                Vector2 pos = new Vector2(-i * tamF + 4, +8);
-                GameObject ficha = Instantiate(fichaP, pos, Quaternion.identity);
+                 pos = new Vector2(-i * tamF + 4, +8);                
             }
-            else if (i < 6)
+            else 
             {
-                Vector2 pos = new Vector2(-i * tamF + 14.5f, -8);
-                GameObject ficha = Instantiate(fichaP, pos, Quaternion.identity);
+                 pos = new Vector2(-i * tamF + 14.5f, -8);              
             }
+            GameObject borde = Instantiate(bordeP, pos, Quaternion.identity);
+            borde.transform.parent = conjuntoBordes.transform;
+            //borde.GetComponent<SpriteRenderer>().sprite = fichasImg[0];
         }
 
         for (float i = 0; i < 6; i++)
         {
             if (i < 3)
             {
-                Vector2 pos = new Vector2(-7, -i * tamF + 3.5f);
-                GameObject ficha = Instantiate(fichaP, pos, Quaternion.identity);
+                 pos = new Vector2(-7, -i * tamF + 3.5f);                
             }
             else
             {
-                Vector2 pos = new Vector2(+8, -i * tamF + 13.5f);
-                GameObject ficha = Instantiate(fichaP, pos, Quaternion.identity);
+                 pos = new Vector2(+8, -i * tamF + 13.5f);
+               
             }
+            GameObject borde = Instantiate(bordeP, pos, Quaternion.identity);
+            borde.transform.parent = conjuntoBordes.transform;
+            //borde.GetComponent<SpriteRenderer>().sprite = fichasImg[0];
         }
 
         hueco.gameObject.SetActive(false); //ficha escondida o hueco
         fichas = GameObject.FindGameObjectsWithTag("Ficha"); // hay que usar el tag ficha
-
+        bordes = GameObject.FindGameObjectsWithTag("Borde");
 
         // ahora ponemos posiciones aleatorias
 
@@ -97,7 +104,7 @@ public class GameManger : MonoBehaviour {
         //Esto no acaba de funcionar y no sé why
         SensoresScript sensoresScript = fichas[ficha].GetComponentInChildren(typeof(SensoresScript)) as SensoresScript;
         Vector3 newPos;
-        if (!sensoresScript.ocupadoArr) newPos = positions[ficha - 3];
+        if (!sensoresScript.ocupadoArr)  newPos = positions[ficha - 3];
         else
         if (!sensoresScript.ocupadoAb) newPos = positions[ficha + 3];
         else
@@ -105,6 +112,7 @@ public class GameManger : MonoBehaviour {
         else
         if (!sensoresScript.ocupadoIzq) newPos = positions[ficha - 1];
         else return;
+        print(" la ficha " + ficha +" se tie que mover " + newPos.x +" en x,  " + newPos.y +" en y");
         fichas[ficha].transform.position = newPos;
         movements++;
     }
