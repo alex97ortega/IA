@@ -101,18 +101,20 @@ public class GameManger : MonoBehaviour {
 
     public void MueveFicha(uint ficha)
     {
+        ficha++;
         //Esto no acaba de funcionar y no sé why
         SensoresScript sensoresScript = fichas[ficha].GetComponentInChildren(typeof(SensoresScript)) as SensoresScript;
         Vector3 newPos;
-        if (!sensoresScript.ocupadoArr)  newPos = positions[ficha - 3];
+        if (!sensoresScript.ocupadoArr)   newPos = fichas[ficha].transform.position +  new Vector3(0,3.6f,0);
         else
-        if (!sensoresScript.ocupadoAb) newPos = positions[ficha + 3];
+        if (!sensoresScript.ocupadoAb) newPos = fichas[ficha].transform.position + new Vector3(0, -3.6f, 0);
         else
-        if (!sensoresScript.ocupadoDr) newPos = positions[ficha + 1];
+        if (!sensoresScript.ocupadoDr) newPos = fichas[ficha].transform.position + new Vector3(3.6f, 0, 0);
         else
-        if (!sensoresScript.ocupadoIzq) newPos = positions[ficha - 1];
+        if (!sensoresScript.ocupadoIzq) newPos = fichas[ficha].transform.position + new Vector3(-3.6f, 0, 0);
         else return;
-        print(" la ficha " + ficha +" se tie que mover " + newPos.x +" en x,  " + newPos.y +" en y");
+       
+        
         fichas[ficha].transform.position = newPos;
         movements++;
     }

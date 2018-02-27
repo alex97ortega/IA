@@ -266,7 +266,7 @@ MonoBehaviour:
   dr: {fileID: 652917623}
   arr: {fileID: 1852707162}
   ab: {fileID: 1477839108}
-  distancia: 1.7
+  distancia: 0.1
   ocupadoIzq: 1
   ocupadoDr: 1
   ocupadoArr: 1
@@ -1131,7 +1131,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4507519705547108, guid: cf422f12f260e7245a84b94fc3f278c4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4507519705547108, guid: cf422f12f260e7245a84b94fc3f278c4, type: 2}
       propertyPath: m_LocalPosition.y
