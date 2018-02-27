@@ -15,6 +15,8 @@ public class GameManger : MonoBehaviour {
     GameObject conjuntoBordes; // almacena los bordes
     GameObject hueco;
 
+    UI ui;
+
     public GameObject texto;
 
 
@@ -26,6 +28,7 @@ public class GameManger : MonoBehaviour {
     {
         conjuntoFichas = GameObject.Find("Fichas");
         conjuntoBordes = GameObject.Find("Bordes");
+        ui = GameObject.Find("Scripts").GetComponent(typeof(UI)) as UI;
     }
     private void Start()
     {
@@ -86,7 +89,7 @@ public class GameManger : MonoBehaviour {
 
         // ahora ponemos posiciones aleatorias
 
-        int random;
+       /* int random;
         for (int i = 1; i < fichas.Length; i++)
         {
             random = Random.Range(i, 8);
@@ -94,7 +97,7 @@ public class GameManger : MonoBehaviour {
             fichas[i].transform.position = fichas[random].transform.position;
             fichas[random].transform.position = newPos;
         }
-
+        */
 
 
     }
@@ -117,19 +120,25 @@ public class GameManger : MonoBehaviour {
         
         fichas[ficha].transform.position = newPos;
         movements++;
+        ui.SumaMov();
     }
 
+    private void Update()
+    {
+        Victoria();
+    }
     public void Victoria()
     {
         //comprobar si se ha ganado
         for (int i = 0; i < positions.Length; i++)
         {
+            Debug.Log("La ficha " + i + " deberia estar en: " + positions[i] + " y está en: " + fichas[i].transform.position);
             if (positions[i] != fichas[i].transform.position)
             {
                 return;
             }
         }
-
+        Debug.Log("VICTORIA!");
         hueco.gameObject.SetActive(true); //ficha escondida o hueco
         texto.gameObject.SetActive(true); //texto escondido o hueco
     }
