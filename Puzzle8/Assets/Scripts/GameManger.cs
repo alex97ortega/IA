@@ -168,7 +168,7 @@ public class GameManger : MonoBehaviour {
             fichas[i].transform.position = fichas[random].transform.position;
             fichas[random].transform.position = newPos;
         }
-        // poner el hueco en la pos 8
+        // Activar y desactivar todos los gameObjects que se necesitan
         stats.gameObject.SetActive(false);
         movs.gameObject.SetActive(true);
         texto.gameObject.SetActive(false);
