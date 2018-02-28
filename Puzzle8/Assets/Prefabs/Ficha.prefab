@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 61343325451470116}
   - component: {fileID: 114661612933009480}
   - component: {fileID: 114314919249247232}
+  - component: {fileID: 114166272250523190}
   m_Layer: 0
   m_Name: Ficha
   m_TagString: Ficha
@@ -68,6 +69,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114166272250523190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262133061676298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d7a2314b4f7c184fa686890117aecc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boardPosition: {x: 0, y: 0}
 --- !u!114 &114314919249247232
 MonoBehaviour:
   m_ObjectHideFlags: 1

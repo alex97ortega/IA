@@ -51,6 +51,7 @@ public class GameManger : MonoBehaviour {
                 fichas[indx] = ficha;
                 ficha.GetComponent<SpriteRenderer>().sprite = fichasImg[indx];
                 ficha.GetComponent<Index>().index = (uint)indx;
+
                 ficha.transform.parent = conjuntoFichas.transform;
                 ficha.name = fichasImg[indx].name;
                 if (indx == 8) hueco = ficha;
@@ -100,19 +101,30 @@ public class GameManger : MonoBehaviour {
     }
     public void MueveFicha(uint ficha)
     {
-
-        
         ficha++;
-        //Esto no acaba de funcionar y no sé why
         SensoresScript sensoresScript = fichas[ficha].GetComponentInChildren(typeof(SensoresScript)) as SensoresScript;
         Vector3 newPos;
-        if (!sensoresScript.ocupadoArr)   newPos = fichas[ficha].transform.position +  new Vector3(0,3.6f,0);
-        else
-        if (!sensoresScript.ocupadoAb) newPos = fichas[ficha].transform.position + new Vector3(0, -3.6f, 0);
-        else
-        if (!sensoresScript.ocupadoDr) newPos = fichas[ficha].transform.position + new Vector3(3.6f, 0, 0);
-        else
-        if (!sensoresScript.ocupadoIzq) newPos = fichas[ficha].transform.position + new Vector3(-3.6f, 0, 0);
+
+        if (!sensoresScript.ocupadoArr)
+        {
+            newPos = fichas[ficha].transform.position + new Vector3(0, 3.6f, 0);
+            fichas[ficha].GetComponent<BoardPosition>().MoveFicha(0, -1);
+        }
+        else if (!sensoresScript.ocupadoAb)
+        {
+            newPos = fichas[ficha].transform.position + new Vector3(0, -3.6f, 0);
+            fichas[ficha].GetComponent<BoardPosition>().MoveFicha(0, 1);
+        }
+        else if (!sensoresScript.ocupadoDr)
+        {
+            newPos = fichas[ficha].transform.position + new Vector3(3.6f, 0, 0);
+            fichas[ficha].GetComponent<BoardPosition>().MoveFicha(1, 0);
+        }
+        else if (!sensoresScript.ocupadoIzq)
+        {
+            newPos = fichas[ficha].transform.position + new Vector3(-3.6f, 0, 0);
+            fichas[ficha].GetComponent<BoardPosition>().MoveFicha(-1, 0);
+        }
         else return;
        
         
@@ -131,7 +143,7 @@ public class GameManger : MonoBehaviour {
            
             if (positions[i] != fichas[i+1].transform.position)
             {
-                return;
+                return;//si no ha ganado la partida el método termina aquí
             }
         }
 
@@ -157,16 +169,14 @@ public class GameManger : MonoBehaviour {
 
         // ahora ponemos posiciones aleatorias
         int random;
-        for (int i = 1; i < fichas.Length+1; i++)
-        {
-            
-        }
         for (int i = 1; i < fichas.Length; i++)
         {            
             random = Random.Range(i, 8);
             Vector2 newPos = fichas[i].transform.position;
             fichas[i].transform.position = fichas[random].transform.position;
             fichas[random].transform.position = newPos;
+            fichas[i].GetComponent<BoardPosition>().boardPosition = new Vector2Int((int)random-1/3, (int)(random-1)%3);
+            fichas[random].GetComponent<BoardPosition>().boardPosition = new Vector2Int((int)i - 1 / 3, (int)(i - 1) % 3);
         }
         // Activar y desactivar todos los gameObjects que se necesitan
         stats.gameObject.SetActive(false);
