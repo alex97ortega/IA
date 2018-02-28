@@ -1,95 +1,201 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HillClibing_Resolutor : MonoBehaviour {
-    List<Vector2[]> list;
-    List<Vector2[]> seen;
+public class Hill_Climbing : MonoBehaviour
+{
 
-    public Vector2[] currentState;
+    GameManger gameManager;
 
-    Vector2[] solvedState = new Vector2[9];
+    public GameObject[] fichas;
 
-    struct Direction{public int i; public int j;};
+    int[,] currentState = new int[3, 3];
+    int[,] solvedState = new int[3, 3];
+    struct Node
+    {
+        public int[,] state;
+        public int fichaMovida;
+        public Vector2Int huecoPos;
 
-    Direction[] directions = new Direction[4];
-
-    void Start () {
-        //SolvedState initialization
-        int n = 0;
-        for (int i = -1; i < 2; i++)
+        public Node(int[,] state_)
         {
-            for (int j = -1; j < 2; j++)
+            state = state_;
+            fichaMovida = -1;
+            huecoPos = new Vector2Int(-1, -1);
+            //Localizamos el hueco
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                    if (state[i, j] == -1)
+                        huecoPos = new Vector2Int(i, j);
+        }
+    }
+
+    List<Node> list = new List<Node>();
+    List<int[,]> seen = new List<int[,]>();
+
+    Vector2Int[] directions;
+
+
+    private void Start()
+    {
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+                solvedState[i, j] = i + j;
+
+        fichas = GameObject.FindGameObjectsWithTag("Ficha"); // hay que usar el tag ficha
+        gameManager = GameObject.Find("Scripts").GetComponent(typeof(GameManger)) as GameManger;
+
+        directions = new Vector2Int[4];
+        directions[0] = new Vector2Int(-1, 0);
+        directions[1] = new Vector2Int(1, 0);
+        directions[2] = new Vector2Int(0, -1);
+        directions[3] = new Vector2Int(0, 1);
+    }
+
+    public void Resolve()
+    { 
+        list.Add(new Node(TranslateCurrentState(fichas)));
+
+        while (list.Count > 0 && !IsSolution(list[0].state))
+        {
+            //Probar todos los movimientos posibles
+            for (int i = 0; i < 4; i++)
             {
-                solvedState[n] = new Vector2(i, j);
-                n++;
+                if (IsValidMove(list[0], directions[i]))
+                {
+                    Node newNode = MueveFicha(list[0], directions[i]);
+                    Debug.Log(newNode.fichaMovida);
+                    //eliminar los estados por los que ya hemos pasado ( !seen.Constains(state)  )
+                    if (!seen.Contains(newNode.state))
+                    {
+                        //meter los nuevos estados en la lista de estados
+                        list.Add(newNode);
+                    }
+                }
             }
-        }
 
-        list.Add(currentState);
-        //Directions initialization
-        directions[0].i = -1; directions[0].j = 0;
-        directions[1].i = 1; directions[1].j = 0;
-        directions[2].i = 0; directions[1].j = -1;
-        directions[3].j = 0; directions[3].j = 1;
-    }
-	
-    void Resolve()
-    {
-        while (!CheckCorrectState(list[0]))
+            //quitar list[0] y meterlo en seen
+            seen.Add(list[0].state);
+            list.Remove(list[0]);
+            //ordenar la lista de acuerdo a la heurística
+            //Debug.Log(list.Count);
+            SortByPotential(ref list);
+        }//Solver Algorithm
+
+
+       // List<int> solution = new List<int>();
+        foreach (Node n in list)
         {
-            for (int i = 0; i < directions.Length; i++)
-            {
-                Vector2[] newState = ApplyMove(directions[i], list[0]);
-                if (newState == null) continue;
-                if (!seen.Contains(newState))
-                    list.Add(newState);
-            }
-            SortListByProximity(ref list);
+            //solution.Add(n.fichaMovida);
+            Debug.Log(n);
+            gameManager.MueveFicha((uint)n.fichaMovida);
+
         }
+        //return solution;
     }
 
-    struct PonderedState { public int priority; public Vector2[] state; }
-    private void SortListByProximity(ref List<Vector2[]> list)
+    //Done
+    bool IsSolution(int[,] state)
     {
-        List<PonderedState> ponderedState = new List<PonderedState>();
-        foreach(Vector2[] state in list)
+        bool ret = true;
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+                if (state[i, j] != solvedState[i, j])
+                    ret = false;
+        return ret;
+    }
+
+    //Done
+    int[,] TranslateCurrentState(GameObject[] fichas)
+    {
+        //Inicializamos el estado a -1
+        int[,] currentState = new int[3, 3];
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+                currentState[i, j] = -1;
+
+        //rellenamos el estado con los índices de las fichas
+        for(int i = 1; i < fichas.Length; i++)
         {
-            PonderedState ps;
-            ps.state = state;
-            ps.priority = GetPriority(state);
-            ponderedState.Add(ps);
+            Vector2Int pos = fichas[i].GetComponent<BoardPosition>().boardPosition;
+            int index = (int)fichas[i].GetComponent<Index>().GetIndex();
+            currentState[pos.x, pos.y] = index;
         }
+
+
+
+        //Devolvemos el estado formateado
+
+        return currentState;
     }
 
-
-    private int GetPriority(Vector2[] state)
+    Node MueveFicha(Node oldState, Vector2Int dir)
     {
-        throw new NotImplementedException();
-    }
+        int[,] newState = oldState.state;
 
-    bool CheckCorrectState(Vector2[] state)
-    {
-        bool res = true;
-        for (int i = 0; res && i < solvedState.Length; i++)
+        Vector2Int newHuecoPos = oldState.huecoPos + dir;
+        Node newNode = new Node
         {
-            if (state[i] != solvedState[i])
-                res = false;
-            
-        }
-       return res;
-    }
+            fichaMovida = newState[oldState.huecoPos.x, oldState.huecoPos.y]
+        };
+        newState[oldState.huecoPos.x, oldState.huecoPos.y] = oldState.state[newHuecoPos.x, newHuecoPos.y];
+        newState[newHuecoPos.x, newHuecoPos.y] = -1;
+        newNode.huecoPos = newHuecoPos;
+        newNode.state = newState;
 
-    Vector2[] ApplyMove(Direction dir, Vector2[] state)
+
+        return newNode;
+    }
+    bool IsValidMove(Node n, Vector2Int dir)
     {
-        //TODO
-        bool a = true;
-        Vector2[] newState = new Vector2[9];
-        if (a)
-        return newState;
-        return null;
+        Vector2Int newPos = n.huecoPos + dir;
+        bool resultado = !(newPos.x > 2 || newPos.x < 0 || newPos.y > 2 || newPos.y < 0);
+        return resultado;
     }
 
+
+    struct WeightedNode { public int weigth; public Node node; }
+    void SortByPotential(ref List<Node> list)
+    {
+        List<WeightedNode> wList = new List<WeightedNode>();
+        foreach (Node n in list)
+        {
+            WeightedNode weightedNode;
+            weightedNode.node = n;
+            weightedNode.weigth = GetWeight(n);
+            wList.Add(weightedNode);
+        }
+        //Sort wList
+        wList.Sort((x, y) => x.weigth.CompareTo(y.weigth));
+        //Copy WList.node -> list
+        for (int i = 0; i < list.Count; i++)
+        {
+            list[i] = wList[i].node;
+        }
+    }
+
+    int GetWeight(Node node)
+    {
+        //Contar la distancia entre la pieza movida y su posición correcta
+        //Encontrar la posicion de la ficha movida
+        bool found = false;
+        int i = -1; int j = -1;
+        for (i = 0; !found && i < 3; i++)
+            for (j = 0; !found && j < 3; j++)
+                found = node.state[i, j] == node.fichaMovida;
+
+        Vector2Int fichaMovidaPos = new Vector2Int(i, j);
+
+        Vector2Int posDestino = new Vector2Int
+        {
+            x = node.fichaMovida / 3,
+            y = node.fichaMovida - (node.fichaMovida / 3)
+        };
+
+        //calcular la distancia entre la ficha movida y su lugar
+        int distancia = (fichaMovidaPos.x - posDestino.x) + (fichaMovidaPos.y - posDestino.y); ;
+        return distancia;
+    }
 
 }

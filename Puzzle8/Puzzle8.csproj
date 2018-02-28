@@ -288,8 +288,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BoardPosition.cs" />
-    <Compile Include="Assets\Hill_Climbing.cs" />
+    <Compile Include="Assets\Scripts\BoardPosition.cs" />
     <Compile Include="Assets\Scripts\GameManger.cs" />
     <Compile Include="Assets\Scripts\Hill_Climbing.cs" />
     <Compile Include="Assets\Scripts\Index.cs" />

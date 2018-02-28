@@ -30,15 +30,11 @@ public class GameManger : MonoBehaviour {
     public uint movements;
     //tiempo, cuando sepamos
 
-
     private void Awake()
     {
         conjuntoFichas = GameObject.Find("Fichas");
         conjuntoBordes = GameObject.Find("Bordes");
         ui = GameObject.Find("Scripts").GetComponent(typeof(UI)) as UI;
-    }
-    private void Start()
-    {
         //Inicializar los positions a las posiciones que tienen que tener las fichas con ese índice
         int indx = 0;
         
@@ -51,7 +47,7 @@ public class GameManger : MonoBehaviour {
                 fichas[indx] = ficha;
                 ficha.GetComponent<SpriteRenderer>().sprite = fichasImg[indx];
                 ficha.GetComponent<Index>().index = (uint)indx;
-
+                ficha.GetComponent<BoardPosition>().boardPosition = new Vector2Int((int) j, (int) i);
                 ficha.transform.parent = conjuntoFichas.transform;
                 ficha.name = fichasImg[indx].name;
                 if (indx == 8) hueco = ficha;
@@ -175,8 +171,10 @@ public class GameManger : MonoBehaviour {
             Vector2 newPos = fichas[i].transform.position;
             fichas[i].transform.position = fichas[random].transform.position;
             fichas[random].transform.position = newPos;
-            fichas[i].GetComponent<BoardPosition>().boardPosition = new Vector2Int((int)random-1/3, (int)(random-1)%3);
-            fichas[random].GetComponent<BoardPosition>().boardPosition = new Vector2Int((int)i - 1 / 3, (int)(i - 1) % 3);
+
+            Vector2Int aux = fichas[i].GetComponent<BoardPosition>().boardPosition;
+            fichas[i].GetComponent<BoardPosition>().boardPosition = fichas[random].GetComponent<BoardPosition>().boardPosition;
+            fichas[random].GetComponent<BoardPosition>().boardPosition = aux;
         }
         // Activar y desactivar todos los gameObjects que se necesitan
         stats.gameObject.SetActive(false);
