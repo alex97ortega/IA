@@ -11,13 +11,20 @@ public class GameManger : MonoBehaviour {
     public GameObject[] bordes = new GameObject[12];
     public Vector2[] state = new Vector2[9];
     public List<Sprite> fichasImg = new List<Sprite>(); // lista de las fichas del tablero
+
+    public GameObject botonReinicio;
+    public GameObject botonResolver;
+
+
     GameObject conjuntoFichas; // almacena todas las fichas
     GameObject conjuntoBordes; // almacena los bordes
     GameObject hueco;
 
     UI ui;
-
+    float tamF = 3.6f;
     public GameObject texto;
+    public GameObject stats;
+    public GameObject movs;
 
 
     public uint movements;
@@ -34,7 +41,7 @@ public class GameManger : MonoBehaviour {
     {
         //Inicializar los positions a las posiciones que tienen que tener las fichas con ese índice
         int indx = 0;
-        float tamF = 3.6f;
+        
         for (float i = 0; i < 3; i++)
         {
             for (float j = 0; j < 3; j++)
@@ -87,23 +94,14 @@ public class GameManger : MonoBehaviour {
         fichas = GameObject.FindGameObjectsWithTag("Ficha"); // hay que usar el tag ficha
         bordes = GameObject.FindGameObjectsWithTag("Borde");
 
-        // ahora ponemos posiciones aleatorias
 
-       /* int random;
-        for (int i = 1; i < fichas.Length; i++)
-        {
-            random = Random.Range(i, 8);
-            Vector2 newPos = fichas[i].transform.position;
-            fichas[i].transform.position = fichas[random].transform.position;
-            fichas[random].transform.position = newPos;
-        }
-        */
-
-
+        Baraja();
+        
     }
-
     public void MueveFicha(uint ficha)
     {
+
+        
         ficha++;
         //Esto no acaba de funcionar y no sé why
         SensoresScript sensoresScript = fichas[ficha].GetComponentInChildren(typeof(SensoresScript)) as SensoresScript;
@@ -121,26 +119,60 @@ public class GameManger : MonoBehaviour {
         fichas[ficha].transform.position = newPos;
         movements++;
         ui.SumaMov();
-    }
-
-    private void Update()
-    {
         Victoria();
     }
+
+    
     public void Victoria()
     {
         //comprobar si se ha ganado
-        for (int i = 0; i < positions.Length; i++)
+        for (int i = 0; i < fichas.Length - 1; i++)
         {
-            Debug.Log("La ficha " + i + " deberia estar en: " + positions[i] + " y está en: " + fichas[i].transform.position);
-            if (positions[i] != fichas[i].transform.position)
+           
+            if (positions[i] != fichas[i+1].transform.position)
             {
                 return;
             }
         }
-        Debug.Log("VICTORIA!");
-        hueco.gameObject.SetActive(true); //ficha escondida o hueco
-        texto.gameObject.SetActive(true); //texto escondido o hueco
-    }
 
+        hueco.gameObject.SetActive(true); //ficha escondida o hueco
+
+        ui.Estadisticas();
+
+        botonResolver.gameObject.SetActive(false);
+
+        texto.gameObject.SetActive(true); 
+        stats.gameObject.SetActive(true);
+        movs.gameObject.SetActive(false);
+    }
+    public void Baraja()
+    {
+        movements = 0;
+        ui.Reiniciando();
+        // la magia
+        for (int i = 0; i < fichas.Length - 1; i++)
+        {
+            fichas[i + 1].transform.position = positions[i];
+        }
+
+        // ahora ponemos posiciones aleatorias
+        int random;
+        for (int i = 1; i < fichas.Length+1; i++)
+        {
+            
+        }
+        for (int i = 1; i < fichas.Length; i++)
+        {            
+            random = Random.Range(i, 8);
+            Vector2 newPos = fichas[i].transform.position;
+            fichas[i].transform.position = fichas[random].transform.position;
+            fichas[random].transform.position = newPos;
+        }
+        // poner el hueco en la pos 8
+        stats.gameObject.SetActive(false);
+        movs.gameObject.SetActive(true);
+        texto.gameObject.SetActive(false);
+        botonResolver.gameObject.SetActive(true);
+    }
+    
 }
