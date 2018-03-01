@@ -177,6 +177,8 @@ public class GameManger : MonoBehaviour {
             fichas[random].GetComponent<BoardPosition>().boardPosition = aux;
         }
         // Activar y desactivar todos los gameObjects que se necesitan
+
+        hueco.gameObject.SetActive(false); //ficha escondida o hueco
         stats.gameObject.SetActive(false);
         movs.gameObject.SetActive(true);
         texto.gameObject.SetActive(false);

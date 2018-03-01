@@ -59,31 +59,37 @@ public class Hill_Climbing : MonoBehaviour
         PrintStado(list[0].state);
 
         int cont = 0;
-        Debug.Log("Vuelta :" + cont);
+        bool nuevoEstado;
         while (list.Count > 0 && !IsSolution(list[0].state))
         {
+            Debug.Log("Vuelta :" + cont);
+            nuevoEstado = false;
             //Probar todos los movimientos posibles
             for (int i = 0; i < 4; i++)
             {
-                if (IsValidMove(list[0], directions[i]))
+                if (!nuevoEstado)
                 {
-                    //El fallo está en que la segunda llamda utiliza el tablero que se ha originado después del primer movimiento
-                    //Duplicando así el número.
-                    Node newNode = MueveFicha(list[0], directions[i]);
-                   // Debug.Log("El hueco está en :" + newNode.huecoPos);
-                    //Debug.Log("Muevo la ficha: "+ (newNode.fichaMovida + 1));
-                    //eliminar los estados por los que ya hemos pasado ( !seen.Constains(state)  )
-                    bool contenido = seen.Contains(newNode.state);
-                    if (!contenido)
+                    if (IsValidMove(list[0], directions[i])) // is valid es correcto
                     {
-                        //meter los nuevos estados en la lista de estados
-                        Debug.Log("Estado Nuevo");
-                        list.Add(newNode);
-                        PrintStado(newNode.state);
-                        Debug.Log("Tamaño de la lista: " + list.Count);
+                       
+                        Node newNode = MueveFicha(list[0], directions[i]);
+                        // Debug.Log("El hueco está en :" + newNode.huecoPos);
+                        //Debug.Log("Muevo la ficha: "+ (newNode.fichaMovida + 1));
+                        //eliminar los estados por los que ya hemos pasado ( !seen.Constains(state)  )
+                        bool contenido = seen.Contains(newNode.state);
+                        if (!contenido)
+                        {
+                            //meter los nuevos estados en la lista de estados
+                            Debug.Log("Estado Nuevo");
+                            list.Add(newNode);
+                            PrintStado(newNode.state);
+                            Debug.Log("Tamaño de la lista: " + list.Count);
+                            nuevoEstado = true;
+                        }
+                        else Debug.Log("Estado ya visto"); // en la segunda vuelta solo entra aqui
                     }
-                    else Debug.Log("Estado ya visto");
                 }
+                
             }
             //quitar list[0] y meterlo en seen
             seen.Add(list[0].state);
