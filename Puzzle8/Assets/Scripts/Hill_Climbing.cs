@@ -10,7 +10,6 @@ public class Hill_Climbing : MonoBehaviour
 
     public GameObject[] fichas;
 
-    int[,] currentState = new int[3, 3];
     int[,] solvedState = new int[3, 3];
     struct Node
     {
@@ -56,7 +55,11 @@ public class Hill_Climbing : MonoBehaviour
     public void Resolve()
     { 
         list.Add(new Node(TranslateCurrentState(fichas)));
+        Debug.Log("Tablero Original:");
+        PrintStado(list[0].state);
 
+        int cont = 0;
+        Debug.Log("Vuelta :" + cont);
         while (list.Count > 0 && !IsSolution(list[0].state))
         {
             //Probar todos los movimientos posibles
@@ -64,31 +67,40 @@ public class Hill_Climbing : MonoBehaviour
             {
                 if (IsValidMove(list[0], directions[i]))
                 {
+                    //El fallo está en que la segunda llamda utiliza el tablero que se ha originado después del primer movimiento
+                    //Duplicando así el número.
                     Node newNode = MueveFicha(list[0], directions[i]);
-                    Debug.Log(newNode.fichaMovida);
+                   // Debug.Log("El hueco está en :" + newNode.huecoPos);
+                    //Debug.Log("Muevo la ficha: "+ (newNode.fichaMovida + 1));
                     //eliminar los estados por los que ya hemos pasado ( !seen.Constains(state)  )
-                    if (!seen.Contains(newNode.state))
+                    bool contenido = seen.Contains(newNode.state);
+                    if (!contenido)
                     {
                         //meter los nuevos estados en la lista de estados
+                        Debug.Log("Estado Nuevo");
                         list.Add(newNode);
+                        PrintStado(newNode.state);
+                        Debug.Log("Tamaño de la lista: " + list.Count);
                     }
+                    else Debug.Log("Estado ya visto");
                 }
             }
-
             //quitar list[0] y meterlo en seen
             seen.Add(list[0].state);
             list.Remove(list[0]);
             //ordenar la lista de acuerdo a la heurística
-            //Debug.Log(list.Count);
+            Debug.Log("Tamaño de la lista final: " + list.Count);
             SortByPotential(ref list);
+            cont++;
         }//Solver Algorithm
 
 
-       // List<int> solution = new List<int>();
+        // List<int> solution = new List<int>();
+        //Debug.Log("He intentado movir las fichas:");
         foreach (Node n in list)
         {
             //solution.Add(n.fichaMovida);
-            Debug.Log(n);
+            Debug.Log(n.fichaMovida);
             gameManager.MueveFicha((uint)n.fichaMovida);
 
         }
@@ -120,13 +132,17 @@ public class Hill_Climbing : MonoBehaviour
         {
             Vector2Int pos = fichas[i].GetComponent<BoardPosition>().boardPosition;
             int index = (int)fichas[i].GetComponent<Index>().GetIndex();
-            currentState[pos.x, pos.y] = index;
+            currentState[pos.y, pos.x] = index;
+            //Debug.Log("La ficha " + index + " está en la posicion: " + pos);
         }
 
 
 
         //Devolvemos el estado formateado
-
+       /* Debug.Log("Tablero traducido a:\n"
+            + currentState[0, 0] + " " + currentState[0, 1] + " " + currentState[0, 2] + "\n"
+            + currentState[1, 0] + " " + currentState[1, 1] + " " + currentState[1, 2] + "\n" 
+            + currentState[2, 0] + " " + currentState[2, 1] + "  " + currentState[2, 2]);*/
         return currentState;
     }
 
@@ -137,13 +153,13 @@ public class Hill_Climbing : MonoBehaviour
         Vector2Int newHuecoPos = oldState.huecoPos + dir;
         Node newNode = new Node
         {
-            fichaMovida = newState[oldState.huecoPos.x, oldState.huecoPos.y]
+            fichaMovida = oldState.state[newHuecoPos.x, newHuecoPos.y]
         };
         newState[oldState.huecoPos.x, oldState.huecoPos.y] = oldState.state[newHuecoPos.x, newHuecoPos.y];
         newState[newHuecoPos.x, newHuecoPos.y] = -1;
+
         newNode.huecoPos = newHuecoPos;
         newNode.state = newState;
-
 
         return newNode;
     }
@@ -196,6 +212,21 @@ public class Hill_Climbing : MonoBehaviour
         //calcular la distancia entre la ficha movida y su lugar
         int distancia = (fichaMovidaPos.x - posDestino.x) + (fichaMovidaPos.y - posDestino.y); ;
         return distancia;
+    }
+
+    static void PrintStado(int[,] state)
+    {
+        Debug.Log("Tablero:\n"
+           + state[0, 0] + " " + state[0, 1] + " " + state[0, 2] + "\n"
+           + state[1, 0] + " " + state[1, 1] + " " + state[1, 2] + "\n"
+           + state[2, 0] + " " + state[2, 1] + "  " + state[2, 2]);
+    }
+    static void Swap<T>(ref T lhs, ref T rhs)
+    {
+        T temp;
+        temp = lhs;
+        lhs = rhs;
+        rhs = temp;
     }
 
 }
