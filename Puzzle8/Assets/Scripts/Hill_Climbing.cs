@@ -29,6 +29,14 @@ public class Hill_Climbing : MonoBehaviour
                     if (state[i, j] == -1)
                         huecoPos = new Vector2Int(i, j);
         }
+        public Node(Node other)
+        {
+            state = (int [,])other.state.Clone();
+            fichaMovida = other.fichaMovida;
+            huecoPos = new Vector2Int(other.huecoPos.x, other.huecoPos.y);
+            Debug.Log("Nodo copiado con valores: \nfichamovida: " + fichaMovida + "\n" + "huecoPos: " + huecoPos);
+            PrintStado(state, "Estado:");
+        }
     }
     //lista de los estados candidatos
     List<Node> list = new List<Node>();
@@ -37,12 +45,12 @@ public class Hill_Climbing : MonoBehaviour
 
     Vector2Int[] directions;
 
-
+   
     private void Start()
     {
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                solvedState[i, j] = i + j;
+                solvedState[i, j] = i*3 + j;
 
         fichas = GameObject.FindGameObjectsWithTag("Ficha"); // hay que usar el tag ficha
         gameManager = GameObject.Find("Scripts").GetComponent(typeof(GameManger)) as GameManger;
@@ -57,13 +65,13 @@ public class Hill_Climbing : MonoBehaviour
     public void Resolve()
     { //Metemos a la lista de candidatos el estado actual del juego
         list.Add(new Node(TranslateCurrentState(fichas)));
-        //PrintStado(list[0].state, "Tablero Original:");
+        PrintStado(list[0].state, "Tablero Original:");
 
         int cont = 1;//Debug
         //Mientras no encontremos la solucion, seguir buscando
         while (list.Count > 0 && !IsSolution(list[0].state))
         {
-            Node currentState = list[0];
+            Node currentState = new Node(list[0]);
             Debug.Log("--------------------------------");
             Debug.Log("Vuelta: " + cont + " el tamaño de la lista es:" + list.Count);
             //Probar todos los movimientos posibles
@@ -74,7 +82,7 @@ public class Hill_Climbing : MonoBehaviour
                     PrintStado(currentState.state, "Estado original");
                     //El problema esta en el mueve ficha, el estado se le pasa correctamente
                     //Pero lo devuelve mal, como si recordase el tabelro anterior dentro del método
-                    Node newNode = MueveFicha(currentState, dir);
+                    Node newNode = new Node(MueveFicha(currentState, dir));
                     // Debug.Log("El hueco está en :" + newNode.huecoPos);
                     //Debug.Log("Muevo la ficha: "+ (newNode.fichaMovida + 1));
                     //descartar los estados por los que ya hemos pasado ( !seen.Constains(state)  )
@@ -112,8 +120,9 @@ public class Hill_Climbing : MonoBehaviour
     }
 
     //Comprueba si el estado que se le pasa es el resuelto
-    bool IsSolution(int[,] state)
+    bool IsSolution(int[,] state_)
     {
+        int[,] state = state_;
         bool ret = true;
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)

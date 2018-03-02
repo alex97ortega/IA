@@ -92,7 +92,7 @@ public class GameManger : MonoBehaviour {
         bordes = GameObject.FindGameObjectsWithTag("Borde");
 
 
-        Baraja();
+        //Baraja();
         
     }
     public void MueveFicha(uint ficha)
