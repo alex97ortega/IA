@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -11,7 +12,9 @@ public class GameManager : MonoBehaviour {
     public GameObject tA;
     public GameObject tV;
     public GameObject tR;
+    public Text sel;
 
+    GameObject tanqueSeleccionado;
     public Sprite arena;
     // Use this for initialization
     void Start () {
@@ -39,8 +42,28 @@ public class GameManager : MonoBehaviour {
     
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+		if(tanqueSeleccionado == tA)
+        {
+            sel.text = "Seleccionado tanque Azul";
+            sel.color = Color.cyan;
+        }
+        else if (tanqueSeleccionado == tV)
+        {
+            sel.text = "Seleccionado tanque Verde";
+            sel.color = Color.green;
+        }
+        else if (tanqueSeleccionado == tR)
+        {
+            sel.text = "Seleccionado tanque Rojo";
+            sel.color = Color.red;
+        }
+        else
+        {
+            sel.text = "Ninguno seleccionado";
+            sel.color = Color.white;
+        }
+    }
     public void CreateGame()
     {
         
@@ -61,6 +84,10 @@ public class GameManager : MonoBehaviour {
         tV.transform.position = new Vector3(randomV / 10, randomV % 10, 0);
         tR.transform.position = new Vector3(randomR / 10, randomR % 10, 0);
 
+        Limpiar();
+    }
+    public void Limpiar()
+    {
         //poner el tablero a 0 
         for (int i = 0; i < 10; i++)
         {
@@ -70,5 +97,9 @@ public class GameManager : MonoBehaviour {
                 casillas[i, j].GetComponent<SpriteRenderer>().sprite = arena;
             }
         }
+    }
+    public void Seleccionar(GameObject g)
+    {
+        tanqueSeleccionado = g;
     }
 }

@@ -11,6 +11,7 @@ public class Index : MonoBehaviour {
     public Sprite barro;
     public Sprite piedra;
 
+    public GameManager gm;
     private void Start()
     {
         GetComponent<SpriteRenderer>().sprite = arena;
@@ -18,6 +19,7 @@ public class Index : MonoBehaviour {
     // Update is called once per frame
     void  OnMouseDown()
     {
+        
         index++;
         index %= 3;
 
