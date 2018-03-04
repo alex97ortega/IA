@@ -9,13 +9,23 @@ public class GameManager : MonoBehaviour {
     GameObject[,] casillas = new GameObject[10,10];
     GameObject tablero;
     public GameObject casilla;
+
     public GameObject tA;
     public GameObject tV;
     public GameObject tR;
+
+    public GameObject xAzul;
+    public GameObject xVerde;
+    public GameObject xRojo;
+
     public Text sel;
 
+    public bool nadaSeleccionado;
     GameObject tanqueSeleccionado;
+
     public Sprite arena;
+    public Sprite barro;
+    public Sprite roca;
     // Use this for initialization
     void Start () {
 
@@ -84,6 +94,7 @@ public class GameManager : MonoBehaviour {
         tV.transform.position = new Vector3(randomV / 10, randomV % 10, 0);
         tR.transform.position = new Vector3(randomR / 10, randomR % 10, 0);
 
+       
         Limpiar();
     }
     public void Limpiar()
@@ -97,9 +108,92 @@ public class GameManager : MonoBehaviour {
                 casillas[i, j].GetComponent<SpriteRenderer>().sprite = arena;
             }
         }
+
+        xAzul.gameObject.SetActive(false);
+        xVerde.gameObject.SetActive(false);
+        xRojo.gameObject.SetActive(false);
+
+
+        SeleccionarVacio();
+    }
+    public void mapaAleatorio()
+    {
+        int rand;
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                if((tA.transform.position.x == i && tA.transform.position.y == j) ||
+                    (tV.transform.position.x == i && tV.transform.position.y == j) ||
+                    (tR.transform.position.x == i && tR.transform.position.y == j))
+                {
+                    casillas[i, j].GetComponent<Index>().index = 1;
+                    casillas[i, j].GetComponent<SpriteRenderer>().sprite = arena;
+                }
+                else
+                {
+                    rand = Random.Range(0, 8);
+                    switch(rand)
+                    {
+                        case 0:
+                            casillas[i, j].GetComponent<Index>().index = 0;
+                            casillas[i, j].GetComponent<SpriteRenderer>().sprite = roca;
+                            break;
+                        case 1:
+                            casillas[i, j].GetComponent<Index>().index = 2;
+                            casillas[i, j].GetComponent<SpriteRenderer>().sprite = barro;
+                            break;
+                        default:
+                            casillas[i, j].GetComponent<Index>().index = 1;
+                            casillas[i, j].GetComponent<SpriteRenderer>().sprite = arena;
+                            break;
+                    }
+                }
+            }
+        }
+
+        xAzul.gameObject.SetActive(false);
+        xVerde.gameObject.SetActive(false);
+        xRojo.gameObject.SetActive(false);
+
+
+        SeleccionarVacio();
     }
     public void Seleccionar(GameObject g)
     {
         tanqueSeleccionado = g;
+    }
+    public void SeleccionarVacio()
+    {
+        nadaSeleccionado = true;
+        tanqueSeleccionado = casilla;
+    }
+
+    public void PonerCruz(Vector3 pos)
+    {
+        if(tanqueSeleccionado == tA)
+        {
+            if(xVerde.transform.position != pos && xRojo.transform.position != pos)
+            {
+                xAzul.gameObject.SetActive(true);
+                xAzul.transform.position = pos;
+            }
+        }
+        else if (tanqueSeleccionado == tV)
+        {
+            if (xAzul.transform.position != pos && xRojo.transform.position != pos)
+            {
+                xVerde.gameObject.SetActive(true);
+                xVerde.transform.position = pos;
+            }            
+        }
+        else if (tanqueSeleccionado == tR)
+        {
+            if (xVerde.transform.position != pos && xAzul.transform.position != pos)
+            {
+                xRojo.gameObject.SetActive(true);
+                xRojo.transform.position = pos;
+            }            
+        }
     }
 }

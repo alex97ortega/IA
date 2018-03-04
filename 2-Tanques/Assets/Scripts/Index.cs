@@ -10,7 +10,7 @@ public class Index : MonoBehaviour {
     public Sprite arena;
     public Sprite barro;
     public Sprite piedra;
-
+    
     public GameManager gm;
     private void Start()
     {
@@ -19,21 +19,27 @@ public class Index : MonoBehaviour {
     // Update is called once per frame
     void  OnMouseDown()
     {
-        
-        index++;
-        index %= 3;
-
-        switch (index)
+        if (gm.nadaSeleccionado)
         {
-            case 0:
-                GetComponent<SpriteRenderer>().sprite = piedra;
-                break;
-            case 1:
-                GetComponent<SpriteRenderer>().sprite = arena;
-                break;
-            default:
-                GetComponent<SpriteRenderer>().sprite = barro;
-                break;
+            index++;
+            index %= 3;
+
+            switch (index)
+            {
+                case 0:
+                    GetComponent<SpriteRenderer>().sprite = piedra;
+                    break;
+                case 1:
+                    GetComponent<SpriteRenderer>().sprite = arena;
+                    break;
+                default:
+                    GetComponent<SpriteRenderer>().sprite = barro;
+                    break;
+            }
         }
+        else if (index == 0) gm.SeleccionarVacio();
+
+        else  gm.PonerCruz(transform.position);
+        
 	}
 }
