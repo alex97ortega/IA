@@ -8,4 +8,4 @@
 
 ## Tanques
 
- - Simulador demapa de un juego RTS con un tablero de 10x10 donde se encuentran 3 tanques a los que se ha de indicar un camino a seguir por el mapa.
+ - Simulador de mapa de un juego RTS con un tablero de 10x10 donde se encuentran 3 tanques a los que se ha de indicar un camino a seguir por el mapa.
