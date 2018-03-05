@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour {
     public Sprite arena;
     public Sprite barro;
     public Sprite roca;
+
+    public Algoritmo a1;
     // Use this for initialization
     void Start () {
 
@@ -177,6 +179,8 @@ public class GameManager : MonoBehaviour {
             {
                 xAzul.gameObject.SetActive(true);
                 xAzul.transform.position = pos;
+                //if(!a1.calcularRuta(tA, pos,casillas, tV.transform.position, tR.transform.position))
+                //    Debug.Log("Ruta imposible");
             }
         }
         else if (tanqueSeleccionado == tV)
@@ -185,6 +189,8 @@ public class GameManager : MonoBehaviour {
             {
                 xVerde.gameObject.SetActive(true);
                 xVerde.transform.position = pos;
+                //if(!a1.calcularRuta(tV, pos, casillas, tA.transform.position, tR.transform.position))
+                //    Debug.Log("Ruta imposible");
             }            
         }
         else if (tanqueSeleccionado == tR)
@@ -193,7 +199,10 @@ public class GameManager : MonoBehaviour {
             {
                 xRojo.gameObject.SetActive(true);
                 xRojo.transform.position = pos;
+                //if(!a1.calcularRuta(tR, pos, casillas, tV.transform.position, tA.transform.position))
+                //    Debug.Log("Ruta imposible");
             }            
         }
+        SeleccionarVacio();
     }
 }
