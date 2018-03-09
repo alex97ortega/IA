@@ -28,9 +28,11 @@ public class Index : MonoBehaviour {
             {
                 case 0:
                     GetComponent<SpriteRenderer>().sprite = piedra;
+				    transform.gameObject.layer = 11;
                     break;
                 case 1:
                     GetComponent<SpriteRenderer>().sprite = arena;
+					transform.gameObject.layer = 10;
                     break;
                 default:
                     GetComponent<SpriteRenderer>().sprite = barro;

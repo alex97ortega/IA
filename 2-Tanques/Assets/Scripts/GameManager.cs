@@ -28,6 +28,11 @@ public class GameManager : MonoBehaviour {
     public Sprite roca;
 
     public Algoritmo a1;
+
+
+    bool moviendoseAzul = false;
+    bool moviendoseVerde = false;
+    bool moviendoseRojo = false;
     // Use this for initialization
     void Start () {
 
@@ -40,10 +45,11 @@ public class GameManager : MonoBehaviour {
                 positions[i, j] = new Vector3(i, j, 0);
                 GameObject ficha = Instantiate(casilla, positions[i, j], Quaternion.identity);
                 casillas[i, j] = ficha;
+				//ficha.GetComponent<Collision2D>;
                 // ficha.GetComponent<SpriteRenderer>().sprite = arena; // habrá que ponerlo aleatorio
                 // ficha.GetComponent<Index>().index = (uint)indx;
                 // ficha.GetComponent<BoardPosition>().boardPosition = new Vector2Int((int)j, (int)i);
-                ficha.transform.parent = tablero.transform;
+                 ficha.transform.parent = tablero.transform;
                 ficha.name = casillas[i, j].name;
             }
         }
@@ -55,6 +61,7 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // texto
 		if(tanqueSeleccionado == tA)
         {
             sel.text = "Seleccionado tanque Azul";
@@ -74,6 +81,21 @@ public class GameManager : MonoBehaviour {
         {
             sel.text = "Ninguno seleccionado";
             sel.color = Color.white;
+        }
+
+        //detectar si hay que parar tanque
+
+        if (moviendoseAzul)
+        {
+
+        }
+        if (moviendoseVerde)
+        {
+
+        }
+        if (moviendoseRojo)
+        {
+
         }
     }
     public void CreateGame()
@@ -175,34 +197,38 @@ public class GameManager : MonoBehaviour {
     {
         if(tanqueSeleccionado == tA)
         {
-            if(xVerde.transform.position != pos && xRojo.transform.position != pos)
-            {
+           
                 xAzul.gameObject.SetActive(true);
                 xAzul.transform.position = pos;
+                moviendoseAzul = true;
                 //if(!a1.calcularRuta(tA, pos,casillas, tV.transform.position, tR.transform.position))
                 //    Debug.Log("Ruta imposible");
-            }
+            
         }
         else if (tanqueSeleccionado == tV)
         {
-            if (xAzul.transform.position != pos && xRojo.transform.position != pos)
-            {
+            
                 xVerde.gameObject.SetActive(true);
                 xVerde.transform.position = pos;
+                moviendoseVerde = true;
                 //if(!a1.calcularRuta(tV, pos, casillas, tA.transform.position, tR.transform.position))
                 //    Debug.Log("Ruta imposible");
-            }            
+                      
         }
         else if (tanqueSeleccionado == tR)
         {
-            if (xVerde.transform.position != pos && xAzul.transform.position != pos)
-            {
+            
                 xRojo.gameObject.SetActive(true);
                 xRojo.transform.position = pos;
+                moviendoseRojo = true;
                 //if(!a1.calcularRuta(tR, pos, casillas, tV.transform.position, tA.transform.position))
                 //    Debug.Log("Ruta imposible");
-            }            
+                       
         }
         SeleccionarVacio();
     }
+
+	public void PararTanque(GameObject tq){
+		Debug.Log ("parar");
+	}
 }

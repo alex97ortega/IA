@@ -12,4 +12,5 @@ public class Seleccion : MonoBehaviour {
         gm.nadaSeleccionado = false;
         gm.Seleccionar(tanque);
     }
+    
 }
