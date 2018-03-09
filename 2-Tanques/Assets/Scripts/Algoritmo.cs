@@ -4,60 +4,62 @@ using UnityEngine;
 
 public class Algoritmo : MonoBehaviour {
 
-	public bool calcularRuta(GameObject tanque, Vector3 destino, GameObject[,] estadoTablero,
-        Vector3 posOther1, Vector3 posOther2)
+    GameObject[,] estadoTablero;
+
+    int[,] tablero;
+
+	public bool CalcularRuta(GameObject tanque, Vector3 destino, GameObject[,] estadoTablero)
     {
-        bool haySolucion = true;
-        bool[] marcados = new bool[estadoTablero.Length] ;
-        
-        for (int i = 0; i < marcados.Length; i++) marcados[i] = false;
 
-        // marcar tanques
+        return true;
+    }
 
-        marcados[(int)posOther1.x * 10 + (int)posOther1.y] = true;
-        marcados[(int)posOther2.x * 10 + (int)posOther2.y] = true;
+    Vector2Int[] Neightbours(Vector2Int pos)
+    {
+        Vector2Int[] result;
+        List<Vector2Int> lResult = new List<Vector2Int>();
 
-        // marcar muros
-        for (int i = 0; i < 10; i++)
+        int N = pos.y - 1;
+        int S = pos.y + 1;
+        int W = pos.x - 1;
+        int E = pos.x + 1;
+
+
+
+
+
+
+        result = new Vector2Int[lResult.Count];
+        int i = 0;
+        foreach(var r in lResult)
         {
-            for (int j = 0; j < 10; j++)
+            result[i] = r;
+            i++;
+        }
+        return result;
+
+    }
+
+    int ManhattanDistance(Vector2Int point, Vector2Int goal)
+    {
+        return Mathf.Abs(point.x - goal.x) + Mathf.Abs(point.y - goal.y);
+    }
+
+    bool CanWalkHere(Vector2Int pos) {
+        return true;
+    }
+
+    int[,] TraduceTablero(GameObject[,] GOtablero) {
+        int[,] result = new int[10, 10];
+
+        for(int i = 0; i < 10; i++)
+        {
+            for(int j = 0; j < 10; j++)
             {
-                if (estadoTablero[i, j].GetComponent<Index>().getIndex() == 0)
-                    marcados[i * 10 + j] = true;
+                result[i, j] = (int)GOtablero[i, j].GetComponent<Index>().getIndex();
             }
         }
 
-        // tenemos que traducir esto a nuestro tablero, a parte de buscar el camino mínimo
-        // tenemos que guardarlo para que pueda hacer el recorrido el tanque y eso es 
-        //lo que no sé como hacerlo
-        /* int getCamino() const {
-
-            return distTo[salida.first * C + salida.second];
-        }
-        // dfs
-       std::queue<size_t> q;
-        marcado[i * C + j] = true;
-        q.push(i * C + j);
-        while (!q.empty())
-        {
-            auto v = q.front(); q.pop();
-            for (Dir d : dirs)
-            {
-                int ni = v / C + d.first;
-                int nj = v % C + d.second;
-                if (dentro(ni, nj))
-                {
-                    if (!marcado[ni * C + nj])
-                    {
-                        distTo[ni * C + nj] = distTo[v] + 1;
-                        marcado[ni * C + nj] = true;
-                        q.push(ni * C + nj);
-                    }
-                }//dentro
-            }//dirs
-        }//q.empty*/
-
-
-        return haySolucion;
+        return result;
     }
 }
