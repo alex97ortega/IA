@@ -42,8 +42,10 @@ public class Algoritmo : MonoBehaviour
         //Get the current state into the local format
         start = new Vector2Int((int)tanque.x, (int)tanque.y);
         goal = new Vector2Int((int)destino.x, (int)destino.y);
-        TraduceTablero(estadoTablero, otherTank, anotherTank);
+        tablero = TraduceTablero(estadoTablero, otherTank, anotherTank);
 
+        PrintTablero(tablero);
+        
         //INIT LOCAL VARIABLES
         Node myPathStart = new Node(null, new Vector2Int(start.x, start.y));
         Node myPathEnd = new Node(null, new Vector2Int(goal.x, goal.y));
@@ -127,7 +129,7 @@ public class Algoritmo : MonoBehaviour
                 closed.Add(myNode);
             }
         }//keep iterating until the open list is empty
-
+        
         return result;
     }
 
@@ -174,7 +176,40 @@ public class Algoritmo : MonoBehaviour
 
         return true;
     }
-
+    //Imprime en un mismo debug todo el tablero (done)
+    void PrintTablero(int[,] t)
+    {
+        Debug.Log(//Menuda inmundicia
+            t[0, 9] + " " + t[1, 9] + " " + t[2, 9] + " " + t[3, 9] + " " + t[4, 9] + " " + t[5, 9] + " " + t[6, 9] + " " + t[7, 9] + " " + t[8, 9] + " " + t[9, 9] + "\n" +
+            t[0, 8] + " " + t[1, 8] + " " + t[2, 8] + " " + t[3, 8] + " " + t[4, 8] + " " + t[5, 8] + " " + t[6, 8] + " " + t[7, 8] + " " + t[8, 8] + " " + t[9, 8] + "\n" +
+            t[0, 7] + " " + t[1, 7] + " " + t[2, 7] + " " + t[3, 7] + " " + t[4, 7] + " " + t[5, 7] + " " + t[6, 7] + " " + t[7, 7] + " " + t[8, 7] + " " + t[9, 7] + "\n" +
+            t[0, 6] + " " + t[1, 6] + " " + t[2, 6] + " " + t[3, 6] + " " + t[4, 6] + " " + t[5, 6] + " " + t[6, 6] + " " + t[7, 6] + " " + t[8, 6] + " " + t[9, 6] + "\n" +
+            t[0, 5] + " " + t[1, 5] + " " + t[2, 5] + " " + t[3, 5] + " " + t[4, 5] + " " + t[5, 5] + " " + t[6, 5] + " " + t[7, 5] + " " + t[8, 5] + " " + t[9, 5] + "\n" +
+            t[0, 4] + " " + t[1, 4] + " " + t[2, 4] + " " + t[3, 4] + " " + t[4, 4] + " " + t[5, 4] + " " + t[6, 4] + " " + t[7, 4] + " " + t[8, 4] + " " + t[9, 4] + "\n" +
+            t[0, 3] + " " + t[1, 3] + " " + t[2, 3] + " " + t[3, 3] + " " + t[4, 3] + " " + t[5, 3] + " " + t[6, 3] + " " + t[7, 3] + " " + t[8, 3] + " " + t[9, 3] + "\n" +
+            t[0, 2] + " " + t[1, 2] + " " + t[2, 2] + " " + t[3, 2] + " " + t[4, 2] + " " + t[5, 2] + " " + t[6, 2] + " " + t[7, 2] + " " + t[8, 2] + " " + t[9, 2] + "\n" +
+            t[0, 1] + " " + t[1, 1] + " " + t[2, 1] + " " + t[3, 1] + " " + t[4, 1] + " " + t[5, 1] + " " + t[6, 1] + " " + t[7, 1] + " " + t[8, 1] + " " + t[9, 1] + "\n" +
+            t[0, 0] + " " + t[1, 0] + " " + t[2, 0] + " " + t[3, 0] + " " + t[4, 0] + " " + t[5, 0] + " " + t[6, 0] + " " + t[7, 0] + " " + t[8, 0] + " " + t[9, 0] + "\n"
+            );
+        //Esta mostruasidad está generada c++ porque si no nos podemos morir con este código
+        /*int main()
+          {
+            string s;
+            int i;
+            for(int j = 9; j >=0 ; j--)
+            {
+                for (i = 0; i < 10 - 1 ; i++)
+                {
+                    s += " t[" + to_string(i) + ", " + to_string(j) + "] + ' ' + ";
+                }
+                s += " t[" + to_string(i) + ", " + to_string(j) + "] + '\\n'";
+                cout<< s<< endl;
+                s = "";
+            }
+          }
+          */
+    }
+    //Traduce el array de gameObjects a un int[,] (done)
     int[,] TraduceTablero(GameObject[,] GOtablero, Vector3 a, Vector3 b)
     {
         int[,] result = new int[10, 10];
@@ -184,13 +219,12 @@ public class Algoritmo : MonoBehaviour
             for (int j = 0; j < 10; j++)
             {
                 //comprobar si i == x && j == y
-                if ((i == a.y && j == a.x) || (i == b.x && j == b.y))
+                if ((j == a.y && i == a.x) || (j == b.y && i == b.x))
                     result[i, j] = 0;
                 else
                     result[i, j] = (int)GOtablero[i, j].GetComponent<Index>().getIndex();
             }
         }
-
         return result;
     }
 
