@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Algoritmo : MonoBehaviour
 {
-
-    GameObject[,] estadoTablero;
-
     int[,] tablero;
 
     Vector2Int start;
@@ -50,7 +47,7 @@ public class Algoritmo : MonoBehaviour
         goal = new Vector2Int((int)destino.x, (int)destino.y);
         tablero = TraduceTablero(estadoTablero, otherTank, anotherTank);
 
-        PrintTablero(tablero);
+       // PrintTablero(tablero); 
 
         //INIT LOCAL VARIABLES
         Node myPathStart = new Node(null, new Vector2Int(start.x, start.y));
@@ -240,7 +237,7 @@ public class Algoritmo : MonoBehaviour
             for (int j = 0; j < 10; j++)
             {
                 //comprobar si i == x && j == y
-                if ((j == a.y && i == a.x) || (j == b.y && i == b.x))
+                if ((j == (int)a.y && i == (int)a.x) || (j == (int)b.y && i == (int)b.x))
                     result[i, j] = 0;
                 else
                     result[i, j] = (int)GOtablero[i, j].GetComponent<Index>().getIndex();
