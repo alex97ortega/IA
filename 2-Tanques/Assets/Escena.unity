@@ -733,6 +733,8 @@ GameObject:
   - component: {fileID: 704366790}
   - component: {fileID: 704366789}
   - component: {fileID: 704366791}
+  - component: {fileID: 704366792}
+  - component: {fileID: 704366793}
   m_Layer: 9
   m_Name: TanqueAzul
   m_TagString: Player
@@ -835,6 +837,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm: {fileID: 963631723}
   tanque: {fileID: 704366787}
+--- !u!114 &704366792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 704366787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f02666d47eac249913eafc6c985a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 5
+--- !u!50 &704366793
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 704366787}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &732115882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,6 +1212,8 @@ GameObject:
   - component: {fileID: 1314127895}
   - component: {fileID: 1314127894}
   - component: {fileID: 1314127896}
+  - component: {fileID: 1314127897}
+  - component: {fileID: 1314127898}
   m_Layer: 9
   m_Name: TanqueVerde
   m_TagString: Player
@@ -1280,6 +1316,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm: {fileID: 963631723}
   tanque: {fileID: 1314127892}
+--- !u!114 &1314127897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1314127892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f02666d47eac249913eafc6c985a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 5
+--- !u!50 &1314127898
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1314127892}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1318051504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,6 +1578,8 @@ GameObject:
   - component: {fileID: 1767419174}
   - component: {fileID: 1767419173}
   - component: {fileID: 1767419175}
+  - component: {fileID: 1767419176}
+  - component: {fileID: 1767419177}
   m_Layer: 9
   m_Name: TanqueRojo
   m_TagString: Player
@@ -1612,6 +1682,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm: {fileID: 963631723}
   tanque: {fileID: 1767419171}
+--- !u!114 &1767419176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1767419171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f02666d47eac249913eafc6c985a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 5
+--- !u!50 &1767419177
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1767419171}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1794305541
 GameObject:
   m_ObjectHideFlags: 0

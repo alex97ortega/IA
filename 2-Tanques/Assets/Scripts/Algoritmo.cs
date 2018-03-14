@@ -28,11 +28,17 @@ public class Algoritmo : MonoBehaviour
             g = 0;
         }
 
+        //public 
+        //referencia al padre
         public Node parent;
+        //indice en el array de marcados
         public int indice;
+        //posición en el tablero
         public int x;
         public int y;
+        //coste estimado del nodo al final
         public int f;
+        //coste real hasta ahora
         public int g;
 
     }
@@ -45,14 +51,14 @@ public class Algoritmo : MonoBehaviour
         tablero = TraduceTablero(estadoTablero, otherTank, anotherTank);
 
         PrintTablero(tablero);
-        
+
         //INIT LOCAL VARIABLES
         Node myPathStart = new Node(null, new Vector2Int(start.x, start.y));
         Node myPathEnd = new Node(null, new Vector2Int(goal.x, goal.y));
         //Constains all the world cells
         bool[] AStar = new bool[worldSize];
         //list of currently open Nodes
-        List<Node> open = new List<Node> { myPathStart };
+        List<Node> open = new List<Node> { myPathStart };//cola de prioridad
         //list of closed Nodes
         List<Node> closed = new List<Node>();
         //list of the final output array
@@ -81,8 +87,8 @@ public class Algoritmo : MonoBehaviour
                 }
             }
             //grab the next node and remove it from open
+            myNode = open[min];
             open.RemoveAt(min);
-            myNode = open[0];
 
             //is it the destination node?
             if (myNode.indice == myPathEnd.indice)
@@ -111,25 +117,40 @@ public class Algoritmo : MonoBehaviour
                 for (i = 0, j = myNeightbours.Count; i < j; i++)
                 {
                     myPath = new Node(myNode, new Vector2Int(myNeightbours[i].x, myNeightbours[i].y));
+                    //estimated cost of this particular route so far
+                    myPath.g = myNode.g + tablero[myNode.x, myNode.y]; /*ManhattanDistance(myNeightbours[i], new Vector2Int(myNode.x, myNode.y))*/
+                    //estimated cost of entire guessed route to the destination
+                    myPath.f = myPath.g + ManhattanDistance(myNeightbours[i], new Vector2Int(myPathEnd.x, myPathEnd.y));
 
                     if (!AStar[myPath.indice])
-                    {
-                        //estimated cost of this particular route so far
-                        myPath.g = myNode.g + ManhattanDistance(myNeightbours[i], new Vector2Int(myNode.x, myNode.y));
-                        //estimated cost of entire guessed route to the destination
-                        myPath.f = myNode.f + ManhattanDistance(myNeightbours[i], new Vector2Int(myPathEnd.x, myPathEnd.y));
+                    {//Nodo estudiado por primera vez
                         //remember this new path for testing above
                         open.Add(myPath);
                         //mark this node int the world graph as visited
                         AStar[myPath.indice] = true;
-
+                    }
+                    else
+                    {
+                        for (int n = 0; n < open.Count; n++)
+                        {
+                            if (open[n].x == myPath.x && open[n].y == myPath.y && open[n].f > myPath.f)
+                            {
+                                open[n] = myPath;
+                                break;
+                            }
+                        }
                     }
                 }
                 //remember this route as having no more untested options
                 closed.Add(myNode);
             }
         }//keep iterating until the open list is empty
-        
+
+        /* string s = "Ruta: ";
+         foreach (var n in result)
+             s += "(" + n.x + ", " + n.y + ") ";
+         Debug.Log(s);*/
+
         return result;
     }
 

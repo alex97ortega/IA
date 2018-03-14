@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
 
     public Algoritmo a1;
 
-
     bool moviendoseAzul = false;
     bool moviendoseVerde = false;
     bool moviendoseRojo = false;
@@ -198,15 +197,19 @@ public class GameManager : MonoBehaviour
 
     public void PonerCruz(Vector3 pos)
     {
+        List<Vector2Int> path = new List<Vector2Int>();
         if (tanqueSeleccionado == tA)
         {
 
             xAzul.gameObject.SetActive(true);
             xAzul.transform.position = pos;
             moviendoseAzul = true;
-            List<Vector2Int> path = a1.CalcularRuta(tA.transform.position, tV.transform.position, tR.transform.position, pos, casillas);
+            path = a1.CalcularRuta(tA.transform.position, tV.transform.position, tR.transform.position, pos, casillas);
             if (path.Count == 0)
                 Debug.Log("Ruta imposible");
+            else MoverTanque(tA, path, xAzul);
+
+
 
         }
         else if (tanqueSeleccionado == tV)
@@ -215,9 +218,10 @@ public class GameManager : MonoBehaviour
             xVerde.gameObject.SetActive(true);
             xVerde.transform.position = pos;
             moviendoseVerde = true;
-            List<Vector2Int> path = a1.CalcularRuta(tV.transform.position, tA.transform.position, tR.transform.position, pos, casillas);
+            path = a1.CalcularRuta(tV.transform.position, tA.transform.position, tR.transform.position, pos, casillas);
             if (path.Count == 0)
                 Debug.Log("Ruta imposible");
+            else MoverTanque(tV, path, xVerde);
         }
         else if (tanqueSeleccionado == tR)
         {
@@ -225,9 +229,10 @@ public class GameManager : MonoBehaviour
             xRojo.gameObject.SetActive(true);
             xRojo.transform.position = pos;
             moviendoseRojo = true;
-            List<Vector2Int> path = a1.CalcularRuta(tR.transform.position, tV.transform.position, tA.transform.position, pos, casillas);
+            path = a1.CalcularRuta(tR.transform.position, tV.transform.position, tA.transform.position, pos, casillas);
             if (path.Count == 0)
                 Debug.Log("Ruta imposible");
+            else MoverTanque(tR, path, xRojo);
         }
         SeleccionarVacio();
     }
@@ -236,4 +241,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("parar");
     }
+    void MoverTanque(GameObject tanque, List<Vector2Int> path, GameObject cruz)
+    {
+        tanque.GetComponent<Move>().SetRoute(path);
+        //cruz.gameObject.SetActive(false);
+    }
 }
+
+
