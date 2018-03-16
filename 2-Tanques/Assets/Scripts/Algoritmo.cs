@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,8 +44,8 @@ public class Algoritmo : MonoBehaviour
     public List<Vector2Int> CalcularRuta(Vector3 tanque, Vector3 otherTank, Vector3 anotherTank, Vector3 destino, GameObject[,] estadoTablero)
     {
         //Get the current state into the local format
-        start = new Vector2Int((int)tanque.x, (int)tanque.y);
-        goal = new Vector2Int((int)destino.x, (int)destino.y);
+        start = new Vector2Int((int)Math.Round(tanque.x), (int)Math.Round(tanque.y));
+        goal = new Vector2Int((int)Math.Round(destino.x), (int)Math.Round(destino.y));
         tablero = TraduceTablero(estadoTablero, otherTank, anotherTank);
 
        // PrintTablero(tablero); 
@@ -237,7 +238,8 @@ public class Algoritmo : MonoBehaviour
             for (int j = 0; j < 10; j++)
             {
                 //comprobar si i == x && j == y
-                if ((j == (int)a.y && i == (int)a.x) || (j == (int)b.y && i == (int)b.x))
+                if ((j == ((int)Math.Round(a.y)) && i == ((int)Math.Round(a.x))) ||
+                    (j ==((int)Math.Round(b.y)) && i == ((int)Math.Round(b.x))))
                     result[i, j] = 0;
                 else
                     result[i, j] = (int)GOtablero[i, j].GetComponent<Index>().getIndex();
