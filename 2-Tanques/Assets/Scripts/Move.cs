@@ -10,9 +10,12 @@ public class Move : MonoBehaviour
     bool moving = false;
     bool llamar = false;
     List<Vector2Int> route = new List<Vector2Int>();
-
+    public GameManager gm;
+    public GameObject t1;
+    public GameObject t2;
     private int routeIndex;
 
+    
     public void SetRoute(List<Vector2Int> route_)
     {
          
@@ -20,11 +23,16 @@ public class Move : MonoBehaviour
         route = route_;
         moving = true;
         llamar = true;
-        //Debug
-        string s = "Ruta: ";
+
+        //Debug ruta
+
+        /*string s = "Ruta: ";
         foreach (var n in route)
             s += "(" + n.x + ", " + n.y + ") ";
-        Debug.Log(s);
+        Debug.Log(s);*/
+
+        // Debug numero de casillas
+        Debug.Log("Trazando recorrido de " + (route.Count - 1) + " casillas...");
     }
 
     // Update is called once per frame
@@ -36,13 +44,15 @@ public class Move : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().velocity = CalculateVel();
             llamar = false;
-            rotar(route[routeIndex]);
+            Rotar(route[routeIndex]);
         }
         if (moving) UpdateRoute();
     }
     private Vector2 CalculateVel()
     {
-        return new Vector2(velocity * (route[routeIndex].x - route[routeIndex - 1].x), velocity * (route[routeIndex].y - route[routeIndex - 1].y));
+        float velAux = velocity;
+        if (gm.casillas[route[routeIndex].x, route[routeIndex].y].GetComponent<Index>().index == 2) velAux /= 3;
+        return new Vector2(velAux * (route[routeIndex].x - route[routeIndex - 1].x), velAux * (route[routeIndex].y - route[routeIndex - 1].y));
     }
 
     void UpdateRoute()
@@ -57,8 +67,8 @@ public class Move : MonoBehaviour
         if(vy < 0)  y = 1;
         y += (int)transform.position.y;
 
-
-        Debug.Log("x:" + (int)transform.position.x + " y: " + (int)transform.position.y);
+        // debug casillas actuales 
+        //Debug.Log("x:" + (int)transform.position.x + " y: " + (int)transform.position.y);
 
         if ((vx > 0 ? transform.position.x >= route[routeIndex].x : transform.position.x <= route[routeIndex].x) &&
             (vy > 0 ? transform.position.y >= route[routeIndex].y : transform.position.y <= route[routeIndex].y)
@@ -69,26 +79,46 @@ public class Move : MonoBehaviour
         {
 
                 routeIndex++;
-            if (routeIndex == route.Count)
+            // termina recorrido si llegó al final o hay obstáculo nuevo
+            if (routeIndex == route.Count 
+                || gm.casillas[route[routeIndex].x, route[routeIndex].y].GetComponent<Index>().index == 0)
+                
             {
 
-                moving = false;
-                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-                route = new List<Vector2Int>();
+                Parar();
             }
+            /*else if ((int)t1.transform.position.x == route[routeIndex].x && 
+                (int)t1.transform.position.y == route[routeIndex].y ) 
+            {
+                t1.gameObject.GetComponent<Move>().Parar();
+                Parar();
+            }
+            else if ((int)t2.transform.position.x == route[routeIndex].x && 
+                (int)t1.transform.position.y == route[routeIndex].y)
+            {
+                t2.gameObject.GetComponent<Move>().Parar();
+                Parar();
+            }*/
             else
             {
                 GetComponent<Rigidbody2D>().velocity = CalculateVel();
-                rotar(route[routeIndex]);
+                Rotar(route[routeIndex]);
             }
                 
         }
     }
-    void rotar(Vector2Int o)
+    public void Parar()
+    {
+        moving = false;
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        route = new List<Vector2Int>();
+    }
+    void Rotar(Vector2Int o)
     {
         Vector3 objetivo = new Vector3(transform.position.x - o.x, transform.position.y- o.y, 0);
         
         transform.rotation =   Quaternion.LookRotation(objetivo);
         transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.x+90f);
     }
+ 
 }

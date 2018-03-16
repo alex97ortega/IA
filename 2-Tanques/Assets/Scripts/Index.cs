@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Index : MonoBehaviour {
 
-    public uint index; // 0 -> tierra 1-> barro 2-> piedra
+    public uint index; // 0 -> piedra 1-> normal 2-> barro
     public uint getIndex() { return index; }
 
     public Sprite arena;
@@ -36,6 +36,7 @@ public class Index : MonoBehaviour {
                     break;
                 default:
                     GetComponent<SpriteRenderer>().sprite = barro;
+                    transform.gameObject.layer = 12;
                     break;
             }
         }

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
 
     Vector3[,] positions = new Vector3[10, 10];
-    GameObject[,] casillas = new GameObject[10, 10];
+    public GameObject[,] casillas = new GameObject[10, 10];
     GameObject tablero;
     public GameObject casilla;
 
@@ -144,6 +144,8 @@ public class GameManager : MonoBehaviour
     }
     public void MapaAleatorio()
     {
+        
+       // CreateGame();
         int rand;
         for (int i = 0; i < 10; i++)
         {
@@ -158,7 +160,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    rand = Random.Range(0, 8);
+                    rand = Random.Range(0, 6);
                     switch (rand)
                     {
                         case 0:
