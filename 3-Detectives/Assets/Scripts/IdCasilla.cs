@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IdCasilla : MonoBehaviour {
     uint id = 1; // 0->hueco , 1->normal , 2->sangre, 3->barro, 4->barro+sangre
-
+    public uint GetId() { return id; }
     public Sprite hueco;
     public Sprite arena;
     public Sprite sangre;
