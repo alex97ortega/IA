@@ -3,37 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class IdCasilla : MonoBehaviour {
-    uint id = 1; // 0->hueco , 1->normal , 2->sangre, 3->barro, 4->barro+sangre
-    public uint GetId() { return id; }
+    //uint id = 1; // 0->hueco , 1->normal , 2->sangre, 3->barro, 4->barro+sangre
     public Sprite hueco;
     public Sprite arena;
     public Sprite sangre;
     public Sprite barro;
     public Sprite barroSangre;
 
+    public enum Tipo
+    {
+        normal,
+        hueco,
+        sangre,
+        barro,
+        barroSangre
+    }
+    Tipo t =  Tipo.normal;
+
+    public Tipo GetTipo() { return t; }
     void Start()
     {
         GetComponent<SpriteRenderer>().sprite = arena;
     }
    
-    public void ChangeId(uint nuevo)
+    public void ChangeId(Tipo nuevo)
     {
-        id = nuevo;
-        switch (id)
+        t = nuevo;
+        switch (t)
         {
-            case 0:
+            case Tipo.hueco:
                 GetComponent<SpriteRenderer>().sprite = hueco;
                 break;
-            case 1:
+            case Tipo.normal:
                 GetComponent<SpriteRenderer>().sprite = arena;
                 break;
-            case 2:
+            case Tipo.sangre:
                 GetComponent<SpriteRenderer>().sprite = sangre;
                 break;
-            case 3:
+            case Tipo.barro:
                 GetComponent<SpriteRenderer>().sprite = barro;
                 break;
-            case 4:
+            case Tipo.barroSangre:
                 GetComponent<SpriteRenderer>().sprite = barroSangre;
                 break;
         }
