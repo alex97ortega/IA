@@ -38,9 +38,10 @@ public class Patrulla : MonoBehaviour {
     int posx, posy;
     // Update is called once per frame
     void Update()
-    {
-     
+    {     
+        //toa la movida de siempre
        
+            // si unity truncara como es debido no haría falta esta mierda
             int extrax = 0, extray = 0;
             if (vx < 0) extrax = 1;
             else if (vy < 0) extray = 1;
@@ -53,10 +54,20 @@ public class Patrulla : MonoBehaviour {
 
             if (vy >= 0 && siguienteCasilla.y > 3 && posx==0) posx++;
 
-            if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.hueco) gm.Muere();
+
+        // hacemos cosas dependiendo de la casilla en la que estemos 
+        if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.hueco) gm.Muere();
+        //movidas impresionantes
+        if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barro) ;
+        //buscar cuerpo skrr
+        if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barroSangre ||
+                gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.sangre) ;
+
+
             print("siguiente casilla (" + siguienteCasilla.x + " , " + siguienteCasilla.y + ")");
             print("posicion (" + posx+ " , " + posy + ")");
-            if (posx == siguienteCasilla.x && posy == siguienteCasilla.y)
+
+        if (posx == siguienteCasilla.x && posy == siguienteCasilla.y)
             {
                 GetComponent<Rigidbody2D>().velocity = CalculateVel();
             }
@@ -68,22 +79,8 @@ public class Patrulla : MonoBehaviour {
         siguienteCasilla = new Vector2(0, 0);
         CreaCamino();
         //PrintCamino();
-        Camina();
     }
-
-    void Camina()
-    {
-        // ponemos el tablero de casillas descubiertas a 0
-        tablero = new IdCasilla.Tipo[gm.columnas, gm.filas];
-
-        for (int i = 0; i < gm.columnas; i++)
-        {
-            for (int j = 0; j < gm.filas; j++)
-            {
-                tablero[i, j] = IdCasilla.Tipo.normal;
-            }
-        }
-    }
+   
     void CreaCamino()
     {
         /* □ □ □ □ □ □ □ □ □ □ □ 
@@ -107,7 +104,18 @@ public class Patrulla : MonoBehaviour {
                 else camino[i, j] = false;
             }
         }
+        // ponemos el tablero de casillas descubiertas a 0
+        tablero = new IdCasilla.Tipo[gm.columnas, gm.filas];
+
+        for (int i = 0; i < gm.columnas; i++)
+        {
+            for (int j = 0; j < gm.filas; j++)
+            {
+                tablero[i, j] = IdCasilla.Tipo.normal;
+            }
+        }
     }
+
 
     void PrintCamino()
     {
