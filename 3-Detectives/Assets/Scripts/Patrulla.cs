@@ -25,62 +25,107 @@ public class Patrulla : MonoBehaviour {
 
 
     public GameManager gm;
+    public GameObject arma;
+    public GameObject cadaver;
     // el camino va a ser una representación del tablero con booleanos que indican si la casilla es camino o no
     bool[,] camino;
-    // necesitamos una matriz que vaya almacenando los tipos de casilla que vaya descubriendo el agente
-    IdCasilla.Tipo[,] tablero;
-
+   
     Vector2 siguienteCasilla;
-
+    Vector2 casillaClave;
     public float velocity;
 
     float vx, vy;
     int posx, posy;
+
+    bool patrullando;
+    bool encontradoArma;
+    bool encontradoMuerto;
+    bool tocoSangre;
+    bool paro;
+
+    bool n = true;
+    bool s = true;
+    bool e = true;
+    bool w = true;
     // Update is called once per frame
     void Update()
-    {     
-        //toa la movida de siempre
-       
-            // si unity truncara como es debido no haría falta esta mierda
-            int extrax = 0, extray = 0;
-            if (vx < 0) extrax = 1;
-            else if (vy < 0) extray = 1;
-
-            if (transform.position.x < 1) posx = 0 + extrax;
-            else posx = (int)transform.position.x + extrax;
-
-            if (transform.position.y < 1) posy = 0 + extray;
-            else posy = (int)transform.position.y+ extray;
-
-            if (vy >= 0 && siguienteCasilla.y > 3 && posx==0) posx++;
-
-
-        // hacemos cosas dependiendo de la casilla en la que estemos 
+    {
+        damePos();
+        //muere si cae al pozo
         if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.hueco) gm.Muere();
-        //movidas impresionantes
-        if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barro) ;
-        //buscar cuerpo skrr
-        if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barroSangre ||
-                gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.sangre) ;
 
+        if (patrullando)
+        {
+            PatrullandoIndaNight();
+        }
+        else if (tocoSangre)
+        {
+            //print("siguiente casilla (" + siguienteCasilla.x + " , " + siguienteCasilla.y + ")");
+            
 
-            print("siguiente casilla (" + siguienteCasilla.x + " , " + siguienteCasilla.y + ")");
-            print("posicion (" + posx+ " , " + posy + ")");
+            if (posx == arma.transform.position.x && posy == arma.transform.position.y)
+                TocadoArma(new Vector2(posx, posy));
+            else if (posx == cadaver.transform.position.x && posy == cadaver.transform.position.y)
+                TocadoMuerto(new Vector2(posx, posy));
 
-        if (posx == siguienteCasilla.x && posy == siguienteCasilla.y)
+            if (casillaClave == siguienteCasilla && (posx == siguienteCasilla.x && posy == siguienteCasilla.y))
+            {                
+                GetComponent<Rigidbody2D>().velocity = CalculateVel2();
+            }
+            else if (posx == siguienteCasilla.x && posy == siguienteCasilla.y)
+            {
+                vx *= -1;
+                vy *= -1;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(vx,vy);
+                siguienteCasilla = casillaClave;
+            }
+        }
+        else if(!paro && (encontradoArma || encontradoMuerto))
+        {
+            if (posx == arma.transform.position.x && posy == arma.transform.position.y)
+            {
+                arma.transform.position = new Vector2(10, 0);
+                paro = true;
+            }
+             else if    (posx == cadaver.transform.position.x && posy == cadaver.transform.position.y)
+            {
+                cadaver.transform.position = new Vector2(11, 0);
+                paro = true;
+            }                
+
+            else if (posx == siguienteCasilla.x && posy == siguienteCasilla.y)
             {
                 GetComponent<Rigidbody2D>().velocity = CalculateVel();
             }
-        
+        }
+        if(paro)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            // el otro algoritmo
+        }
     }
 
+    // Start
     public void Patrullar()
     {
+        patrullando = true;
+
+        encontradoArma = false;
+        encontradoMuerto = false;
+        tocoSangre = false;
+
+        n = true;
+        s = true;
+        e = true;
+        w = true;
+
+        vx = 0;
+        vy = 0;
         siguienteCasilla = new Vector2(0, 0);
         CreaCamino();
         //PrintCamino();
     }
-   
+
     void CreaCamino()
     {
         /* □ □ □ □ □ □ □ □ □ □ □ 
@@ -105,7 +150,7 @@ public class Patrulla : MonoBehaviour {
             }
         }
         // ponemos el tablero de casillas descubiertas a 0
-        tablero = new IdCasilla.Tipo[gm.columnas, gm.filas];
+        /*tablero = new IdCasilla.Tipo[gm.columnas, gm.filas];
 
         for (int i = 0; i < gm.columnas; i++)
         {
@@ -113,9 +158,8 @@ public class Patrulla : MonoBehaviour {
             {
                 tablero[i, j] = IdCasilla.Tipo.normal;
             }
-        }
+        }*/
     }
-
 
     void PrintCamino()
     {
@@ -128,6 +172,51 @@ public class Patrulla : MonoBehaviour {
             );
     }
 
+
+    // Update
+    void damePos()
+    {
+        //toa la movida de siempre
+
+        if (vy < 0) posy = (int)Mathf.Round(transform.position.y +0.5f);
+        else posy = (int)transform.position.y;
+
+        if (vx < 0) posx = (int)Mathf.Round(transform.position.x +0.5f);
+        else posx = (int)transform.position.x;
+
+        //print("posicion (" + posx + " , " + posy + ")");
+    }
+
+    void PatrullandoIndaNight()
+    {
+        //print("siguiente casilla (" + siguienteCasilla.x + " , " + siguienteCasilla.y + ")");
+        //print("posicion (" + posx+ " , " + posy + ")");
+
+        if (posx == siguienteCasilla.x && posy == siguienteCasilla.y)
+        {
+            GetComponent<Rigidbody2D>().velocity = CalculateVel();
+        }
+
+
+        // hacemos cosas dependiendo de la casilla en la que estemos 
+
+
+
+        //movidas impresionantes si hay barro
+        if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barro)
+            TocadoBarro(new Vector2(posx, posy));
+
+        //buscar cuerpo si hay sangre (en 4 direcciones)
+        else if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barroSangre ||
+                gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.sangre)
+            TocadoSangre(new Vector2(posx, posy));
+
+        //buscar cuerpo o arma si se encuentra uno de los dos (en un área de 3x3)
+        if (posx == arma.transform.position.x && posy == arma.transform.position.y) 
+            TocadoArma(new Vector2(posx, posy));
+        else if (posx == cadaver.transform.position.x && posy == cadaver.transform.position.y)
+            TocadoMuerto(new Vector2(posx, posy));
+    }
 
     Vector2 CalculateVel()
     {
@@ -175,7 +264,140 @@ public class Patrulla : MonoBehaviour {
         }
         vx = x * velocity;
         vy = y * velocity;
-        return new Vector2(vx,y * vy);
+        return new Vector2(vx,vy);
+    }
+
+    Vector2 CalculateVel2()
+    {
+        // el recorrido para cuando se encuentra sangre es: 
+
+        // □ x □
+        // x p x
+        // □ x □
+
+        // donde p es la posición actual
+
+        int N = posy + 1;
+        int S = posy - 1;
+        int W = posx - 1;
+        int E = posx + 1;
+
+        bool myS = S > -1 && s;
+        bool myN = N < gm.filas && n;
+        bool myE = E < gm.columnas && e;
+        bool myW = W > -1 && w;
+
+        int x = 0, y = 0;
+        if (myS)
+        {
+            //print("S");
+            x = 0;
+            y = -1;
+            siguienteCasilla.y--;
+            s = false;
+        }
+        else if (myW)
+        {
+            //print("W");
+            x = -1;
+            y = 0;
+            siguienteCasilla.x--;
+            w = false;
+        }
+        else if (myN)
+        {
+            //print("N");
+            x = 0;
+            y = 1;
+            siguienteCasilla.y++;
+            n = false;
+        }
+        else if (myE)
+        {
+            //print("E");
+            x = 1;
+            y = 0;
+            siguienteCasilla.x++;
+            e = false;
+        }
+        
+        vx = x * velocity;
+        vy = y * velocity;
+        return new Vector2(vx, vy);
+    }
+
+    void TocadoSangre(Vector2 casillaInicio)
+    {
+        patrullando = false;
+        tocoSangre = true;
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+
+        casillaClave = casillaInicio;
+        siguienteCasilla = casillaClave;         
+        
+    }
+
+    void TocadoArma(Vector2 casillaInicio)
+    {
+        patrullando = false;
+        tocoSangre = false;
+        encontradoArma = true;
+        arma.transform.position = new Vector2(10,0);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+
+        casillaClave = casillaInicio;
+        CreaPatrulla2();
+    }
+
+    void TocadoMuerto(Vector2 casillaInicio)
+    {
+        patrullando = false;
+        tocoSangre = false;
+        encontradoMuerto = true;
+        cadaver.transform.position = new Vector2(11, 0);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+
+        casillaClave = casillaInicio;
+        CreaPatrulla2();
+    }
+
+    void TocadoBarro(Vector2 casillaInicio)
+    {
+        patrullando = false;
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+
+        casillaClave = casillaInicio;
+    }
+
+    void CreaPatrulla2()
+    {
+        // la patrulla para cuando se encuentra arma o muerto es: 
+
+        // x x x
+        // x p x
+        // x x x
+
+        // donde p es la posición actual (casilla clave)
+
+        for (int i = 0; i < gm.columnas; i++)
+        {
+            for (int j = 0; j < gm.filas; j++)
+            {
+                camino[i, j] = false;
+            }
+        }
+        Vector2 aux = new Vector2(casillaClave.x - 1, casillaClave.y - 1);
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if((int)aux.x + i >= 0 && (int)aux.x + i < gm.columnas && (int)aux.y + j >= 0 && (int)aux.y + j < gm.filas)
+                    camino[(int)aux.x+i, (int)aux.y+j] = true;
+            }
+        }
+        camino[(int)casillaClave.x, (int)casillaClave.y] = false;
+        siguienteCasilla = casillaClave;
     }
 }
 
