@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     public GameObject detective;
 
     public GameObject boton;
+    public GameObject botonVel;
 
     public Camera cam;
 
@@ -165,6 +166,7 @@ public class GameManager : MonoBehaviour {
 
     public void Patrullar()
     {
+        botonVel.gameObject.SetActive(true);
         detective.gameObject.SetActive(true);
         detective.transform.position = new Vector3(0, 0, 0);
         detective.GetComponent<Patrulla>().Patrullar();

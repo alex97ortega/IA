@@ -27,9 +27,16 @@ public class Patrulla : MonoBehaviour {
     public GameManager gm;
     public GameObject arma;
     public GameObject cadaver;
+
     // el camino va a ser una representación del tablero con booleanos que indican si la casilla es camino o no
     bool[,] camino;
-   
+
+    // el mapa se va marcando con las casillas por las que va pasando el detective, y esto tiene dos funciones:
+    // que el detective no pase innecesariamente por una casilla ya descubierta en cuanto encuentra la sangre
+    // y que el detective pueda volver a su casa al encontrar lo que busca por el camino más corto entre las casillas
+    // descubiertas
+    bool[,] descubiertas;
+
     Vector2 siguienteCasilla;
     Vector2 casillaClave;
     public float velocity;
@@ -38,8 +45,8 @@ public class Patrulla : MonoBehaviour {
     int posx, posy;
 
     bool patrullando;
-    bool encontradoArma;
-    bool encontradoMuerto;
+    bool encontradoArma = false;
+    bool encontradoMuerto = false;
     bool tocoSangre;
     bool paro;
 
@@ -87,12 +94,12 @@ public class Patrulla : MonoBehaviour {
         {
             if (posx == arma.transform.position.x && posy == arma.transform.position.y)
             {
-                arma.transform.position = new Vector2(10, 0);
+                arma.transform.position = new Vector2(10.5f, 0);
                 paro = true;
             }
              else if    (posx == cadaver.transform.position.x && posy == cadaver.transform.position.y)
             {
-                cadaver.transform.position = new Vector2(11, 0);
+                cadaver.transform.position = new Vector2(11.5f, 0);
                 paro = true;
             }                
 
@@ -113,10 +120,9 @@ public class Patrulla : MonoBehaviour {
     {
         patrullando = true;
 
-        encontradoArma = false;
-        encontradoMuerto = false;
+        //encontradoArma = false;
+        //encontradoMuerto = false;
         tocoSangre = false;
-
         paro = false;
 
         n = true;
@@ -154,16 +160,17 @@ public class Patrulla : MonoBehaviour {
                 else camino[i, j] = false;
             }
         }
-        // ponemos el tablero de casillas descubiertas a 0
-        /*tablero = new IdCasilla.Tipo[gm.columnas, gm.filas];
+        // ponemos el tablero de casillas descubiertas a false excepto la 0,0
+        descubiertas = new bool[gm.columnas, gm.filas];
 
         for (int i = 0; i < gm.columnas; i++)
         {
             for (int j = 0; j < gm.filas; j++)
             {
-                tablero[i, j] = IdCasilla.Tipo.normal;
+                descubiertas[i, j] = false;
             }
-        }*/
+        }
+        descubiertas[0, 0] = true;
     }
 
     void PrintCamino()
@@ -196,7 +203,7 @@ public class Patrulla : MonoBehaviour {
         if(dch) posx = (int)transform.position.x;
         else posx = (int)Mathf.Round(transform.position.x + 0.5f);
 
-        print("posicion (" + posx + " , " + posy + ")");
+        //print("posicion (" + posx + " , " + posy + ")");
     }
 
     void PatrullandoIndaNight()
@@ -241,10 +248,11 @@ public class Patrulla : MonoBehaviour {
 
         bool myS = S > -1 && camino[posx, S];
         bool myN = N < gm.filas && camino[posx, N];
-        bool myE = E < gm.columnas && camino[E, posy];
+        bool myE = E < gm.columnas && camino[E, posy] ;
         bool myW = W > -1 && camino[W, posy];
 
         camino[posx, posy] = false;
+        descubiertas[posx, posy] = true;
         int x=0, y=0;
         if (myN)
         {
@@ -294,11 +302,12 @@ public class Patrulla : MonoBehaviour {
         int W = posx - 1;
         int E = posx + 1;
 
-        bool myS = S > -1 && s;
-        bool myN = N < gm.filas && n;
-        bool myE = E < gm.columnas && e;
-        bool myW = W > -1 && w;
+        bool myS = S > -1 && s && !descubiertas[posx, S] ;
+        bool myN = N < gm.filas && n && !descubiertas[posx, N];
+        bool myE = E < gm.columnas && e && !descubiertas[E, posy];
+        bool myW = W > -1 && w && !descubiertas[W, posy];
 
+        descubiertas[posx, posy] = true;
         int x = 0, y = 0;
         if (myS)
         {
@@ -354,7 +363,7 @@ public class Patrulla : MonoBehaviour {
         patrullando = false;
         tocoSangre = false;
         encontradoArma = true;
-        arma.transform.position = new Vector2(10,0);
+        arma.transform.position = new Vector2(10.5f,0);
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 
         casillaClave = casillaInicio;
@@ -366,7 +375,7 @@ public class Patrulla : MonoBehaviour {
         patrullando = false;
         tocoSangre = false;
         encontradoMuerto = true;
-        cadaver.transform.position = new Vector2(11, 0);
+        cadaver.transform.position = new Vector2(11.5f, 0);
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 
         casillaClave = casillaInicio;
@@ -410,6 +419,12 @@ public class Patrulla : MonoBehaviour {
         }
         camino[(int)casillaClave.x, (int)casillaClave.y] = false;
         siguienteCasilla = casillaClave;
+    }
+
+    public void Velocity()
+    {
+        if (velocity < 2) velocity = 4;
+        else velocity = 1;
     }
 }
 
