@@ -47,6 +47,9 @@ public class Patrulla : MonoBehaviour {
     bool s = true;
     bool e = true;
     bool w = true;
+
+    bool arriba = true;
+    bool dch = true;
     // Update is called once per frame
     void Update()
     {
@@ -114,6 +117,8 @@ public class Patrulla : MonoBehaviour {
         encontradoMuerto = false;
         tocoSangre = false;
 
+        paro = false;
+
         n = true;
         s = true;
         e = true;
@@ -178,13 +183,20 @@ public class Patrulla : MonoBehaviour {
     {
         //toa la movida de siempre
 
-        if (vy < 0) posy = (int)Mathf.Round(transform.position.y +0.5f);
-        else posy = (int)transform.position.y;
+        if (vy < 0) arriba = false;
+        else if (vy>0) arriba = true;
 
-        if (vx < 0) posx = (int)Mathf.Round(transform.position.x +0.5f);
-        else posx = (int)transform.position.x;
+        if (arriba) posy = (int)transform.position.y;
+        else posy = (int)Mathf.Round(transform.position.y + 0.5f);
 
-        //print("posicion (" + posx + " , " + posy + ")");
+
+        if (vx < 0) dch = false;
+        else if (vx > 0) dch = true;
+
+        if(dch) posx = (int)transform.position.x;
+        else posx = (int)Mathf.Round(transform.position.x + 0.5f);
+
+        print("posicion (" + posx + " , " + posy + ")");
     }
 
     void PatrullandoIndaNight()
