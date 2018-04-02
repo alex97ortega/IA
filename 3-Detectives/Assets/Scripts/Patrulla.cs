@@ -44,87 +44,76 @@ public class Patrulla : MonoBehaviour {
     float vx, vy;
     int posx, posy;
 
-    bool patrullando;
-    bool encontradoArma = false;
-    bool encontradoMuerto = false;
-    bool tocoSangre;
-    bool paro;
+    // los distintos modos de moverse del agente los tomo en un enumerado
+    enum Modo { Patrullando, tocadoSangre, encontradoArma, encontradoMuerto, Paro}
+    Modo m;
 
     bool n = true;
     bool s = true;
     bool e = true;
     bool w = true;
 
+    // para controlar la posición
     bool arriba = true;
     bool dch = true;
+    bool llamado = false;
     // Update is called once per frame
     void Update()
     {
-        damePos();
+        DamePos();
         //muere si cae al pozo
         if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.hueco) gm.Muere();
 
-        if (patrullando)
+        switch (m)
         {
-            PatrullandoIndaNight();
-        }
-        else if (tocoSangre)
-        {
-            //print("siguiente casilla (" + siguienteCasilla.x + " , " + siguienteCasilla.y + ")");
-            
+            case Modo.Patrullando:
+                PatrullandoIndaNight();
+                break;
+            case Modo.tocadoSangre:
+                PatrullaSangre();
+                break;
+            case Modo.Paro:
+                
+                if(!llamado) {
+                    GetComponent<VueltaAcasa>().Volver(new Vector2Int(posx, posy), descubiertas, velocity, arriba, dch);
+                    llamado = true;
+                }             
+                    
+                // el otro algoritmo
+                break;
+            case Modo.encontradoArma:
+                if (posx == cadaver.transform.position.x && posy == cadaver.transform.position.y)
+                {
+                    cadaver.transform.position = new Vector2(11.5f, 0);
+                    m = Modo.Paro;
+                }
+                else if (posx == siguienteCasilla.x && posy == siguienteCasilla.y)
+                {
+                    GetComponent<Rigidbody2D>().velocity = CalculateVel();
+                }
+                break;
+            case Modo.encontradoMuerto:
+                if (posx == arma.transform.position.x && posy == arma.transform.position.y)
+                {
+                    arma.transform.position = new Vector2(10.5f, 0);
+                    m = Modo.Paro;
+                }               
 
-            if (posx == arma.transform.position.x && posy == arma.transform.position.y)
-                TocadoArma(new Vector2(posx, posy));
-            else if (posx == cadaver.transform.position.x && posy == cadaver.transform.position.y)
-                TocadoMuerto(new Vector2(posx, posy));
-
-            if (casillaClave == siguienteCasilla && (posx == siguienteCasilla.x && posy == siguienteCasilla.y))
-            {                
-                GetComponent<Rigidbody2D>().velocity = CalculateVel2();
-            }
-            else if (posx == siguienteCasilla.x && posy == siguienteCasilla.y)
-            {
-                vx *= -1;
-                vy *= -1;
-                GetComponent<Rigidbody2D>().velocity = new Vector2(vx,vy);
-                siguienteCasilla = casillaClave;
-            }
-        }
-        else if(!paro && (encontradoArma || encontradoMuerto))
-        {
-            if (posx == arma.transform.position.x && posy == arma.transform.position.y)
-            {
-                arma.transform.position = new Vector2(10.5f, 0);
-                paro = true;
-            }
-             else if    (posx == cadaver.transform.position.x && posy == cadaver.transform.position.y)
-            {
-                cadaver.transform.position = new Vector2(11.5f, 0);
-                paro = true;
-            }                
-
-            else if (posx == siguienteCasilla.x && posy == siguienteCasilla.y)
-            {
-                GetComponent<Rigidbody2D>().velocity = CalculateVel();
-            }
-        }
-        if(paro)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            // el otro algoritmo
-        }
+                else if (posx == siguienteCasilla.x && posy == siguienteCasilla.y)
+                {
+                    GetComponent<Rigidbody2D>().velocity = CalculateVel();
+                }
+                break;
+            default:
+                break;
+        }        
     }
 
     // Start
     public void Patrullar()
     {
-        patrullando = true;
-
-        //encontradoArma = false;
-        //encontradoMuerto = false;
-        tocoSangre = false;
-        paro = false;
-
+        m = Modo.Patrullando;
+        llamado = false;
         n = true;
         s = true;
         e = true;
@@ -173,20 +162,8 @@ public class Patrulla : MonoBehaviour {
         descubiertas[0, 0] = true;
     }
 
-    void PrintCamino()
-    {
-        Debug.Log(//Menuda inmundicia
-            camino[0, 4] + " " + camino[1, 4] + " " + camino[2, 4] + " " + camino[8, 4] + " " + camino[9, 4] + "\n" +
-            camino[0, 3] + " " + camino[1, 3] + " " + camino[2, 3] + " " + camino[8, 3] + " " + camino[9, 3] + "\n" +
-            camino[0, 2] + " " + camino[1, 2] + " " + camino[2, 2] + " " + camino[8, 2] + " " + camino[9, 2] + "\n" +
-            camino[0, 1] + " " + camino[1, 1] + " " + camino[2, 1] + " " + camino[8, 1] + " " + camino[9, 1] + "\n" +
-            camino[0, 0] + " " + camino[1, 0] + " " + camino[2, 0] + " " + camino[8, 0] + " " + camino[9, 0] + "\n" 
-            );
-    }
-
-
     // Update
-    void damePos()
+    void DamePos()
     {
         //toa la movida de siempre
 
@@ -222,19 +199,42 @@ public class Patrulla : MonoBehaviour {
 
 
         //movidas impresionantes si hay barro
-        if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barro)
-            TocadoBarro(new Vector2(posx, posy));
+       /* if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barro)
+            TocadoBarro(new Vector2(posx, posy));*/
 
         //buscar cuerpo si hay sangre (en 4 direcciones)
         else if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barroSangre ||
                 gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.sangre)
-            TocadoSangre(new Vector2(posx, posy));
+            CambiarModo(Modo.tocadoSangre, new Vector2(posx, posy));
 
         //buscar cuerpo o arma si se encuentra uno de los dos (en un área de 3x3)
-        if (posx == arma.transform.position.x && posy == arma.transform.position.y) 
-            TocadoArma(new Vector2(posx, posy));
+        if (posx == arma.transform.position.x && posy == arma.transform.position.y)
+            CambiarModo(Modo.encontradoArma, new Vector2(posx, posy));
         else if (posx == cadaver.transform.position.x && posy == cadaver.transform.position.y)
-            TocadoMuerto(new Vector2(posx, posy));
+            CambiarModo(Modo.encontradoMuerto,new Vector2(posx, posy));
+    }
+
+    void PatrullaSangre()
+    {
+        //print("siguiente casilla (" + siguienteCasilla.x + " , " + siguienteCasilla.y + ")");
+
+
+        if (posx == arma.transform.position.x && posy == arma.transform.position.y)
+            CambiarModo(Modo.encontradoArma,new Vector2(posx, posy));
+        else if (posx == cadaver.transform.position.x && posy == cadaver.transform.position.y)
+            CambiarModo(Modo.encontradoMuerto,new Vector2(posx, posy));
+
+        if (casillaClave == siguienteCasilla && (posx == siguienteCasilla.x && posy == siguienteCasilla.y))
+        {
+            GetComponent<Rigidbody2D>().velocity = CalculateVel2();
+        }
+        else if (posx == siguienteCasilla.x && posy == siguienteCasilla.y)
+        {
+            vx *= -1;
+            vy *= -1;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(vx, vy);
+            siguienteCasilla = casillaClave;
+        }
     }
 
     Vector2 CalculateVel()
@@ -347,47 +347,28 @@ public class Patrulla : MonoBehaviour {
         return new Vector2(vx, vy);
     }
 
-    void TocadoSangre(Vector2 casillaInicio)
+    // casillaInicio = casilla donde se cambia de modo, para tenerla de referencia
+    void CambiarModo(Modo cambiar, Vector2 casillaInicio)
     {
-        patrullando = false;
-        tocoSangre = true;
+        m = cambiar;
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-
         casillaClave = casillaInicio;
-        siguienteCasilla = casillaClave;         
-        
-    }
-
-    void TocadoArma(Vector2 casillaInicio)
-    {
-        patrullando = false;
-        tocoSangre = false;
-        encontradoArma = true;
-        arma.transform.position = new Vector2(10.5f,0);
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-
-        casillaClave = casillaInicio;
-        CreaPatrulla2();
-    }
-
-    void TocadoMuerto(Vector2 casillaInicio)
-    {
-        patrullando = false;
-        tocoSangre = false;
-        encontradoMuerto = true;
-        cadaver.transform.position = new Vector2(11.5f, 0);
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-
-        casillaClave = casillaInicio;
-        CreaPatrulla2();
-    }
-
-    void TocadoBarro(Vector2 casillaInicio)
-    {
-        patrullando = false;
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-
-        casillaClave = casillaInicio;
+        switch (m)
+        {
+            case Modo.tocadoSangre:
+                siguienteCasilla = casillaClave;
+                break;
+            case Modo.encontradoArma:
+                arma.transform.position = new Vector2(10.5f, 0);
+                CreaPatrulla2();
+                break;
+            case Modo.encontradoMuerto:
+                cadaver.transform.position = new Vector2(11.5f, 0);
+                CreaPatrulla2();
+                break;
+            default:
+                break;
+        }
     }
 
     void CreaPatrulla2()

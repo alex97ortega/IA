@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour {
     Vector3[,] positions;
 
     GameObject tablero;
-
+    bool muere = true;
     // Use this for initialization
     void Start () {
         tablero = GameObject.Find("Tablero");
@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour {
 	
 	public void Asesinar()
     {
+        muere = true;
         LimpiarTablero();
 
         boton.gameObject.SetActive(true);
@@ -166,13 +167,18 @@ public class GameManager : MonoBehaviour {
 
     public void Patrullar()
     {
-        botonVel.gameObject.SetActive(true);
-        detective.gameObject.SetActive(true);
-        detective.transform.position = new Vector3(0, 0, 0);
-        detective.GetComponent<Patrulla>().Patrullar();
+        if (muere)
+        {
+            botonVel.gameObject.SetActive(true);
+            detective.gameObject.SetActive(true);
+            detective.transform.position = new Vector3(0, 0, 0);
+            detective.GetComponent<Patrulla>().Patrullar();
+            muere = false;
+        }               
     }
     public void Muere()
     {
         detective.gameObject.SetActive(false);
+        muere = true;
     }
 }
