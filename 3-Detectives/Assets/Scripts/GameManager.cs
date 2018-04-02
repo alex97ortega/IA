@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour {
 
     GameObject tablero;
     bool muere = true;
+    bool siniestro = false;
     // Use this for initialization
     void Start () {
         tablero = GameObject.Find("Tablero");
@@ -99,6 +100,9 @@ public class GameManager : MonoBehaviour {
         arma.transform.position = new Vector3(x, y, 0);
         arma.gameObject.SetActive(true);
 
+        detective.GetComponent<Patrulla>().CreaCamino();
+        siniestro = !siniestro;
+        Siniestro();
         CrearHuecos(random, x + y*columnas);
     }
 
@@ -180,5 +184,29 @@ public class GameManager : MonoBehaviour {
     {
         detective.gameObject.SetActive(false);
         muere = true;
+    }
+    public void Siniestro()
+    {
+        siniestro = !siniestro;
+
+        for (int i = 0; i < columnas; i++)
+            {
+                for (int j = 0; j < filas; j++)
+                {
+                    if(siniestro) casillas[i, j].GetComponent<SpriteRenderer>().color = Color.black;
+                    else casillas[i, j].GetComponent<SpriteRenderer>().color = Color.white;
+                }
+            }
+        if (siniestro)
+        {
+            arma.GetComponent<SpriteRenderer>().color = Color.black;
+            muerto.GetComponent<SpriteRenderer>().color = Color.black;
+            detective.GetComponent<Patrulla>().Noche();
+        }
+        else
+        {
+            arma.GetComponent<SpriteRenderer>().color = Color.white;
+            muerto.GetComponent<SpriteRenderer>().color = Color.white;
+        }           
     }
 }

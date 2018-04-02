@@ -57,6 +57,8 @@ public class Patrulla : MonoBehaviour {
     bool arriba = true;
     bool dch = true;
     bool llamado = false;
+
+    bool started = false;
     // Update is called once per frame
     void Update()
     {
@@ -84,6 +86,8 @@ public class Patrulla : MonoBehaviour {
             case Modo.encontradoArma:
                 if (posx == cadaver.transform.position.x && posy == cadaver.transform.position.y)
                 {
+                    gm.casillas[posx, posy].GetComponent<SpriteRenderer>().color = Color.white;
+                    cadaver.GetComponent<SpriteRenderer>().color = Color.white;
                     cadaver.transform.position = new Vector2(11.5f, 0);
                     m = Modo.Paro;
                 }
@@ -95,6 +99,8 @@ public class Patrulla : MonoBehaviour {
             case Modo.encontradoMuerto:
                 if (posx == arma.transform.position.x && posy == arma.transform.position.y)
                 {
+                    gm.casillas[posx, posy].GetComponent<SpriteRenderer>().color = Color.white;
+                    arma.GetComponent<SpriteRenderer>().color = Color.white;
                     arma.transform.position = new Vector2(10.5f, 0);
                     m = Modo.Paro;
                 }               
@@ -114,6 +120,7 @@ public class Patrulla : MonoBehaviour {
     {
         m = Modo.Patrullando;
         llamado = false;
+        started = true;
         n = true;
         s = true;
         e = true;
@@ -126,7 +133,7 @@ public class Patrulla : MonoBehaviour {
         //PrintCamino();
     }
 
-    void CreaCamino()
+    public void CreaCamino()
     {
         /* □ □ □ □ □ □ □ □ □ □ □ 
            □ x x x x x x x x x □   
@@ -232,6 +239,7 @@ public class Patrulla : MonoBehaviour {
         {
             vx *= -1;
             vy *= -1;
+            gm.casillas[posx, posy].GetComponent<SpriteRenderer>().color = Color.white;
             GetComponent<Rigidbody2D>().velocity = new Vector2(vx, vy);
             siguienteCasilla = casillaClave;
         }
@@ -252,6 +260,7 @@ public class Patrulla : MonoBehaviour {
         bool myW = W > -1 && camino[W, posy];
 
         camino[posx, posy] = false;
+        gm.casillas[posx,posy].GetComponent<SpriteRenderer>().color = Color.white;
         descubiertas[posx, posy] = true;
         int x=0, y=0;
         if (myN)
@@ -307,6 +316,7 @@ public class Patrulla : MonoBehaviour {
         bool myE = E < gm.columnas && e && !descubiertas[E, posy];
         bool myW = W > -1 && w && !descubiertas[W, posy];
 
+        gm.casillas[posx, posy].GetComponent<SpriteRenderer>().color = Color.white;
         descubiertas[posx, posy] = true;
         int x = 0, y = 0;
         if (myS)
@@ -359,10 +369,12 @@ public class Patrulla : MonoBehaviour {
                 siguienteCasilla = casillaClave;
                 break;
             case Modo.encontradoArma:
+                arma.GetComponent<SpriteRenderer>().color = Color.white;
                 arma.transform.position = new Vector2(10.5f, 0);
                 CreaPatrulla2();
                 break;
             case Modo.encontradoMuerto:
+                cadaver.GetComponent<SpriteRenderer>().color = Color.white;
                 cadaver.transform.position = new Vector2(11.5f, 0);
                 CreaPatrulla2();
                 break;
@@ -406,6 +418,19 @@ public class Patrulla : MonoBehaviour {
     {
         if (velocity < 2) velocity = 4;
         else velocity = 1;
+    }
+    public void Noche()
+    {
+        if (started)
+        {
+            for (int i = 0; i < gm.columnas; i++)
+            {
+                for (int j = 0; j < gm.filas; j++)
+                {
+                    if(descubiertas[i, j]) gm.casillas[i, j].GetComponent<SpriteRenderer>().color = Color.white;
+                }
+            }
+        }
     }
 }
 

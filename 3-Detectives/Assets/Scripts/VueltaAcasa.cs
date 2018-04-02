@@ -30,10 +30,12 @@ public class VueltaAcasa : MonoBehaviour {
 
         route = alg.CalcularRuta(pos,tab);
 
-        string s = "Ruta: ";
+        /*string s = "Ruta: ";
         foreach (var n in route)
             s += "(" + n.x + ", " + n.y + ") ";
-        Debug.Log(s);
+        Debug.Log(s);*/
+
+        Debug.Log("Trazando recorrido de " + (route.Count - 1) + " casillas...");
     }
 
     void Update()
@@ -97,5 +99,5 @@ public class VueltaAcasa : MonoBehaviour {
     {
         if (velocity < 2) velocity = 4;
         else velocity = 1;
-    }
+    }    
 }
