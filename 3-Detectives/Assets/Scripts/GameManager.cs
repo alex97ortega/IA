@@ -127,48 +127,54 @@ public class GameManager : MonoBehaviour {
 
         int pos;
 
-        for(int i = 0; i < numHuecos; i++)
+        for (int i = 0; i < numHuecos; i++)
         {
             do
             {
                 pos = Random.Range(1, filas * columnas);
             } while (pos == posCadaver || pos == posArma);
 
-            casillas[pos % columnas, pos / columnas].GetComponent<IdCasilla>().ChangeId(IdCasilla.Tipo.hueco);
+            ColocaHueco(pos % columnas, pos / columnas);
+        }
+    }
+    public void ColocaHueco(int x, int y)
+    {
+        if((x != muerto.transform.position.x || y != muerto.transform.position.y) && (x != arma.transform.position.x || y != arma.transform.position.y) && (x!=0 || y!=0))
+        {
+            casillas[x, y].GetComponent<IdCasilla>().ChangeId(IdCasilla.Tipo.hueco);
             IdCasilla.Tipo aux;
             //colocar barro
-            if (pos % columnas > 0 && casillas[pos % columnas - 1, pos / columnas].GetComponent<IdCasilla>().GetTipo() != IdCasilla.Tipo.hueco)
+            if (x > 0 && casillas[x - 1, y].GetComponent<IdCasilla>().GetTipo() != IdCasilla.Tipo.hueco)
             {
-                if (casillas[pos % columnas - 1, pos / columnas].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.sangre)
+                if (casillas[x - 1, y].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.sangre || casillas[x - 1, y].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barroSangre)
                     aux = IdCasilla.Tipo.barroSangre;
                 else aux = IdCasilla.Tipo.barro;
-                casillas[pos % columnas - 1, pos / columnas].GetComponent<IdCasilla>().ChangeId(aux);
+                casillas[x - 1, y].GetComponent<IdCasilla>().ChangeId(aux);
             }
 
-            if (pos % columnas < columnas - 1 && casillas[pos % columnas + 1, pos / columnas].GetComponent<IdCasilla>().GetTipo() != IdCasilla.Tipo.hueco)
+            if (x < columnas - 1 && casillas[x + 1, y].GetComponent<IdCasilla>().GetTipo() != IdCasilla.Tipo.hueco)
             {
-                if (casillas[pos % columnas + 1, pos / columnas].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.sangre)
+                if (casillas[x + 1, y].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.sangre || casillas[x + 1, y].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barroSangre)
                     aux = IdCasilla.Tipo.barroSangre;
                 else aux = IdCasilla.Tipo.barro;
-                casillas[pos % columnas + 1, pos / columnas].GetComponent<IdCasilla>().ChangeId(aux);
+                casillas[x + 1, y].GetComponent<IdCasilla>().ChangeId(aux);
             }
-            if (pos / columnas > 0 && casillas[pos % columnas, pos / columnas-1].GetComponent<IdCasilla>().GetTipo() != IdCasilla.Tipo.hueco)
+            if (y > 0 && casillas[x, y - 1].GetComponent<IdCasilla>().GetTipo() != IdCasilla.Tipo.hueco)
             {
-                if (casillas[pos % columnas, pos / columnas - 1].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.sangre)
+                if (casillas[x, y - 1].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.sangre || casillas[x , y-1].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barroSangre)
                     aux = IdCasilla.Tipo.barroSangre;
                 else aux = IdCasilla.Tipo.barro;
-                casillas[pos % columnas, pos / columnas - 1].GetComponent<IdCasilla>().ChangeId(aux);
+                casillas[x, y - 1].GetComponent<IdCasilla>().ChangeId(aux);
             }
-            if (pos / columnas < filas - 1 && casillas[pos % columnas, pos / columnas+1].GetComponent<IdCasilla>().GetTipo() != IdCasilla.Tipo.hueco)
+            if (y < filas - 1 && casillas[x, y + 1].GetComponent<IdCasilla>().GetTipo() != IdCasilla.Tipo.hueco)
             {
-                if (casillas[pos % columnas, pos / columnas + 1].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.sangre)
+                if (casillas[x, y + 1].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.sangre || casillas[x, y +1].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barroSangre)
                     aux = IdCasilla.Tipo.barroSangre;
                 else aux = IdCasilla.Tipo.barro;
-                casillas[pos % columnas, pos / columnas + 1].GetComponent<IdCasilla>().ChangeId(aux);
+                casillas[x, y + 1].GetComponent<IdCasilla>().ChangeId(aux);
             }
         }
     }
-
     public void Patrullar()
     {
         if (muere)
@@ -208,5 +214,10 @@ public class GameManager : MonoBehaviour {
             arma.GetComponent<SpriteRenderer>().color = Color.white;
             muerto.GetComponent<SpriteRenderer>().color = Color.white;
         }           
+    }
+    public void Salir()
+    {
+        Debug.Log("Saliendo");
+        Application.Quit();
     }
 }

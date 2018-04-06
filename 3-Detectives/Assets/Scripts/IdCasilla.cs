@@ -9,7 +9,7 @@ public class IdCasilla : MonoBehaviour {
     public Sprite sangre;
     public Sprite barro;
     public Sprite barroSangre;
-
+    public GameManager gm;
     public enum Tipo
     {
         normal,
@@ -47,5 +47,9 @@ public class IdCasilla : MonoBehaviour {
                 GetComponent<SpriteRenderer>().sprite = barroSangre;
                 break;
         }
+    }
+    void OnMouseDown()
+    {
+        gm.ColocaHueco((int)transform.position.x, (int)transform.position.y);
     }
 }
