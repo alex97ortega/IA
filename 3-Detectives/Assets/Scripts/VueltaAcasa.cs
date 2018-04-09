@@ -19,7 +19,7 @@ public class VueltaAcasa : MonoBehaviour {
     bool arriba, dch;
     // Use this for initialization
 
-    public void Volver(Vector2Int pos, bool[,] tab, float vel,bool a,bool d) {
+    public void Volver(Vector2Int pos, int[,] tab, float vel,bool a,bool d) {
         moving = true;
         llamar = true;
         velocity = vel;

@@ -16,7 +16,7 @@ using UnityEngine;
    punto del mapa.
 
    Después, el script también se encargará de bordear los huecos (que es lo chungo) y encontrar el cadáver y el arma
-   en cuanto toque una casilla de sangre. Para ello se emplea lógica proposicional.
+   en cuanto toque una casilla de sangre.
 
    Una vez encontrado cadáver y arma, llama al script del algoritmo para encontrar el camino mínimo a casa, conociendo ya
    parte del tablero.
@@ -35,7 +35,7 @@ public class Patrulla : MonoBehaviour {
     // que el detective no pase innecesariamente por una casilla ya descubierta en cuanto encuentra la sangre
     // y que el detective pueda volver a su casa al encontrar lo que busca por el camino más corto entre las casillas
     // descubiertas
-    bool[,] descubiertas;
+    int[,] descubiertas;
 
     Vector2 siguienteCasilla;
     Vector2 casillaClave;
@@ -43,9 +43,10 @@ public class Patrulla : MonoBehaviour {
 
     float vx, vy;
     int posx, posy;
-
+    int N, S, E, W;
     // los distintos modos de moverse del agente los tomo en un enumerado
-    enum Modo { Patrullando, tocadoSangre, encontradoArma, encontradoMuerto, Paro}
+    enum Modo { Patrullando, tocadoSangre, tocadoBarro, encontradoArma, encontradoMuerto, Paro}
+    enum Dir { N, S, E, W }
     Modo m;
 
     bool n = true;
@@ -53,6 +54,7 @@ public class Patrulla : MonoBehaviour {
     bool e = true;
     bool w = true;
 
+    
     // para controlar la posición
     bool arriba = true;
     bool dch = true;
@@ -74,14 +76,17 @@ public class Patrulla : MonoBehaviour {
             case Modo.tocadoSangre:
                 PatrullaSangre();
                 break;
+            case Modo.tocadoBarro:
+                PatrullaBarro();
+                break;
             case Modo.Paro:
                 
                 if(!llamado) {
+                    // el otro algoritmo
                     GetComponent<VueltaAcasa>().Volver(new Vector2Int(posx, posy), descubiertas, velocity, arriba, dch);
                     llamado = true;
-                }             
-                    
-                // el otro algoritmo
+                }                   
+              
                 break;
             case Modo.encontradoArma:
                 if (posx == cadaver.transform.position.x && posy == cadaver.transform.position.y)
@@ -118,6 +123,7 @@ public class Patrulla : MonoBehaviour {
     // Start
     public void Patrullar()
     {
+        
         m = Modo.Patrullando;
         llamado = false;
         started = true;
@@ -157,16 +163,16 @@ public class Patrulla : MonoBehaviour {
             }
         }
         // ponemos el tablero de casillas descubiertas a false excepto la 0,0
-        descubiertas = new bool[gm.columnas, gm.filas];
+        descubiertas = new int[gm.columnas, gm.filas];
 
         for (int i = 0; i < gm.columnas; i++)
         {
             for (int j = 0; j < gm.filas; j++)
             {
-                descubiertas[i, j] = false;
+                descubiertas[i, j] = 0;
             }
         }
-        descubiertas[0, 0] = true;
+        descubiertas[0, 0] = 1;
     }
 
     // Update
@@ -187,7 +193,18 @@ public class Patrulla : MonoBehaviour {
         if(dch) posx = (int)transform.position.x;
         else posx = (int)Mathf.Round(transform.position.x + 0.5f);
 
-        //print("posicion (" + posx + " , " + posy + ")");
+        // esto no debería ser necesario :(
+        if (posx < 0) posx = 0;
+        else if (posx == gm.columnas) posx = gm.columnas-1;
+        if (posy < 0) posy = 0;
+        else if (posy == gm.filas) posy = gm.filas-1;
+
+         N = posy + 1;
+         S = posy - 1;
+         W = posx - 1;
+         E = posx + 1;
+
+         print("posicion (" + posx + " , " + posy + ")");
     }
 
     void PatrullandoIndaNight()
@@ -203,22 +220,22 @@ public class Patrulla : MonoBehaviour {
 
         // hacemos cosas dependiendo de la casilla en la que estemos 
 
-
+        //buscar cuerpo o arma si se encuentra uno de los dos (en un área de 3x3)
+        if (posx == arma.transform.position.x && posy == arma.transform.position.y)
+            CambiarModo(Modo.encontradoArma, new Vector2(posx, posy));
 
         //movidas impresionantes si hay barro
-       /* if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barro)
-            TocadoBarro(new Vector2(posx, posy));*/
+        else if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barro)
+        {
+            CambiarModo(Modo.tocadoBarro, new Vector2(posx, posy));
+        }
 
         //buscar cuerpo si hay sangre (en 4 direcciones)
         else if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barroSangre ||
                 gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.sangre)
             CambiarModo(Modo.tocadoSangre, new Vector2(posx, posy));
 
-        //buscar cuerpo o arma si se encuentra uno de los dos (en un área de 3x3)
-        if (posx == arma.transform.position.x && posy == arma.transform.position.y)
-            CambiarModo(Modo.encontradoArma, new Vector2(posx, posy));
-        else if (posx == cadaver.transform.position.x && posy == cadaver.transform.position.y)
-            CambiarModo(Modo.encontradoMuerto,new Vector2(posx, posy));
+       
     }
 
     void PatrullaSangre()
@@ -245,57 +262,35 @@ public class Patrulla : MonoBehaviour {
         }
     }
 
+    void PatrullaBarro()
+    {
+        if (posx == siguienteCasilla.x && posy == siguienteCasilla.y)
+        {
+            bool tocoBarro = gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barro;
+            GetComponent<Rigidbody2D>().velocity = CalculateVel3(tocoBarro);
+        }
+        
+        else if (gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.barroSangre ||
+                gm.casillas[posx, posy].GetComponent<IdCasilla>().GetTipo() == IdCasilla.Tipo.sangre)
+            CambiarModo(Modo.tocadoSangre, new Vector2(posx, posy));
+        
+        if (posx == arma.transform.position.x && posy == arma.transform.position.y)
+            CambiarModo(Modo.encontradoArma, new Vector2(posx, posy));
+    }
+    //patrulla
     Vector2 CalculateVel()
     {
         
-
-        int N = posy + 1;
-        int S = posy - 1;
-        int W = posx - 1;
-        int E = posx + 1;
-
         bool myS = S > -1 && camino[posx, S];
         bool myN = N < gm.filas && camino[posx, N];
         bool myE = E < gm.columnas && camino[E, posy] ;
         bool myW = W > -1 && camino[W, posy];
-
+        
         camino[posx, posy] = false;
-        gm.casillas[posx,posy].GetComponent<SpriteRenderer>().color = Color.white;
-        descubiertas[posx, posy] = true;
-        int x=0, y=0;
-        if (myN)
-        {
-            //print("N");
-            x = 0;
-            y = 1;
-            siguienteCasilla.y++;
-        }
-        else if (myE)
-        {
-            //print("E");
-            x = 1;
-            y = 0;
-            siguienteCasilla.x++;
-        }
-        else if (myS)
-        {
-            //print("S");
-            x = 0;
-            y = -1;
-            siguienteCasilla.y--;
-        }
-        else if (myW)
-        {
-            //print("W");
-            x = -1;
-            y = 0;
-            siguienteCasilla.x--;
-        }
-        vx = x * velocity;
-        vy = y * velocity;
-        return new Vector2(vx,vy);
+        return DameVel(myS, myN, myE, myW);
     }
 
+    //sangre
     Vector2 CalculateVel2()
     {
         // el recorrido para cuando se encuentra sangre es: 
@@ -305,35 +300,116 @@ public class Patrulla : MonoBehaviour {
         // □ x □
 
         // donde p es la posición actual
+               
 
-        int N = posy + 1;
-        int S = posy - 1;
-        int W = posx - 1;
-        int E = posx + 1;
+        bool myS = S > -1 && s && descubiertas[posx, S] ==0 ;
+        bool myN = N < gm.filas && n && descubiertas[posx, N] == 0;
+        bool myE = E < gm.columnas && e && descubiertas[E, posy]==0;
+        bool myW = W > -1 && w && descubiertas[W, posy]==0;
 
-        bool myS = S > -1 && s && !descubiertas[posx, S] ;
-        bool myN = N < gm.filas && n && !descubiertas[posx, N];
-        bool myE = E < gm.columnas && e && !descubiertas[E, posy];
-        bool myW = W > -1 && w && !descubiertas[W, posy];
+        return DameVel(myS, myN, myE, myW);
+    }
 
-        gm.casillas[posx, posy].GetComponent<SpriteRenderer>().color = Color.white;
-        descubiertas[posx, posy] = true;
-        int x = 0, y = 0;
-        if (myS)
+    //barro
+    Vector2 CalculateVel3(bool esBarro)
+    {
+        int aux = 1;
+        bool myS, myN, myE, myW;
+        if (esBarro)
         {
-            //print("S");
-            x = 0;
-            y = -1;
-            siguienteCasilla.y--;
-            s = false;
+            aux = Random.Range(0, 8 - descubiertas[posx, posy]);
+            if (aux == 0)
+            {
+                myS = S > -1;
+                myN = N < gm.filas;
+                myE = E < gm.columnas;
+                myW = W > -1;
+            }
+            else
+            {
+                myS = S > -1 && descubiertas[posx, S] > 0;
+
+                myN = N < gm.filas && descubiertas[posx, N] > 0;
+                myE = E < gm.columnas && descubiertas[E, posy] > 0;
+                myW = W > -1 && descubiertas[W, posy] > 0;
+            }
         }
-        else if (myW)
+        else
         {
-            //print("W");
-            x = -1;
+            myS = S > -1;
+            myN = N < gm.filas;
+            myE = E < gm.columnas;
+            myW = W > -1;
+
+            // da mas importancia a las casillas sin descubrir
+            if (myE && descubiertas[E, posy] == 0) myS = myN = myW = false;
+            else if (myN && descubiertas[posx, N] == 0) myS = myE = myW = false;
+            else if (myS && descubiertas[posx, S] == 0) myN = myE = myW = false;
+            else if (myW && descubiertas[W, posy] == 0) myS = myN = myE = false;
+
+            // si no, que no haga bucle infinito con un rand 
+            else aux = 0;         
+           
+        }
+
+        if ((!myS && !myN && !myE && !myW) ||aux==0) {
+            bool sePuede = false ;
+            do
+            {
+                switch (Random.Range(0, 3))
+                {
+                    case 0:
+                        if (S > -1)
+                        {
+                            myS = true;
+                            myN = myE = myW = false;
+                            sePuede = true;
+                        }
+                        break;
+                    case 1:
+                        if (N < gm.filas)
+                        {
+                            myN = true;
+                            myS = myE = myW = false;
+                            sePuede = true;
+                        }
+                        break;
+                    case 2:
+                        if (E < gm.columnas)
+                        {
+                            myE = true;
+                            myN = myS = myW = false;
+                            sePuede = true;
+                        }
+                        break;
+                    default:
+                        if (W > -1)
+                        {
+                            myW = true;
+                            myN = myE = myS = false;
+                            sePuede = true;
+                        }
+                        break;
+                }
+
+            } while (!sePuede);
+
+        }
+        return DameVel(myS,  myN,  myE,  myW);
+    }
+
+    Vector2 DameVel(bool myS, bool myN, bool myE, bool myW)
+    {
+        gm.casillas[posx, posy].GetComponent<SpriteRenderer>().color = Color.white;
+        descubiertas[posx, posy]++;
+        int x = 0, y = 0;
+         if (myE)
+        {
+            //print("E");
+            x = 1;
             y = 0;
-            siguienteCasilla.x--;
-            w = false;
+            siguienteCasilla.x++;
+            e = false;
         }
         else if (myN)
         {
@@ -343,15 +419,27 @@ public class Patrulla : MonoBehaviour {
             siguienteCasilla.y++;
             n = false;
         }
-        else if (myE)
+        
+        else if (myS)
         {
-            //print("E");
-            x = 1;
+            //print("S");
+            x = 0;
+            y = -1;
+            siguienteCasilla.y--;
+            s = false;
+
+        }
+        else if (myW)
+        {
+            //print("W");
+            x = -1;
             y = 0;
-            siguienteCasilla.x++;
-            e = false;
+            siguienteCasilla.x--;
+            w = false;
         }
         
+        
+
         vx = x * velocity;
         vy = y * velocity;
         return new Vector2(vx, vy);
@@ -366,7 +454,9 @@ public class Patrulla : MonoBehaviour {
         switch (m)
         {
             case Modo.tocadoSangre:
+            case Modo.tocadoBarro:
                 siguienteCasilla = casillaClave;
+                n = s = w = e = true;
                 break;
             case Modo.encontradoArma:
                 arma.GetComponent<SpriteRenderer>().color = Color.white;
@@ -427,7 +517,7 @@ public class Patrulla : MonoBehaviour {
             {
                 for (int j = 0; j < gm.filas; j++)
                 {
-                    if(descubiertas[i, j]) gm.casillas[i, j].GetComponent<SpriteRenderer>().color = Color.white;
+                    if(descubiertas[i, j]>0) gm.casillas[i, j].GetComponent<SpriteRenderer>().color = Color.white;
                 }
             }
         }

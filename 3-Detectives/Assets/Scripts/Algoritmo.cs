@@ -45,7 +45,7 @@ public class Algoritmo : MonoBehaviour {
 
     }
 
-    public List<Vector2Int> CalcularRuta(Vector2Int actual, bool[,] estadoTablero)
+    public List<Vector2Int> CalcularRuta(Vector2Int actual, int[,] estadoTablero)
     {
         //Get the current state into the local format
         start = new Vector2Int(actual.x,actual.y);
@@ -210,7 +210,7 @@ public class Algoritmo : MonoBehaviour {
        
     }
     //Traduce el array de gameObjects a un int[,] (done)
-    int[,] TraduceTablero(bool[,] tab)
+    int[,] TraduceTablero(int[,] tab)
     {
         int[,] result = new int[10, 5];
 
@@ -218,7 +218,7 @@ public class Algoritmo : MonoBehaviour {
         {
             for (int j = 0; j < 5; j++)
             {
-                if (tab[i, j]) result[i, j] = 1;
+                if (tab[i, j] >0) result[i, j] = 1;
                 else result[i, j] = 0;
             }
         }
