@@ -54,10 +54,10 @@ public class Patrulla : MonoBehaviour {
     bool e = true;
     bool w = true;
 
-    
+    bool change;
     // para controlar la posición
-    bool arriba = true;
-    bool dch = true;
+    bool arriba = false;
+    bool dch = false;
     bool llamado = false;
 
     bool started = false;
@@ -123,7 +123,7 @@ public class Patrulla : MonoBehaviour {
     // Start
     public void Patrullar()
     {
-        
+        change = true;
         m = Modo.Patrullando;
         llamado = false;
         started = true;
@@ -179,32 +179,37 @@ public class Patrulla : MonoBehaviour {
     void DamePos()
     {
         //toa la movida de siempre
+        if (change)
+        {
 
-        if (vy < 0) arriba = false;
-        else if (vy>0) arriba = true;
+            
+            if (vy < 0) arriba = false;
+            else if (vy > 0) arriba = true;
 
-        if (arriba) posy = (int)transform.position.y;
-        else posy = (int)Mathf.Round(transform.position.y + 0.5f);
+            if (arriba) posy = (int)transform.position.y;
+            else posy = (int)Mathf.Round(transform.position.y + 0.5f);
 
+            
+            if (vx < 0) dch = false;
+            else if (vx > 0) dch = true;
 
-        if (vx < 0) dch = false;
-        else if (vx > 0) dch = true;
+            if (dch) posx = (int)transform.position.x;
+            else posx = (int)Mathf.Round(transform.position.x + 0.5f);
 
-        if(dch) posx = (int)transform.position.x;
-        else posx = (int)Mathf.Round(transform.position.x + 0.5f);
+            // esto no debería ser necesario :(
+            if (posx < 0) posx = 0;
+            else if (posx == gm.columnas) posx = gm.columnas - 1;
+            if (posy < 0) posy = 0;
+            else if (posy == gm.filas) posy = gm.filas - 1;
 
-        // esto no debería ser necesario :(
-        if (posx < 0) posx = 0;
-        else if (posx == gm.columnas) posx = gm.columnas-1;
-        if (posy < 0) posy = 0;
-        else if (posy == gm.filas) posy = gm.filas-1;
+            N = posy + 1;
+            S = posy - 1;
+            W = posx - 1;
+            E = posx + 1;
 
-         N = posy + 1;
-         S = posy - 1;
-         W = posx - 1;
-         E = posx + 1;
-
-         print("posicion (" + posx + " , " + posy + ")");
+            print("posicion (" + posx + " , " + posy + ")");
+        }
+        else change = true;
     }
 
     void PatrullandoIndaNight()
@@ -285,8 +290,12 @@ public class Patrulla : MonoBehaviour {
         bool myN = N < gm.filas && camino[posx, N];
         bool myE = E < gm.columnas && camino[E, posy] ;
         bool myW = W > -1 && camino[W, posy];
-        
-        camino[posx, posy] = false;
+
+        //camino[posx, posy] = false;
+        if (arriba && vy >0) myS = false;
+        else if(!arriba && vy<0)myN = false;
+        if (dch && vx>0) myW = false;
+        else if(!dch && vx<0)myE = false;
         return DameVel(myS, myN, myE, myW);
     }
 
@@ -356,7 +365,7 @@ public class Patrulla : MonoBehaviour {
             bool sePuede = false ;
             do
             {
-                switch (Random.Range(0, 3))
+                switch (Random.Range(0, 4))
                 {
                     case 0:
                         if (S > -1)
@@ -442,6 +451,7 @@ public class Patrulla : MonoBehaviour {
 
         vx = x * velocity;
         vy = y * velocity;
+        change = false;
         return new Vector2(vx, vy);
     }
 
