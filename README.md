@@ -16,4 +16,4 @@
  
  ## Zombies
  
- - Zombies
+ - Otro agente que está más tocho que el anterior y lucha contra zombies por turnos.
