@@ -13,3 +13,7 @@
  ## Detectives
  
  - Un agente que trata de descubrir el lugar del crimen y el arma en un mapa random todo ultra full HD 4k.
+ 
+ ## Zombies
+ 
+ - Zombies
