@@ -24,7 +24,9 @@ public class GameManager : MonoBehaviour {
     public int maxEnemigos;
 
     int maxA;
-    int maxE;
+    public int maxE;
+    public GameObject cobete;
+    public GameObject protas;
     public GameObject aliado;
     public GameObject enemigo;
     public GameObject botonComenzar;
@@ -72,8 +74,18 @@ public class GameManager : MonoBehaviour {
                 else casillas[i, j].GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
-        if (noche) cam.backgroundColor = Color.black;
-        else cam.backgroundColor = Color.grey;
+        if (noche)
+        {
+            protas.GetComponent<SpriteRenderer>().color = Color.grey;
+            cobete.GetComponent<SpriteRenderer>().color = Color.grey;
+            cam.backgroundColor = Color.black;
+        }
+        else
+        {
+            protas.GetComponent<SpriteRenderer>().color = Color.white;
+            cobete.GetComponent<SpriteRenderer>().color = Color.white;
+            cam.backgroundColor = Color.grey;
+        }
 
     }
     public void Comenzar()
@@ -91,7 +103,8 @@ public class GameManager : MonoBehaviour {
         maxEnemigos = maxE;
         maxAliados = maxA;
         comenzado = false;
-        botonComenzar.SetActive(true);
+        gui.Reinciar();
+        botonComenzar.SetActive(false);
     }
 
     public void CreateAly(Vector3 pos)
@@ -108,10 +121,12 @@ public class GameManager : MonoBehaviour {
     {
         if (!comenzado)
         {
+            botonComenzar.SetActive(true);
             GameObject en = Instantiate(enemigo, pos, Quaternion.identity);
             if (noche) en.GetComponent<SpriteRenderer>().color = Color.grey;
             en.gameObject.SetActive(true);
             maxEnemigos--;
         }
     }
+    public bool Comenzado() { return comenzado; }
 }

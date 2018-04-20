@@ -9,10 +9,14 @@ public class OnClickCasilla : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if (transform.position.y != 0 || transform.position.x != 0 && transform.position.x != 1)
-        {            
-              if (gm.maxAliados > 0) gm.CreateAly(transform.position);
-              else if (gm.maxEnemigos > 0) gm.CreateEnemy(transform.position);            
+        if (!gm.Comenzado())
+        {
+            if (transform.position.y != 0 || transform.position.x != 0 && transform.position.x != 1)
+            {
+                if (gm.maxAliados > 0) gm.CreateAly(transform.position);
+                else if (gm.maxEnemigos > 0) gm.CreateEnemy(transform.position);
+            }
         }
+         
     }
 }

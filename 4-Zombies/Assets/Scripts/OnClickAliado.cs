@@ -7,9 +7,12 @@ public class OnClickAliado : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if (gm.maxEnemigos > 0) gm.CreateEnemy(transform.position);
-        gm.maxAliados++;
-        Destroy(this.gameObject);
+        if (!gm.Comenzado())
+        {
+            if (gm.maxEnemigos > 0) gm.CreateEnemy(transform.position);
+            gm.maxAliados++;
+            Destroy(this.gameObject);
+        }       
     }
                 
 }

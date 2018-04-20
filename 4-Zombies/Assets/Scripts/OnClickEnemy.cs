@@ -8,7 +8,12 @@ public class OnClickEnemy : MonoBehaviour {
 
     void OnMouseDown()
     {
-        gm.maxEnemigos++;
-        Destroy(this.gameObject);
+        if (!gm.Comenzado())
+        {
+            gm.maxEnemigos++;
+            if (gm.maxEnemigos == gm.maxE)
+                gm.botonComenzar.SetActive(false);
+            Destroy(this.gameObject);
+        }       
     }
 }
