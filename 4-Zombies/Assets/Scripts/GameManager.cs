@@ -6,14 +6,29 @@ public class GameManager : MonoBehaviour {
 
     public int filas, columnas;
     public GameObject casilla;
+    public Camera cam;
     
     public GameObject[,] casillas;
+    
+    
     Vector3[,] positions;
     
-
+    
     GameObject tablero;
+    GameObject[] entities;
+
     bool noche = false;
     bool comenzado = false;
+
+    public int maxAliados;
+    public int maxEnemigos;
+
+    int maxA;
+    int maxE;
+    public GameObject aliado;
+    public GameObject enemigo;
+    public GameObject botonComenzar;
+    public GUI gui;
 
     // Use this for initialization
     void Start () {
@@ -26,25 +41,77 @@ public class GameManager : MonoBehaviour {
             for (int j = 0; j < filas; j++)
             {
                 positions[i, j] = new Vector3(i, j, 0);
-                GameObject ficha = Instantiate(casilla, positions[i, j], Quaternion.identity);
+                GameObject ficha = Instantiate(casilla, positions[i, j], Quaternion.identity);                
                 casillas[i, j] = ficha;
-
                 ficha.transform.parent = tablero.transform;
                 ficha.name = casillas[i, j].name;
             }
         }
+        maxA = maxAliados;
+        maxE = maxEnemigos;
     }
-	
+    void Update()
+    {
+        entities = GameObject.FindGameObjectsWithTag("Entity");
+    }
 	public void CambiarNoche()
     {
         noche = !noche;
+
+        foreach (GameObject x in entities)
+        {
+            if(noche) x.GetComponent<SpriteRenderer>().color = Color.grey;
+            else x.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+
+        for (int i = 0; i < columnas; i++)
+        {
+            for (int j = 0; j < filas; j++)
+            {
+                if (noche) casillas[i, j].GetComponent<SpriteRenderer>().color = Color.grey;
+                else casillas[i, j].GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }
+        if (noche) cam.backgroundColor = Color.black;
+        else cam.backgroundColor = Color.grey;
+
     }
     public void Comenzar()
     {
         comenzado = true;
+        botonComenzar.SetActive(false);
+        gui.Comenzar();
     }
     public void Reiniciar()
     {
+        foreach (GameObject x in entities)
+        {
+            Destroy(x);
+        }
+        maxEnemigos = maxE;
+        maxAliados = maxA;
         comenzado = false;
+        botonComenzar.SetActive(true);
+    }
+
+    public void CreateAly(Vector3 pos)
+    {
+        if (!comenzado)
+        {
+            GameObject al = Instantiate(aliado, pos, Quaternion.identity);
+            if (noche) al.GetComponent<SpriteRenderer>().color = Color.grey;
+            al.gameObject.SetActive(true);
+            maxAliados--;
+        }
+    }
+    public void CreateEnemy(Vector3 pos)
+    {
+        if (!comenzado)
+        {
+            GameObject en = Instantiate(enemigo, pos, Quaternion.identity);
+            if (noche) en.GetComponent<SpriteRenderer>().color = Color.grey;
+            en.gameObject.SetActive(true);
+            maxEnemigos--;
+        }
     }
 }
