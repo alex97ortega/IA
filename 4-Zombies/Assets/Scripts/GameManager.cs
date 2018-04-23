@@ -15,9 +15,10 @@ public class GameManager : MonoBehaviour {
     
     
     GameObject tablero;
-    GameObject[] entities;
+    GameObject[] alys;
+    GameObject[] enemies;
 
-    bool noche = false;
+    public bool noche = false;
     bool comenzado = false;
 
     public int maxAliados;
@@ -54,18 +55,23 @@ public class GameManager : MonoBehaviour {
     }
     void Update()
     {
-        entities = GameObject.FindGameObjectsWithTag("Entity");
+        alys = GameObject.FindGameObjectsWithTag("Aly");
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 	public void CambiarNoche()
     {
         noche = !noche;
 
-        foreach (GameObject x in entities)
+        foreach (GameObject x in alys)
         {
             if(noche) x.GetComponent<SpriteRenderer>().color = Color.grey;
             else x.GetComponent<SpriteRenderer>().color = Color.white;
         }
-
+        foreach (GameObject x in enemies)
+        {
+            if (noche) x.GetComponent<SpriteRenderer>().color = Color.grey;
+            else x.GetComponent<SpriteRenderer>().color = Color.white;
+        }
         for (int i = 0; i < columnas; i++)
         {
             for (int j = 0; j < filas; j++)
@@ -86,7 +92,7 @@ public class GameManager : MonoBehaviour {
             cobete.GetComponent<SpriteRenderer>().color = Color.white;
             cam.backgroundColor = Color.grey;
         }
-
+        gui.CalculaDestreza();
     }
     public void Comenzar()
     {
@@ -96,7 +102,11 @@ public class GameManager : MonoBehaviour {
     }
     public void Reiniciar()
     {
-        foreach (GameObject x in entities)
+        foreach (GameObject x in alys)
+        {
+            Destroy(x);
+        }
+        foreach (GameObject x in enemies)
         {
             Destroy(x);
         }

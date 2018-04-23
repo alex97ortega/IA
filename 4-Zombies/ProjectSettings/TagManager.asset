@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Entity
   - Casilla
+  - Aly
+  - Enemy
   layers:
   - Default
   - TransparentFX
