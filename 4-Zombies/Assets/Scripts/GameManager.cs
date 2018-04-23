@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
     
     GameObject tablero;
     GameObject[] alys;
-    GameObject[] enemies;
+    public GameObject[] enemies;
 
     public bool noche = false;
     bool comenzado = false;

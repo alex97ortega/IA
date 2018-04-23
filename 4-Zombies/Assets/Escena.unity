@@ -441,6 +441,7 @@ GameObject:
   - component: {fileID: 262993454}
   - component: {fileID: 262993452}
   - component: {fileID: 262993453}
+  - component: {fileID: 262993456}
   m_Layer: 9
   m_Name: Enemigo
   m_TagString: Enemy
@@ -542,6 +543,18 @@ Transform:
   m_Father: {fileID: 1631853069}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &262993456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 262993451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4018769db13d98d4aae99dbd98c49dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acabadoTurno: 1
 --- !u!1 &276628776
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +599,7 @@ MonoBehaviour:
   columnas: 12
   casilla: {fileID: 434761940}
   cam: {fileID: 900138207}
+  enemies: []
   noche: 0
   maxAliados: 5
   maxEnemigos: 20
@@ -857,7 +871,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 763095997}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1698201212}
+        m_MethodName: DecisionIA
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &763095997
@@ -1518,7 +1543,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1365318179}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1698201212}
+        m_MethodName: TomarDecision
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1365318179
@@ -1833,7 +1869,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1443700021}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1698201212}
+        m_MethodName: TomarDecision
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1443700021
@@ -2294,7 +2341,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1634521480}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1698201212}
+        m_MethodName: TomarDecision
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1634521480
@@ -2413,6 +2471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1698201211}
   - component: {fileID: 1698201210}
+  - component: {fileID: 1698201212}
   m_Layer: 9
   m_Name: Agente
   m_TagString: Player
@@ -2477,3 +2536,15 @@ Transform:
   m_Father: {fileID: 1631853069}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1698201212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1698201209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7188d5f55887708448ae0c34528db201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gui: {fileID: 77454888}

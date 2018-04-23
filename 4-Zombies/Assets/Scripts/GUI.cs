@@ -15,16 +15,17 @@ public class GUI : MonoBehaviour
 
     int puntos = 0;
     int turnoPersonaje = -1; // -1 (no empezado), 0 (turno Enemies), 1 (turno personaje)
-
+    int nEnemy;
     enum Destreza { Mala, Regular, Buena };
     Destreza destreza;
     enum Situacion { MuchoZombie, MuchoAliado, Neutral };
     Situacion situacion;
 
     public GameManager gm;
+    bool llamado = false;
     // Script que se encarga de gestionar todas las movidas una vez que comienza el simulator
     // Puntos, turnos, acciones, destreza y situación 
-
+    
     public void Comenzar()
     {
 
@@ -55,10 +56,7 @@ public class GUI : MonoBehaviour
 
     public void Reinciar()
     {
-        botonAtacar.SetActive(false);
-        botonVolver.SetActive(false);
-        botonEsperar.SetActive(false);
-        botonIA.SetActive(false);
+        DesactivarBotones();
 
         textoPuntos.GetComponent<Text>().text = "Puntos: 0";
         puntos = 0;
@@ -66,7 +64,13 @@ public class GUI : MonoBehaviour
 
         textoTurnos.SetActive(false);
     }
-
+    public void DesactivarBotones()
+    {
+        botonAtacar.SetActive(false);
+        botonVolver.SetActive(false);
+        botonEsperar.SetActive(false);
+        botonIA.SetActive(false);
+    }
     public void CambiarTurno()
     {
         if (turnoPersonaje == 0)
@@ -82,6 +86,33 @@ public class GUI : MonoBehaviour
         {
             turnoPersonaje = 0;
             textoTurnos.GetComponent<Text>().text = "Zombies moviéndose...";
+            nEnemy = gm.enemies.Length-1;
+           
+        }
+    }
+    private void Update()
+    {
+        // llamada a los zombies por orden (para que no hagan todos sus turnos a la vez)
+        if(turnoPersonaje == 0)
+        {
+
+            Debug.Log("llamando zombie " + nEnemy);
+            if (gm.enemies[nEnemy].GetComponent<TurnoEnemy>().acabadoTurno)
+            {
+                if (!llamado)
+                {
+                    gm.enemies[nEnemy].GetComponent<TurnoEnemy>().Activar();
+                    llamado = true;
+                }
+                else
+                {
+                    nEnemy--;
+                    llamado = false;
+                }
+            }                
+           
+            if (nEnemy < 0) CambiarTurno();
+            
         }
     }
     // tanto positivos como negativos
