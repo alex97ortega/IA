@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
     
     
     GameObject tablero;
-    GameObject[] alys;
+    public GameObject[] alys;
     public GameObject[] enemies;
 
     public bool noche = false;
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour {
     public int maxAliados;
     public int maxEnemigos;
 
-    int maxA;
+    public int maxA;
     public int maxE;
     public GameObject cobete;
     public GameObject protas;
@@ -91,8 +91,7 @@ public class GameManager : MonoBehaviour {
             protas.GetComponent<SpriteRenderer>().color = Color.white;
             cobete.GetComponent<SpriteRenderer>().color = Color.white;
             cam.backgroundColor = Color.grey;
-        }
-        gui.CalculaDestreza();
+        }        
     }
     public void Comenzar()
     {
@@ -139,4 +138,5 @@ public class GameManager : MonoBehaviour {
         }
     }
     public bool Comenzado() { return comenzado; }
+   
 }
