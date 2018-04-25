@@ -109,6 +109,9 @@ public class GameManager : MonoBehaviour {
         {
             Destroy(x);
         }
+        alys.Initialize();
+        enemies.Initialize();
+
         maxEnemigos = maxE;
         maxAliados = maxA;
         comenzado = false;

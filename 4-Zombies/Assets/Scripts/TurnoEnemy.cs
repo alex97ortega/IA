@@ -20,14 +20,14 @@ public class TurnoEnemy : MonoBehaviour {
     int N, S, E, W;
     int distancia;
     int vx, vy;
-    bool arriba=true, dch=false;
+    bool arriba=true, dch=true;
     
     public void Activar()
     {
         BuscaObjetivo();
         acabadoTurno = false;
     }
-    public void Update()
+    private void Update()
     {
         if (!acabadoTurno)
         {
@@ -42,7 +42,7 @@ public class TurnoEnemy : MonoBehaviour {
         objetivo = gm.protas;
         distancia = Math.Abs(posx - (int)objetivo.transform.position.x) +
              Math.Abs(posy- (int)objetivo.transform.position.y);
-        Debug.Log("Distancia con prota: " + distancia);
+        //Debug.Log("Distancia con prota: " + distancia);
 
         if(gui.numAliados != 0)
         {
@@ -51,7 +51,7 @@ public class TurnoEnemy : MonoBehaviour {
                 int aux = Math.Abs(posx - (int)a.transform.position.x) +
                  Math.Abs(posy - (int)a.transform.position.y);
 
-                Debug.Log("Distancia con aly: " + aux);
+                //Debug.Log("Distancia con aly: " + aux);
                 if (aux <= distancia)
                 {
 
@@ -75,7 +75,6 @@ public class TurnoEnemy : MonoBehaviour {
             
             int aux = Math.Abs(posx + 1 - (int)objetivo.transform.position.x) +
             Math.Abs(posy - (int)objetivo.transform.position.y);
-            //Debug.Log("Distancia con objE: " + aux);
             if ( aux <= distancia )
             {
                 x = 1;
@@ -88,8 +87,7 @@ public class TurnoEnemy : MonoBehaviour {
             
             int aux = Math.Abs(posx  - (int)objetivo.transform.position.x) +
              Math.Abs(posy +1 - (int)objetivo.transform.position.y);
-
-            //Debug.Log("Distancia con objN: " + aux);
+            
             if (aux <= distancia )
             {
                 x = 0;
@@ -102,7 +100,6 @@ public class TurnoEnemy : MonoBehaviour {
         {
             int aux = Math.Abs(posx  - (int)objetivo.transform.position.x) +
              Math.Abs(posy -1 - (int)objetivo.transform.position.y);
-            //Debug.Log("Distancia con objS: " + aux);
 
             if (aux <= distancia )
             {
@@ -116,7 +113,6 @@ public class TurnoEnemy : MonoBehaviour {
         {
             int aux = Math.Abs(posx - 1 - (int)objetivo.transform.position.x) +
              Math.Abs(posy - (int)objetivo.transform.position.y);
-            //Debug.Log("Distancia con objW: " + aux);
 
             if (aux <= distancia )
             {
@@ -156,7 +152,7 @@ public class TurnoEnemy : MonoBehaviour {
         if (dch) posx = (int)transform.position.x;
         else posx = (int)Mathf.Round(transform.position.x + 0.5f);
         
-        Debug.Log("x: " + posx + " y: " + posy);
+        //Debug.Log("x: " + posx + " y: " + posy);
         N = posy + 1;
         S = posy - 1;
         W = posx - 1;
@@ -169,6 +165,5 @@ public class TurnoEnemy : MonoBehaviour {
         DarVelocidad();
         //combate
         acabadoTurno = true;
-        //Debug.Log("acabadoTurno");
     }
 }
