@@ -20,7 +20,7 @@ public class TurnoEnemy : MonoBehaviour {
     int N, S, E, W;
     int distancia;
     int vx, vy;
-    bool arriba=false, dch=false;
+    bool arriba=true, dch=false;
     
     public void Activar()
     {
@@ -40,22 +40,26 @@ public class TurnoEnemy : MonoBehaviour {
     {
         DamePos();
         objetivo = gm.protas;
-        distancia = Math.Abs((posx - (int)objetivo.transform.position.x) +
-            (posy- (int)objetivo.transform.position.y));
+        distancia = Math.Abs(posx - (int)objetivo.transform.position.x) +
+             Math.Abs(posy- (int)objetivo.transform.position.y);
         Debug.Log("Distancia con prota: " + distancia);
-        foreach (GameObject a in gm.alys)
-        {
-            int aux = Math.Abs((posx- (int)a.transform.position.x) +
-            (posy - (int)a.transform.position.y));
 
-            Debug.Log("Distancia con aly: " + aux);
-            if  (aux<= distancia)
+        if(gui.numAliados != 0)
+        {
+            foreach (GameObject a in gm.alys)
             {
-                
-                objetivo = a;
-                distancia = aux;
+                int aux = Math.Abs(posx - (int)a.transform.position.x) +
+                 Math.Abs(posy - (int)a.transform.position.y);
+
+                Debug.Log("Distancia con aly: " + aux);
+                if (aux <= distancia)
+                {
+
+                    objetivo = a;
+                    distancia = aux;
+                }
             }
-        }
+        }        
         CasillaSiguiente();
     }
 
@@ -69,8 +73,8 @@ public class TurnoEnemy : MonoBehaviour {
         if(myE)
         {
             
-            int aux = Math.Abs((posx + 1 - (int)objetivo.transform.position.x) +
-            (posy - (int)objetivo.transform.position.y));
+            int aux = Math.Abs(posx + 1 - (int)objetivo.transform.position.x) +
+            Math.Abs(posy - (int)objetivo.transform.position.y);
             //Debug.Log("Distancia con objE: " + aux);
             if ( aux <= distancia )
             {
@@ -82,8 +86,8 @@ public class TurnoEnemy : MonoBehaviour {
         if (myN)
         {
             
-            int aux = Math.Abs((posx  - (int)objetivo.transform.position.x) +
-             (posy +1 - (int)objetivo.transform.position.y));
+            int aux = Math.Abs(posx  - (int)objetivo.transform.position.x) +
+             Math.Abs(posy +1 - (int)objetivo.transform.position.y);
 
             //Debug.Log("Distancia con objN: " + aux);
             if (aux <= distancia )
@@ -96,8 +100,8 @@ public class TurnoEnemy : MonoBehaviour {
 
         if (myS)
         {
-            int aux = Math.Abs((posx  - (int)objetivo.transform.position.x) +
-             (posy -1 - (int)objetivo.transform.position.y));
+            int aux = Math.Abs(posx  - (int)objetivo.transform.position.x) +
+             Math.Abs(posy -1 - (int)objetivo.transform.position.y);
             //Debug.Log("Distancia con objS: " + aux);
 
             if (aux <= distancia )
@@ -110,8 +114,8 @@ public class TurnoEnemy : MonoBehaviour {
         }
         if (myW)
         {
-            int aux = Math.Abs((posx - 1 - (int)objetivo.transform.position.x) +
-             (posy - (int)objetivo.transform.position.y));
+            int aux = Math.Abs(posx - 1 - (int)objetivo.transform.position.x) +
+             Math.Abs(posy - (int)objetivo.transform.position.y);
             //Debug.Log("Distancia con objW: " + aux);
 
             if (aux <= distancia )
