@@ -16,7 +16,7 @@ public class TurnoEnemy : MonoBehaviour {
     Vector2Int casillaSig;
     public bool acabadoTurno = true;
 
-    int posx, posy;
+    public int posx, posy;
     int N, S, E, W;
     int distancia;
     int vx, vy;
@@ -29,9 +29,9 @@ public class TurnoEnemy : MonoBehaviour {
     }
     private void Update()
     {
+        DamePos();
         if (!acabadoTurno)
         {
-            DamePos();
 
             if (posx == casillaSig.x && posy == casillaSig.y) TerminarTurno();
         }
@@ -40,8 +40,8 @@ public class TurnoEnemy : MonoBehaviour {
     {
         DamePos();
         objetivo = gm.protas;
-        distancia = Math.Abs(posx - (int)objetivo.transform.position.x) +
-             Math.Abs(posy- (int)objetivo.transform.position.y);
+        distancia = Math.Abs(posx - (int)gm.protas.GetComponent<TurnoPlayer>().posx) +
+             Math.Abs(posy- (int)gm.protas.GetComponent<TurnoPlayer>().posy);
         //Debug.Log("Distancia con prota: " + distancia);
 
         if(gui.numAliados != 0)

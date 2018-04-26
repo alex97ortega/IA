@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -21,8 +23,8 @@ public class GameManager : MonoBehaviour {
     public bool noche = false;
     bool comenzado = false;
 
-    public int maxAliados;
-    public int maxEnemigos;
+    public int numeroAliados;
+    public int numeroEnemigos;
 
     public int maxA;
     public int maxE;
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour {
     public GameObject aliado;
     public GameObject enemigo;
     public GameObject botonComenzar;
+    public GameObject textofin;
     public GUI gui;
 
     // Use this for initialization
@@ -50,27 +53,31 @@ public class GameManager : MonoBehaviour {
                 ficha.name = casillas[i, j].name;
             }
         }
-        maxA = maxAliados;
-        maxE = maxEnemigos;
+        maxA = numeroAliados;
+        maxE = numeroEnemigos;
+        alys = new GameObject[maxA];
+        enemies = new GameObject[maxE];
     }
-    void Update()
-    {
-        alys = GameObject.FindGameObjectsWithTag("Aly");
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-    }
+    
 	public void CambiarNoche()
     {
         noche = !noche;
 
         foreach (GameObject x in alys)
         {
-            if(noche) x.GetComponent<SpriteRenderer>().color = Color.grey;
-            else x.GetComponent<SpriteRenderer>().color = Color.white;
+            if (x != null)
+            {
+                if (noche) x.GetComponent<SpriteRenderer>().color = Color.grey;
+                else x.GetComponent<SpriteRenderer>().color = Color.white;
+            }
         }
         foreach (GameObject x in enemies)
         {
-            if (noche) x.GetComponent<SpriteRenderer>().color = Color.grey;
-            else x.GetComponent<SpriteRenderer>().color = Color.white;
+            if (x != null)
+            {
+                if (noche) x.GetComponent<SpriteRenderer>().color = Color.grey;
+                else x.GetComponent<SpriteRenderer>().color = Color.white;
+            }
         }
         for (int i = 0; i < columnas; i++)
         {
@@ -109,14 +116,16 @@ public class GameManager : MonoBehaviour {
         {
             Destroy(x);
         }
-        alys.Initialize();
-        enemies.Initialize();
 
-        maxEnemigos = maxE;
-        maxAliados = maxA;
+        numeroEnemigos = maxE;
+        numeroAliados = maxA;
+        alys = new GameObject[maxA];
+        enemies = new GameObject[maxE];
+        protas.transform.position = new Vector2(1,0);
         comenzado = false;
         gui.Reinciar();
         botonComenzar.SetActive(false);
+        textofin.SetActive(false);
     }
 
     public void CreateAly(Vector3 pos)
@@ -126,7 +135,8 @@ public class GameManager : MonoBehaviour {
             GameObject al = Instantiate(aliado, pos, Quaternion.identity);
             if (noche) al.GetComponent<SpriteRenderer>().color = Color.grey;
             al.gameObject.SetActive(true);
-            maxAliados--;
+            alys[maxA - numeroAliados] = al;
+            numeroAliados--;
         }
     }
     public void CreateEnemy(Vector3 pos)
@@ -137,7 +147,8 @@ public class GameManager : MonoBehaviour {
             GameObject en = Instantiate(enemigo, pos, Quaternion.identity);
             if (noche) en.GetComponent<SpriteRenderer>().color = Color.grey;
             en.gameObject.SetActive(true);
-            maxEnemigos--;
+            enemies[maxE - numeroEnemigos] = en;
+            numeroEnemigos--;
         }
     }
     public bool Comenzado() { return comenzado; }

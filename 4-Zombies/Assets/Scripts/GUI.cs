@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GUI : MonoBehaviour
 {
-
     public GameObject botonAtacar;
     public GameObject botonVolver;
     public GameObject botonEsperar;
@@ -29,8 +28,11 @@ public class GUI : MonoBehaviour
     
     public void Comenzar()
     {
-        numAliados = gm.maxA - gm.maxAliados;
-        numEnemigos = gm.maxE - gm.maxEnemigos;
+        numAliados = gm.maxA - gm.numeroAliados;
+        numEnemigos = gm.maxE - gm.numeroEnemigos;
+
+        nEnemy = numEnemigos - 1;
+        //Debug.Log("numEnemigos: " + numEnemigos);
         if (turnoPersonaje == -1)
         {
             if (Random.Range(0, 2) == 0)
@@ -85,7 +87,7 @@ public class GUI : MonoBehaviour
         {
             turnoPersonaje = 0;
             textoTurnos.GetComponent<Text>().text = "Zombies moviéndose...";
-            nEnemy = gm.enemies.Length-1;
+            nEnemy = numEnemigos-1;
            
         }
     }
@@ -192,16 +194,19 @@ public class GUI : MonoBehaviour
         CambiarPuntos(-10);
         numAliados--;
     }
-    public void MatarEnemigo(GameObject en, bool matadoHeroe)
+    // devuelve true si finaliza la partida
+    public bool MatarEnemigo(GameObject en, bool matadoHeroe)
     {
         Destroy(en);
         if(matadoHeroe)
             CambiarPuntos(5);
         else CambiarPuntos(1);
         numEnemigos--;
+        return numEnemigos == 0;
     }
     public void MatarHeroe()
     {
         //finalizar partida
+        gm.protas.GetComponent<TurnoPlayer>().AcabarPartida();
     }
 }

@@ -13,8 +13,8 @@ public class OnClickCasilla : MonoBehaviour {
         {
             if (transform.position.y != 0 || transform.position.x != 0 && transform.position.x != 1)
             {
-                if (gm.maxAliados > 0) gm.CreateAly(transform.position);
-                else if (gm.maxEnemigos > 0) gm.CreateEnemy(transform.position);
+                if (gm.numeroAliados > 0) gm.CreateAly(transform.position);
+                else if (gm.numeroEnemigos > 0) gm.CreateEnemy(transform.position);
             }
         }
          

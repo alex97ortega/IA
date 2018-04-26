@@ -10,8 +10,8 @@ public class OnClickEnemy : MonoBehaviour {
     {
         if (!gm.Comenzado())
         {
-            gm.maxEnemigos++;
-            if (gm.maxEnemigos == gm.maxE)
+            gm.numeroEnemigos++;
+            if (gm.numeroEnemigos == gm.maxE)
                 gm.botonComenzar.SetActive(false);
             Destroy(this.gameObject);
         }       
