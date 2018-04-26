@@ -40,8 +40,8 @@ public class TurnoEnemy : MonoBehaviour {
     {
         DamePos();
         objetivo = gm.protas;
-        distancia = Math.Abs(posx - (int)gm.protas.GetComponent<TurnoPlayer>().posx) +
-             Math.Abs(posy- (int)gm.protas.GetComponent<TurnoPlayer>().posy);
+        distancia = Math.Abs(posx - gm.protas.GetComponent<TurnoPlayer>().posx) +
+             Math.Abs(posy- gm.protas.GetComponent<TurnoPlayer>().posy);
         //Debug.Log("Distancia con prota: " + distancia);
 
         if(gui.numAliados != 0)

@@ -34,7 +34,7 @@ public class TurnoPlayer : MonoBehaviour {
 
         if (d == 0) Atacar();
         else if (d == 1) Retroceder();
-        else TerminarTurno();                
+        else TerminarTurno(); //esperar               
 
         gui.DesactivarBotones();           
     }
@@ -86,8 +86,8 @@ public class TurnoPlayer : MonoBehaviour {
 
         if (myS)
         {
-            int aux = Math.Abs(posx - (int)objetivo.transform.position.x) +
-             Math.Abs(posy - 1 - (int)objetivo.transform.position.y);
+            int aux = Math.Abs(posx - objetivo.GetComponent<TurnoEnemy>().posx) +
+             Math.Abs(posy - 1 - objetivo.GetComponent<TurnoEnemy>().posy);
 
             if (aux <= distancia)
             {
@@ -99,8 +99,8 @@ public class TurnoPlayer : MonoBehaviour {
         }
         if (myW)
         {
-            int aux = Math.Abs(posx - 1 - (int)objetivo.transform.position.x) +
-             Math.Abs(posy - (int)objetivo.transform.position.y);
+            int aux = Math.Abs(posx - 1 - objetivo.GetComponent<TurnoEnemy>().posx) +
+             Math.Abs(posy - objetivo.GetComponent<TurnoEnemy>().posy);
 
             if (aux <= distancia)
             {
@@ -112,8 +112,8 @@ public class TurnoPlayer : MonoBehaviour {
         if (myE)
         {
 
-            int aux = Math.Abs(posx + 1 - (int)objetivo.transform.position.x) +
-            Math.Abs(posy - (int)objetivo.transform.position.y);
+            int aux = Math.Abs(posx + 1 - objetivo.GetComponent<TurnoEnemy>().posx) +
+            Math.Abs(posy - objetivo.GetComponent<TurnoEnemy>().posy);
             if (aux <= distancia)
             {
                 x = 1;
@@ -124,8 +124,8 @@ public class TurnoPlayer : MonoBehaviour {
         if (myN)
         {
 
-            int aux = Math.Abs(posx - (int)objetivo.transform.position.x) +
-             Math.Abs(posy + 1 - (int)objetivo.transform.position.y);
+            int aux = Math.Abs(posx - objetivo.GetComponent<TurnoEnemy>().posx) +
+             Math.Abs(posy + 1 - objetivo.GetComponent<TurnoEnemy>().posy);
 
             if (aux <= distancia)
             {
@@ -154,8 +154,8 @@ public class TurnoPlayer : MonoBehaviour {
             if(casillaSig.x ==posx && casillaSig.y == posy)
             {
                 if (posx == 0 && posy == 0) AcabarPartida();
-                else if ((Math.Abs(posx - (int)objetivo.GetComponent<TurnoEnemy>().posx) +
-                 Math.Abs(posy - (int)objetivo.GetComponent<TurnoEnemy>().posy))==0) {
+                else if ((Math.Abs(posx - objetivo.GetComponent<TurnoEnemy>().posx) +
+                 Math.Abs(posy - objetivo.GetComponent<TurnoEnemy>().posy))==0) {
 
                     // combate si toca el objetivo
                     // tengo que comprobar tambien si hay varios objetivos para combatirlos por separado
