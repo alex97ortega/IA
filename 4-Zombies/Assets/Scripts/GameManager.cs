@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour {
         gui.Reinciar();
         botonComenzar.SetActive(false);
         textofin.SetActive(false);
+        protas.SetActive(true);
     }
 
     public void CreateAly(Vector3 pos)

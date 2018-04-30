@@ -33,7 +33,16 @@ public class TurnoEnemy : MonoBehaviour {
         if (!acabadoTurno)
         {
 
-            if (posx == casillaSig.x && posy == casillaSig.y) TerminarTurno();
+            if (posx == casillaSig.x && posy == casillaSig.y)
+            {
+                if ((Math.Abs(posx - (int)objetivo.transform.position.x) +
+                 Math.Abs(posy - (int)objetivo.transform.position.y)) == 0)
+                {
+                    gui.Combate(new Vector2Int(posx, posy));
+                    if (!gui.finPartida) TerminarTurno();
+                }
+                else  TerminarTurno();
+            }
         }
     }
     void BuscaObjetivo()
@@ -44,12 +53,13 @@ public class TurnoEnemy : MonoBehaviour {
              Math.Abs(posy- gm.protas.GetComponent<TurnoPlayer>().posy);
         //Debug.Log("Distancia con prota: " + distancia);
 
-        if(gui.numAliados != 0)
-        {
+       
             foreach (GameObject a in gm.alys)
             {
+            if (a != null)
+            {
                 int aux = Math.Abs(posx - (int)a.transform.position.x) +
-                 Math.Abs(posy - (int)a.transform.position.y);
+                Math.Abs(posy - (int)a.transform.position.y);
 
                 //Debug.Log("Distancia con aly: " + aux);
                 if (aux <= distancia)
@@ -59,7 +69,9 @@ public class TurnoEnemy : MonoBehaviour {
                     distancia = aux;
                 }
             }
-        }        
+               
+            }
+                
         CasillaSiguiente();
     }
 

@@ -41,9 +41,9 @@ public class TurnoPlayer : MonoBehaviour {
     void Atacar()
     {
         distancia = 200;
-        
-            foreach (GameObject a in gm.enemies)
-            {
+
+        foreach (GameObject a in gm.enemies)
+        {
             if (a != null)
             {
                 int aux = Math.Abs(posx - (int)a.GetComponent<TurnoEnemy>().posx) +
@@ -54,8 +54,9 @@ public class TurnoPlayer : MonoBehaviour {
                     distancia = aux;
                 }
             }
-                
-            }
+
+        }
+        
         //Debug.Log("Distancia con el muerto: " + distancia);
         if(distancia!=0)   CasillaSiguiente();
         decisionTomada = true;
@@ -71,6 +72,9 @@ public class TurnoPlayer : MonoBehaviour {
     }
     public void DecisionIA()
     {
+        gui.CalculaDestreza();
+        gui.CalculaSituacion();
+
         // movidas de redes bayesianas
 
         gui.DesactivarBotones();
@@ -158,9 +162,8 @@ public class TurnoPlayer : MonoBehaviour {
                  Math.Abs(posy - objetivo.GetComponent<TurnoEnemy>().posy))==0) {
 
                     // combate si toca el objetivo
-                    // tengo que comprobar tambien si hay varios objetivos para combatirlos por separado
-                    if (gui.MatarEnemigo(objetivo, true)) AcabarPartida();
-                    else TerminarTurno();
+                    gui.Combate(new Vector2Int(posx,posy));
+                    if(gui.numEnemigos!=0) TerminarTurno();
                 }
                 else TerminarTurno();
             }

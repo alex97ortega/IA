@@ -23,11 +23,13 @@ public class GUI : MonoBehaviour
     public GameManager gm;
     public int numAliados, numEnemigos;
     bool llamado = false;
+    public bool finPartida = false;
     // Script que se encarga de gestionar todas las movidas una vez que comienza el simulator
     // Puntos, turnos, acciones, destreza y situación 
     
     public void Comenzar()
     {
+        finPartida = false;
         numAliados = gm.maxA - gm.numeroAliados;
         numEnemigos = gm.maxE - gm.numeroEnemigos;
 
@@ -94,11 +96,11 @@ public class GUI : MonoBehaviour
     private void Update()
     {
         // llamada a los zombies por orden (para que no hagan todos sus turnos a la vez)
-        if(turnoPersonaje == 0)
+        if(turnoPersonaje == 0 && !finPartida)
         {
 
             //Debug.Log("llamando zombie " + nEnemy);
-            if (gm.enemies[nEnemy].GetComponent<TurnoEnemy>().acabadoTurno)
+            if (gm.enemies[nEnemy] != null && gm.enemies[nEnemy].GetComponent<TurnoEnemy>().acabadoTurno)
             {
                 if (!llamado)
                 {
@@ -110,9 +112,10 @@ public class GUI : MonoBehaviour
                     nEnemy--;
                     llamado = false;
                 }
-            }                
-           
+            }
+            else if (gm.enemies[nEnemy] == null) nEnemy--;
             if (nEnemy < 0) CambiarTurno();
+            
             
         }
     }
@@ -122,6 +125,83 @@ public class GUI : MonoBehaviour
         puntos += p;
         textoPuntos.GetComponent<Text>().text = "Puntos: " + puntos;
     }
+   
+
+    public void MatarAliado(GameObject al)
+    {
+        Destroy(al);
+        CambiarPuntos(-10);
+        numAliados--;
+    }
+    // devuelve true si finaliza la partida
+    public void MatarEnemigo(GameObject en, bool matadoHeroe)
+    {
+        Destroy(en);
+        if(matadoHeroe)
+            CambiarPuntos(5);
+        else CambiarPuntos(1);
+        numEnemigos--;
+        if (numEnemigos == 0)
+        {
+            finPartida = true;
+            gm.protas.GetComponent<TurnoPlayer>().AcabarPartida();
+        }
+    }
+    public void MatarHeroe()
+    {
+        //finalizar partida
+        finPartida = true;
+        CambiarPuntos(-50);
+        gm.protas.GetComponent<TurnoPlayer>().AcabarPartida();
+        gm.protas.SetActive(false);
+    }
+
+    public void Combate(Vector2Int casilla)
+    {
+
+        bool victoriaHeroe;
+        int rand = Random.Range(0, 10);
+        // -10% de posibilidad de ganar los buenos si es de noche
+        int nocheVision = 0;
+        if (gm.noche) nocheVision = 1;
+
+        if (numAliados >= 3) victoriaHeroe = rand > 0+nocheVision;
+        else if (numAliados != 0) victoriaHeroe = rand > 4+nocheVision;
+        else victoriaHeroe = rand < 2-nocheVision;
+
+        //cargarse los bichos
+        if (victoriaHeroe)
+        {
+            foreach (GameObject a in gm.enemies)
+            {
+                if (a != null && a.GetComponent<TurnoEnemy>().posx==casilla.x
+                    && a.GetComponent<TurnoEnemy>().posy == casilla.y)
+                {
+                    bool estaHeroe = gm.protas.GetComponent<TurnoPlayer>().posx == casilla.x &&
+                        gm.protas.GetComponent<TurnoPlayer>().posy == casilla.y;
+                    MatarEnemigo(a, estaHeroe);
+                }
+            }
+        }
+        //cargarse al heroe o a los aliados que sea
+        else
+        {
+            if (gm.protas.GetComponent<TurnoPlayer>().posx == casilla.x
+                && gm.protas.GetComponent<TurnoPlayer>().posy == casilla.y) MatarHeroe();
+            else
+            {
+                foreach (GameObject a in gm.alys)
+                {
+                    if (a != null && a.transform.position.x == casilla.x
+                        && a.transform.position.y == casilla.y)
+                    {
+                        MatarAliado(a);
+                    }
+                }
+            }
+        }
+    }
+
     // probabilidades según transparencias, se llaman antes de cada combate
     public void CalculaDestreza()
     {
@@ -151,6 +231,7 @@ public class GUI : MonoBehaviour
             else destreza = Destreza.Buena;
         }
     }
+
     // probabilidades según transparencias, se llaman antes de cada combate
     public void CalculaSituacion()
     {
@@ -186,27 +267,5 @@ public class GUI : MonoBehaviour
                 else situacion = Situacion.Neutral;
             }
         }
-    }
-
-    public void MatarAliado(GameObject al)
-    {
-        Destroy(al);
-        CambiarPuntos(-10);
-        numAliados--;
-    }
-    // devuelve true si finaliza la partida
-    public bool MatarEnemigo(GameObject en, bool matadoHeroe)
-    {
-        Destroy(en);
-        if(matadoHeroe)
-            CambiarPuntos(5);
-        else CambiarPuntos(1);
-        numEnemigos--;
-        return numEnemigos == 0;
-    }
-    public void MatarHeroe()
-    {
-        //finalizar partida
-        gm.protas.GetComponent<TurnoPlayer>().AcabarPartida();
     }
 }
