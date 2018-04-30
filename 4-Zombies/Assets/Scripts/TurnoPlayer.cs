@@ -31,10 +31,12 @@ public class TurnoPlayer : MonoBehaviour {
     {
         DamePos();
         casillaSig = new Vector2Int(posx,posy);
-
-        if (d == 0) Atacar();
-        else if (d == 1) Retroceder();
-        else TerminarTurno(); //esperar               
+        if (!gui.finPartida)
+        {
+            if (d == 0) Atacar();
+            else if (d == 1) Retroceder();
+            else TerminarTurno(); //esperar       
+        }        
 
         gui.DesactivarBotones();           
     }
@@ -46,8 +48,8 @@ public class TurnoPlayer : MonoBehaviour {
         {
             if (a != null)
             {
-                int aux = Math.Abs(posx - (int)a.GetComponent<TurnoEnemy>().posx) +
-                 Math.Abs(posy - (int)a.GetComponent<TurnoEnemy>().posy);
+                int aux = Math.Abs(posx - a.GetComponent<TurnoEnemy>().posx) +
+                 Math.Abs(posy - a.GetComponent<TurnoEnemy>().posy);
                 if (aux <= distancia)
                 {
                     objetivo = a;

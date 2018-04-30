@@ -133,7 +133,6 @@ public class GUI : MonoBehaviour
         CambiarPuntos(-10);
         numAliados--;
     }
-    // devuelve true si finaliza la partida
     public void MatarEnemigo(GameObject en, bool matadoHeroe)
     {
         Destroy(en);
@@ -163,11 +162,13 @@ public class GUI : MonoBehaviour
         int rand = Random.Range(0, 10);
         // -10% de posibilidad de ganar los buenos si es de noche
         int nocheVision = 0;
+        //más posibilidad de ganar si es el turno del personaje
+        int heroe = 2 * turnoPersonaje;
         if (gm.noche) nocheVision = 1;
 
-        if (numAliados >= 3) victoriaHeroe = rand > 0+nocheVision;
-        else if (numAliados != 0) victoriaHeroe = rand > 4+nocheVision;
-        else victoriaHeroe = rand < 2-nocheVision;
+        if (numAliados >= 3) victoriaHeroe = rand > 2+nocheVision -heroe;//30-70% en lugar de 10-90%
+        else if (numAliados != 0) victoriaHeroe = rand > 4+nocheVision-heroe; //50-50% o 40-60% en el caso de noche
+        else victoriaHeroe = rand < 3-nocheVision+heroe;
 
         //cargarse los bichos
         if (victoriaHeroe)
