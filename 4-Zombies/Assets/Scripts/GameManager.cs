@@ -153,5 +153,5 @@ public class GameManager : MonoBehaviour {
         }
     }
     public bool Comenzado() { return comenzado; }
-   
+    public void Salir() { Application.Quit(); }
 }
