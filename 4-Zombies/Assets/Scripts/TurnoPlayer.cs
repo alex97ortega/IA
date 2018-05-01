@@ -77,10 +77,43 @@ public class TurnoPlayer : MonoBehaviour {
         gui.CalculaDestreza();
         gui.CalculaSituacion();
 
-        // movidas de redes bayesianas
 
         gui.DesactivarBotones();
-        decisionTomada = true;
+
+        // movidas de redes bayesianas
+        int probAtacar;
+        int probRetroceder;
+
+        // si hay mucho zombie es menos probable que ataque
+
+        if(gui.situacion == GUI.Situacion.MuchoZombie)
+        {
+            if(gui.destreza == GUI.Destreza.Buena) { probAtacar = 3; probRetroceder = 4; } 
+            else if (gui.destreza == GUI.Destreza.Regular) { probAtacar = 2; probRetroceder = 5; }
+            else { probAtacar = 1; probRetroceder = 6; }
+        }
+        
+        else if(gui.situacion == GUI.Situacion.Neutral)
+        {
+            if (gui.destreza == GUI.Destreza.Buena) { probAtacar = 7; probRetroceder = 1; }
+            else if (gui.destreza == GUI.Destreza.Regular) { probAtacar = 5; probRetroceder = 2; }
+            else { probAtacar = 3; probRetroceder = 3; }
+        }
+        else //mucho aliado, casi seguro que va a atacar
+        {
+            if (gui.destreza == GUI.Destreza.Buena) { probAtacar = 9; probRetroceder = 0; }
+            else if (gui.destreza == GUI.Destreza.Regular) { probAtacar = 8; probRetroceder = 1; }
+            else { probAtacar = 7; probRetroceder = 2; }
+        }
+        if (gui.getPuntos() > 0) probAtacar++;
+
+        Debug.Log("El soldado tiene una toma de decisión de " + 
+            probAtacar * 10 + "-" + probRetroceder*10 + "-" + (10 - probAtacar - probRetroceder)*10);
+
+        int rand = UnityEngine.Random.Range(0, 10);
+        if (rand < probAtacar) Atacar();
+        else if (rand >= 10 - probRetroceder) Retroceder();
+        else TerminarTurno(); //esperar  
     }
     void CasillaSiguiente()
     {
@@ -152,6 +185,7 @@ public class TurnoPlayer : MonoBehaviour {
         //Debug.Log("CasillaSig(" + casillaSig.x + "," + casillaSig.y + ")");
         DarVelocidad();
     }
+
     private void Update()
     {
         DamePos();

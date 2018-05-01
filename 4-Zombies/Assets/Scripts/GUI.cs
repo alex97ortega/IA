@@ -13,12 +13,15 @@ public class GUI : MonoBehaviour
     public GameObject textoTurnos;
 
     int puntos = 0;
+    public int getPuntos() { return puntos; }
+
     int turnoPersonaje = -1; // -1 (no empezado), 0 (turno Enemies), 1 (turno personaje)
     int nEnemy;
-    enum Destreza { Mala, Regular, Buena };
-    Destreza destreza;
-    enum Situacion { MuchoZombie, MuchoAliado, Neutral };
-    Situacion situacion;
+
+    public enum Destreza { Mala, Regular, Buena };
+    public Destreza destreza;
+    public enum Situacion { MuchoZombie, MuchoAliado, Neutral };
+    public Situacion situacion;
 
     public GameManager gm;
     public int numAliados, numEnemigos;
@@ -166,9 +169,25 @@ public class GUI : MonoBehaviour
         int heroe = 2 * turnoPersonaje;
         if (gm.noche) nocheVision = 1;
 
-        if (numAliados >= 3) victoriaHeroe = rand > 2+nocheVision -heroe;//30-70% en lugar de 10-90%
-        else if (numAliados != 0) victoriaHeroe = rand > 4+nocheVision-heroe; //50-50% o 40-60% en el caso de noche
-        else victoriaHeroe = rand < 3-nocheVision+heroe;
+        int probVictory;
+        if (numAliados >= 3)
+        {
+            probVictory = 7 + heroe - nocheVision; //70-30% en lugar de 90-10%
+            victoriaHeroe = rand < probVictory;
+        }
+        else if (numAliados != 0)
+        {
+            probVictory = 5 + heroe - nocheVision; //50-50% o 60-40% en el caso de noche
+            victoriaHeroe = rand < probVictory;
+        }
+
+        else
+        {
+            probVictory = 3 + heroe - nocheVision; // 30-70%
+            victoriaHeroe = rand < probVictory;
+        }
+
+        Debug.Log("Probabilidad de ganar soldados :" + probVictory * 10 + "%");
 
         //cargarse los bichos
         if (victoriaHeroe)
