@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Behavior Designer Samples/Third Person Controller/BD-TPC.unity
+  isLoaded: 1
+  isActive: 1
