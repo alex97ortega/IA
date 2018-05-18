@@ -8,6 +8,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
     [TaskIcon("Assets/Behavior Designer Movement/Editor/Icons/{SkinColor}FlockIcon.png")]
     public class Flock : NavMeshGroupMovement
     {
+        float incr;
         [Tooltip("Agents less than this distance apart are neighbors")]
         public SharedFloat neighborDistance = 100;
         [Tooltip("How far the agent should look ahead when determine its pathfinding destination")]
@@ -36,6 +37,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
                     SetDestination(i, transforms[i].position + velocity * lookAheadDistance.Value);
                 }
             }
+            incr = Mathf.Sin(Time.time * 10) * 0.05f;
             return TaskStatus.Running;
         }
 

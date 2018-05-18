@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 8
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -39,7 +39,6 @@ RenderSettings:
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 524957381}
   m_IndirectSpecularColor: {r: 0.39084306, g: 0.36310285, b: 0.3284238, a: 1}
-  m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -55,10 +54,11 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 10
+    serializedVersion: 9
     m_Resolution: 0.75
     m_BakeResolution: 1.5
-    m_AtlasSize: 1024
+    m_TextureWidth: 1024
+    m_TextureHeight: 1024
     m_AO: 1
     m_AOMaxDistance: 1
     m_CompAOExponent: 0.03
@@ -2106,69 +2106,54 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -2451,69 +2436,54 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -3018,69 +2988,54 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -3098,7 +3053,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5b3924cb70d8ff24dad7fbf9588d85c1, type: 2}
   m_StaticBatchInfo:
@@ -3470,7 +3424,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4399,7 +4352,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6848a4ccafc4835469465b24149fd5a9, type: 2}
   - {fileID: 2100000, guid: f9b0075259ef5b644b5af2d50de44933, type: 2}
@@ -4615,24 +4567,18 @@ MonoBehaviour:
   m_ArriveRampDownCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0.85
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -4696,24 +4642,18 @@ MonoBehaviour:
   m_DamageCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 1
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 1
       inSlope: 1
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -4991,7 +4931,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &129198426
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -6119,69 +6058,54 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -6199,7 +6123,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5b3924cb70d8ff24dad7fbf9588d85c1, type: 2}
   m_StaticBatchInfo:
@@ -6790,7 +6713,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -7748,31 +7670,31 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 13.0790005
+      value: 13.079
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -18.3910007
+      value: -18.391
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -2.55500007
+      value: -2.555
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.x
-      value: .707010627
+      value: 0.7070106
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -.0116646001
+      value: -0.0116646
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -.0116646001
+      value: -0.0116646
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707010627
+      value: 0.7070106
       objectReference: {fileID: 0}
     - target: {fileID: 2300002, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_UseLightProbes
@@ -8276,7 +8198,6 @@ LineRenderer:
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6de2d4a0f30fa9d49bdbb3cfd06c2d9a, type: 2}
   m_StaticBatchInfo:
@@ -8307,24 +8228,18 @@ LineRenderer:
     widthCurve:
       serializedVersion: 2
       m_Curve:
-      - serializedVersion: 3
+      - serializedVersion: 2
         time: 0
         value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
+      - serializedVersion: 2
         time: 1
         value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -8958,7 +8873,7 @@ Transform:
   - {fileID: 375465096}
   - {fileID: 354190589}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &249561909
 MeshCollider:
@@ -11030,7 +10945,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6848a4ccafc4835469465b24149fd5a9, type: 2}
   m_StaticBatchInfo:
@@ -11539,31 +11453,31 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -13.0450001
+      value: -13.045
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 18.3339996
+      value: 18.334
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -2.55599999
+      value: -2.556
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -3.09086197e-08
+      value: -0.00000003090862
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -.707106829
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -.707106829
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -3.09086197e-08
+      value: -0.00000003090862
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_IsTrigger
@@ -12375,11 +12289,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.95417416
+      value: -1.9541742
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 43.8257561
+      value: 43.825756
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -12387,19 +12301,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.x
-      value: .5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -.5
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -.5
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_IsTrigger
@@ -14447,31 +14361,31 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a374dd6c7780834b8da33c5feb04dd3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.79840541
+      value: -1.7984054
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a374dd6c7780834b8da33c5feb04dd3, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -7.44381762
+      value: -7.4438176
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a374dd6c7780834b8da33c5feb04dd3, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 10.6532307
+      value: 10.653231
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a374dd6c7780834b8da33c5feb04dd3, type: 2}
       propertyPath: m_LocalRotation.x
-      value: .5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a374dd6c7780834b8da33c5feb04dd3, type: 2}
       propertyPath: m_LocalRotation.y
-      value: .5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a374dd6c7780834b8da33c5feb04dd3, type: 2}
       propertyPath: m_LocalRotation.z
-      value: .5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a374dd6c7780834b8da33c5feb04dd3, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Target
@@ -14848,7 +14762,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 8287be56bbb81c3468dd618f86707521, type: 2}
   m_StaticBatchInfo:
@@ -15906,24 +15819,18 @@ MonoBehaviour:
   m_ArriveRampDownCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0.85
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -15987,24 +15894,18 @@ MonoBehaviour:
   m_DamageCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 1
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 1
       inSlope: 1
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -16282,7 +16183,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &485716323
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -16925,7 +16825,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 8287be56bbb81c3468dd618f86707521, type: 2}
   m_StaticBatchInfo:
@@ -17911,7 +17810,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: f9b0075259ef5b644b5af2d50de44933, type: 2}
   m_StaticBatchInfo:
@@ -19283,7 +19181,7 @@ Transform:
   - {fileID: 129198409}
   - {fileID: 1579363135}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &622369257
 GameObject:
@@ -19492,69 +19390,54 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -19705,7 +19588,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &629352768
 MonoBehaviour:
@@ -20242,7 +20125,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6848a4ccafc4835469465b24149fd5a9, type: 2}
   m_StaticBatchInfo:
@@ -20281,19 +20163,19 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 18.5389996
+      value: 18.539
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 21.6439991
+      value: 21.644
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 5.44099998
+      value: 5.441
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalRotation.x
-      value: .707106829
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalRotation.y
@@ -20305,7 +20187,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707106829
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -20516,7 +20398,7 @@ Transform:
   - {fileID: 2009063158}
   - {fileID: 1587131071}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &666858380
 GameObject:
@@ -20562,7 +20444,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 26033326b3f13c4429c36be721794242, type: 2}
   m_StaticBatchInfo:
@@ -22215,7 +22096,6 @@ LineRenderer:
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6de2d4a0f30fa9d49bdbb3cfd06c2d9a, type: 2}
   m_StaticBatchInfo:
@@ -22246,24 +22126,18 @@ LineRenderer:
     widthCurve:
       serializedVersion: 2
       m_Curve:
-      - serializedVersion: 3
+      - serializedVersion: 2
         time: 0
         value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
+      - serializedVersion: 2
         time: 1
         value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -23651,15 +23525,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a374dd6c7780834b8da33c5feb04dd3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -.0590000004
+      value: -0.059
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a374dd6c7780834b8da33c5feb04dd3, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.71300006
+      value: 1.713
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a374dd6c7780834b8da33c5feb04dd3, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -2.34100008
+      value: -2.341
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a374dd6c7780834b8da33c5feb04dd3, type: 2}
       propertyPath: m_LocalRotation.x
@@ -23675,7 +23549,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a374dd6c7780834b8da33c5feb04dd3, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -1.62920685e-07
+      value: -0.00000016292068
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Target
@@ -26430,7 +26304,6 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: f89b437d499cb844b920e0865e1a228e, type: 2}
   - {fileID: 2100000, guid: 1c9e5f0ae895b6842b200aa6ae294c67, type: 2}
@@ -26816,7 +26689,7 @@ Transform:
   - {fileID: 1396712699}
   - {fileID: 1492684327}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &893282791
 Prefab:
@@ -27660,7 +27533,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 4050cd7b4854b7b47a7cf87add5e0095, type: 2}
   m_StaticBatchInfo:
@@ -31001,7 +30873,6 @@ LineRenderer:
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6de2d4a0f30fa9d49bdbb3cfd06c2d9a, type: 2}
   m_StaticBatchInfo:
@@ -31032,24 +30903,18 @@ LineRenderer:
     widthCurve:
       serializedVersion: 2
       m_Curve:
-      - serializedVersion: 3
+      - serializedVersion: 2
         time: 0
         value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
+      - serializedVersion: 2
         time: 1
         value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -31203,7 +31068,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: f9b0075259ef5b644b5af2d50de44933, type: 2}
   - {fileID: 2100000, guid: e64767fcfacb4d846b9eebb2ff85e797, type: 2}
@@ -32015,7 +31879,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6848a4ccafc4835469465b24149fd5a9, type: 2}
   - {fileID: 2100000, guid: 6ef17a5317cc6a14eb7fe27dde752e39, type: 2}
@@ -32099,6 +31962,11 @@ Transform:
   m_Father: {fileID: 666615613}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1078307845 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1434962672629644, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1729855686}
 --- !u!1 &1079799850
 GameObject:
   m_ObjectHideFlags: 0
@@ -34470,24 +34338,18 @@ MonoBehaviour:
   m_ArriveRampDownCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0.85
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -34551,24 +34413,18 @@ MonoBehaviour:
   m_DamageCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 1
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 1
       inSlope: 1
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -34846,7 +34702,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1160136847
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -35119,7 +34974,7 @@ Transform:
   - {fileID: 1682153118}
   - {fileID: 377039890}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1175045731
 MonoBehaviour:
@@ -35960,69 +35815,54 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -36901,7 +36741,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6848a4ccafc4835469465b24149fd5a9, type: 2}
   m_StaticBatchInfo:
@@ -36975,7 +36814,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6848a4ccafc4835469465b24149fd5a9, type: 2}
   m_StaticBatchInfo:
@@ -37125,7 +36963,6 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: c1121ee73318e01488ef915a6383485a, type: 2}
   - {fileID: 2100000, guid: 96ca16e067cc08b44b7db758376cb736, type: 2}
@@ -37892,7 +37729,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: f9b0075259ef5b644b5af2d50de44933, type: 2}
   - {fileID: 2100000, guid: 8287be56bbb81c3468dd618f86707521, type: 2}
@@ -38642,7 +38478,6 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: f89b437d499cb844b920e0865e1a228e, type: 2}
   - {fileID: 2100000, guid: 1c9e5f0ae895b6842b200aa6ae294c67, type: 2}
@@ -39000,7 +38835,6 @@ LineRenderer:
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6de2d4a0f30fa9d49bdbb3cfd06c2d9a, type: 2}
   m_StaticBatchInfo:
@@ -39031,24 +38865,18 @@ LineRenderer:
     widthCurve:
       serializedVersion: 2
       m_Curve:
-      - serializedVersion: 3
+      - serializedVersion: 2
         time: 0
         value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
+      - serializedVersion: 2
         time: 1
         value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -39337,7 +39165,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6848a4ccafc4835469465b24149fd5a9, type: 2}
   m_StaticBatchInfo:
@@ -42035,7 +41862,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 8287be56bbb81c3468dd618f86707521, type: 2}
   m_StaticBatchInfo:
@@ -42280,7 +42106,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 4050cd7b4854b7b47a7cf87add5e0095, type: 2}
   m_StaticBatchInfo:
@@ -42669,31 +42494,31 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 16.9400005
+      value: 16.94
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 29.7199993
+      value: 29.72
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 5.57000017
+      value: 5.57
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 9.27258625e-08
+      value: 0.00000009272586
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.y
-      value: .707106829
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.z
-      value: .707106829
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 26b699ed16cce074e9c59ed3fc47d5d5, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -3.09086197e-08
+      value: -0.00000003090862
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_IsTrigger
@@ -43609,69 +43434,54 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -43718,7 +43528,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6848a4ccafc4835469465b24149fd5a9, type: 2}
   m_StaticBatchInfo:
@@ -44975,7 +44784,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6848a4ccafc4835469465b24149fd5a9, type: 2}
   m_StaticBatchInfo:
@@ -45707,7 +45515,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5b3924cb70d8ff24dad7fbf9588d85c1, type: 2}
   m_StaticBatchInfo:
@@ -46363,19 +46170,19 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -9.51399994
+      value: -9.514
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 10.0089998
+      value: 10.009
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -2.57200003
+      value: -2.572
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalRotation.x
-      value: .707106829
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalRotation.y
@@ -46387,7 +46194,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707106829
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -46560,7 +46367,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 2a1357b240a97db4d9aee156b315f7c8, type: 2}
   m_StaticBatchInfo:
@@ -48941,7 +48747,6 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: f89b437d499cb844b920e0865e1a228e, type: 2}
   - {fileID: 2100000, guid: 1c9e5f0ae895b6842b200aa6ae294c67, type: 2}
@@ -49210,7 +49015,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1625140906
 GameObject:
@@ -51895,6 +51700,159 @@ Transform:
   m_Father: {fileID: 2031781472}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1729855686
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4220235677034204, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220235677034204, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220235677034204, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 15.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220235677034204, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220235677034204, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220235677034204, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220235677034204, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220235677034204, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 33005740985446726, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300002, guid: 43a6ccb7239adcc409f06c6c7b269ac1, type: 3}
+    - target: {fileID: 33926311988967052, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300006, guid: 43a6ccb7239adcc409f06c6c7b269ac1, type: 3}
+    - target: {fileID: 33792973011515826, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300004, guid: 43a6ccb7239adcc409f06c6c7b269ac1, type: 3}
+    - target: {fileID: 23008631218583030, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100002, guid: 43a6ccb7239adcc409f06c6c7b269ac1, type: 3}
+    - target: {fileID: 23008631218583030, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: a08f97e5b75379d40b08ff5f74847d5c, type: 2}
+    - target: {fileID: 23008631218583030, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: a08f97e5b75379d40b08ff5f74847d5c, type: 2}
+    - target: {fileID: 23594346413776708, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a08f97e5b75379d40b08ff5f74847d5c, type: 2}
+    - target: {fileID: 23024849067155492, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a08f97e5b75379d40b08ff5f74847d5c, type: 2}
+    - target: {fileID: 4183817872084078, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 79
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183817872084078, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -18.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183817872084078, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4996508487114210, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 30.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4996508487114210, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -39.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4996508487114210, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -47.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565125258389042, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 51.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4565125258389042, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -37.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220235677034204, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220235677034204, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220235677034204, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828348416628116, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828348416628116, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828348416628116, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 114389358602139112, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1078307845}
+    - target: {fileID: 195489594366874558, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_StoppingDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 195489594366874558, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_Radius
+      value: 1.76
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1732016196
 GameObject:
   m_ObjectHideFlags: 0
@@ -52132,7 +52090,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6ef17a5317cc6a14eb7fe27dde752e39, type: 2}
   m_StaticBatchInfo:
@@ -52430,69 +52387,54 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -53023,69 +52965,54 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -54321,69 +54248,54 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -54639,7 +54551,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: cf9a9b9346dc5fa4d9bcc23696e0b192, type: 2}
   m_StaticBatchInfo:
@@ -54741,7 +54652,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 6ef17a5317cc6a14eb7fe27dde752e39, type: 2}
   - {fileID: 2100000, guid: f9b0075259ef5b644b5af2d50de44933, type: 2}
@@ -55630,69 +55540,54 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -58079,7 +57974,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -58485,69 +58379,54 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -58565,7 +58444,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5b3924cb70d8ff24dad7fbf9588d85c1, type: 2}
   m_StaticBatchInfo:
@@ -59596,7 +59474,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -59743,7 +59620,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: e64767fcfacb4d846b9eebb2ff85e797, type: 2}
   - {fileID: 2100000, guid: 4050cd7b4854b7b47a7cf87add5e0095, type: 2}
@@ -60151,69 +60027,54 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -60231,7 +60092,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5b3924cb70d8ff24dad7fbf9588d85c1, type: 2}
   m_StaticBatchInfo:
@@ -60687,7 +60547,7 @@ Transform:
   - {fileID: 1253529708}
   - {fileID: 779973062}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1987290059
 MonoBehaviour:
@@ -60922,24 +60782,18 @@ MonoBehaviour:
   m_DamageCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 1
       outSlope: 1
       tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 1
       inSlope: 1
       outSlope: 1
       tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -61102,7 +60956,7 @@ MonoBehaviour:
   - {fileID: 1987290059}
   - {fileID: 1987290061}
   - {fileID: 1987290063}
-  m_SelectedAbility: 7
+  m_SelectedAbility: 0
 --- !u!114 &1987290078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61243,7 +61097,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1988784176
 GameObject:
   m_ObjectHideFlags: 0
@@ -62233,19 +62086,19 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -11.5030003
+      value: -11.503
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 10.0089998
+      value: 10.009
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -2.57200003
+      value: -2.572
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalRotation.x
-      value: .707107127
+      value: 0.7071071
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalRotation.y
@@ -62257,7 +62110,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707106531
+      value: 0.70710653
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: b85c19221cc05f343b8b5a3b7c884ad4, type: 2}
       propertyPath: m_StaticEditorFlags
@@ -63550,69 +63403,54 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
+    - serializedVersion: 2
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -63870,7 +63708,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: f9b0075259ef5b644b5af2d50de44933, type: 2}
   - {fileID: 2100000, guid: 6ef17a5317cc6a14eb7fe27dde752e39, type: 2}
