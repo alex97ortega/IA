@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4183817872084078}
   - component: {fileID: 33005740985446726}
   - component: {fileID: 23822411995273624}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114389358602139112}
   - component: {fileID: 136733722164669880}
   - component: {fileID: 54982775801169084}
-  m_Layer: 30
+  m_Layer: 21
   m_Name: Fantasma
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4996508487114210}
   - component: {fileID: 33926311988967052}
   - component: {fileID: 23594346413776708}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: left hand0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 4565125258389042}
   - component: {fileID: 33792973011515826}
   - component: {fileID: 23024849067155492}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: right hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4828348416628116}
   - component: {fileID: 33978059544191056}
   - component: {fileID: 23008631218583030}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

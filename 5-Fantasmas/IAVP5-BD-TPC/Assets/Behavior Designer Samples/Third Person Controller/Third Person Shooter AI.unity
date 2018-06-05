@@ -5403,23 +5403,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1536027402355746, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1211989814758088, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1856595970462006, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1815995023022608, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1434962672629644, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1434962672629644, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Name
@@ -5430,6 +5430,11 @@ Prefab:
       propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[4]
       value: 
       objectReference: {fileID: 579058792}
+    - target: {fileID: 136733722164669880, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
   m_IsPrefabParent: 0
@@ -13221,23 +13226,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1536027402355746, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1211989814758088, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1856595970462006, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1815995023022608, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1434962672629644, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1434962672629644, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Name
@@ -13248,6 +13253,11 @@ Prefab:
       propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[5]
       value: 
       objectReference: {fileID: 51381956}
+    - target: {fileID: 136733722164669880, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
   m_IsPrefabParent: 0
@@ -15707,23 +15717,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1536027402355746, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1211989814758088, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1856595970462006, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1815995023022608, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1434962672629644, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1434962672629644, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Name
@@ -15734,6 +15744,11 @@ Prefab:
       propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[1]
       value: 
       objectReference: {fileID: 1878983418}
+    - target: {fileID: 136733722164669880, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
   m_IsPrefabParent: 0
@@ -22223,23 +22238,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1536027402355746, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1211989814758088, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1856595970462006, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1815995023022608, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1434962672629644, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1434962672629644, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Name
@@ -22259,6 +22274,11 @@ Prefab:
         type: 2}
       propertyPath: m_Height
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 136733722164669880, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
@@ -50584,23 +50604,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1536027402355746, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1211989814758088, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1856595970462006, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1815995023022608, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1434962672629644, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1434962672629644, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Name
@@ -50611,6 +50631,11 @@ Prefab:
       propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[3]
       value: 
       objectReference: {fileID: 873403891}
+    - target: {fileID: 136733722164669880, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
   m_IsPrefabParent: 0
@@ -52816,23 +52841,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1536027402355746, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1211989814758088, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1856595970462006, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1815995023022608, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1434962672629644, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
       propertyPath: m_Layer
-      value: 30
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 136733722164669880, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
         type: 2}
@@ -52853,6 +52878,11 @@ Prefab:
         type: 2}
       propertyPath: m_Center.y
       value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 136733722164669880, guid: d4ed32cbe4f25eb41a1b496e75706fa7,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d4ed32cbe4f25eb41a1b496e75706fa7, type: 2}
@@ -61536,6 +61566,7 @@ GameObject:
   - component: {fileID: 1987290059}
   - component: {fileID: 1987290061}
   - component: {fileID: 1987290063}
+  - component: {fileID: 1987290067}
   m_Layer: 31
   m_Name: Doug
   m_TagString: Player
@@ -61745,6 +61776,17 @@ MonoBehaviour:
   m_VerticalMatchTargetOffset: 0
   m_StartMatchTarget: 0.1
   m_StopMatchTarget: 0.3
+--- !u!114 &1987290067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1987290057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 314ccbf5971b887439eb31ac4b869a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1987290068
 MonoBehaviour:
   m_ObjectHideFlags: 0
