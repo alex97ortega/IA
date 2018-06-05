@@ -38,6 +38,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
                 }
             }
             incr = Mathf.Sin(Time.time * 10) * 0.05f;
+            separationWeight = 0.6f + incr;
             return TaskStatus.Running;
         }
 
