@@ -55,12 +55,11 @@ namespace Opsive.ThirdPersonController
         /// <param name="col">The entered collision.</param>
         private void OnCollisionEnter(Collision col)
         {
-            
             if ((Utility.GetComponentForType<Shell>(col.gameObject)) == null) {
                 m_Rigidbody.isKinematic = true;
             }
         }
-      
+
         /// <summary>
         /// Place itself back in the ObjectPool.
         /// </summary>
