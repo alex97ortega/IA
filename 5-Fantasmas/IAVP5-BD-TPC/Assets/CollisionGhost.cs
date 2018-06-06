@@ -10,7 +10,6 @@ public class CollisionGhost : MonoBehaviour {
     {
         if (other.gameObject.layer == 21)
         {
-            Debug.Log("cosas");
             GetComponent<CharacterHealth>().Damage(2, transform.position, new Vector3(0, 0, 0));
         }
     }

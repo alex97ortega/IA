@@ -719,10 +719,17 @@ namespace Opsive.ThirdPersonController
         /// </summary>
         protected virtual void HitscanFire()
         {
+            //Debug.Log("entrando");
             // Cast a ray between the fire point and the position found by the crosshairs camera ray.
             var fireDirection = FireDirection();
-            if (Physics.Raycast(m_FirePoint.position, fireDirection, out m_RaycastHit, m_HitscanFireRange, m_HitscanImpactLayers.value, QueryTriggerInteraction.Ignore)) {
+           
+            if (Physics.Raycast(m_FirePoint.position, fireDirection, out m_RaycastHit, m_HitscanFireRange, m_HitscanImpactLayers.value, QueryTriggerInteraction.Collide)) {
                 // Execute any custom events.
+                if (m_RaycastHit.collider.gameObject.layer == 21)
+                {
+                    Vector3 newPos = new Vector3(Random.Range(-20, 20), m_RaycastHit.collider.gameObject.transform.position.y, Random.Range(-20, 20));
+                    m_RaycastHit.collider.gameObject.transform.position = newPos;
+                }
                 if (!string.IsNullOrEmpty(m_HitscanDamageEvent)) {
                     EventHandler.ExecuteEvent(m_RaycastHit.collider.gameObject, m_HitscanDamageEvent, m_HitscanDamageAmount, m_RaycastHit.point, m_RaycastHit.normal * -m_HitscanImpactForce, m_Character);
                 }
@@ -734,7 +741,7 @@ namespace Opsive.ThirdPersonController
                 } else if (m_HitscanImpactForce > 0 && m_RaycastHit.rigidbody != null && !m_RaycastHit.rigidbody.isKinematic) {
                     m_RaycastHit.rigidbody.AddForceAtPosition(fireDirection * m_HitscanImpactForce, m_RaycastHit.point);
                 }
-
+                
                 // Add any hitscan effects. These effects do not need to be added on the server.
 #if ENABLE_MULTIPLAYER
                 m_NetworkMonitor.ExecuteItemEvent(m_ItemType.ID, "OnItemAddHitscanEffects", m_RaycastHit.transform.gameObject, m_RaycastHit.point, m_RaycastHit.normal);
@@ -773,6 +780,7 @@ namespace Opsive.ThirdPersonController
                 if (decal != null) {
                     // Apply a decal to the hit point. Offset the decal by a small amount so it doesn't interset with the object hit.
                     DecalManager.Add(decal, hitPoint + hitNormal * 0.02f, decal.transform.rotation * hitRotation, hitTransform);
+                    
                 }
             }
 
