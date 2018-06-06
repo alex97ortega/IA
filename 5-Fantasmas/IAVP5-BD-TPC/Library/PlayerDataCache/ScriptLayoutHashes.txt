@@ -365,3 +365,4 @@ d2ae1d7cbba4aafe55b36176efdd6b29 Assembly-CSharp.dll:Opsive.ThirdPersonControlle
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Opsive.ThirdPersonController.PushableObject
 00636ea3182e51316d2d5e92a554c53f Assembly-CSharp.dll:Opsive.ThirdPersonController.Abilities.QuickMovement
 dbe7a9c817fc4b286eead594cbafbd41 Assembly-CSharp.dll:Opsive.ThirdPersonController.Wrappers.Abilities.HeightChange
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Exit

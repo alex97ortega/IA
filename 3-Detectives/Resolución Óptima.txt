@@ -1,0 +1,5 @@
+1280x600
+Fede, cómo te comentamos hemos utilizado un aspect ratio que no era adecuado 
+y para verlo bien tiene que poner la resolución a la anteriormente mencionada.
+Cabe la posibilidad de que sea problema de mi ordenador, pues es un portátil y 
+el ratio es un poco raro, pero de todas formas en 1280x600 se debería ver bien 100%

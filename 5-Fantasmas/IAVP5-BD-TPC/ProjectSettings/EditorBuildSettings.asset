@@ -8,3 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Behavior Designer Samples/Third Person Controller/Third Person Shooter
+      AI.unity
+    guid: a5b18fedbe23fff499c18f3ab447ffe5
