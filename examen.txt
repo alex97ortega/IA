@@ -1,8 +1,0 @@
-1. Historia de la IA para los videojuegos:
-	Contar más o menos lo que pone los diapositivas.
-	En los 90 pasaba dos cosas inportantes para la IA:
-	- Internet
-	- Multimedia
-	La IA de videojuegos se consolida
-	Destacan los RTS y los FPS por los bots
-	Ejemplo de juego destacado: StarCraft
